@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="RestaurantUserService" />
+        <module name="RestaurantBookingService" />
+        <module name="RestaurantService" />
+        <module name="RestaurantAccountService" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RestaurantAccountService" target="15" />
+      <module name="RestaurantBookingService" target="11" />
+      <module name="RestaurantService" target="11" />
+      <module name="RestaurantUserService" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="RestaurantAccountService" options="-parameters" />
+      <module name="RestaurantBookingService" options="-parameters" />
+      <module name="RestaurantService" options="-parameters" />
+      <module name="RestaurantUserService" options="-parameters" />
+    </option>
+  </component>
+</project>
