@@ -15,6 +15,8 @@ public class ReservationService {
     @Qualifier("HardCodeImpl")
     private ReservationDAOImpl reservationDAOImpl;
 
+    //some new code
+
     public List<Reservation> getAllReservation() {
         return this.reservationDAOImpl.getAllReservation();
     }
