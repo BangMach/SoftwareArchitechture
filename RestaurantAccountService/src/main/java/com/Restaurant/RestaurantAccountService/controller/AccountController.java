@@ -52,4 +52,5 @@ public class AccountController {
     public String deleteAccount(@RequestParam Integer id){
         return accountService.deleteAccountById(id);
     }
+
 }
