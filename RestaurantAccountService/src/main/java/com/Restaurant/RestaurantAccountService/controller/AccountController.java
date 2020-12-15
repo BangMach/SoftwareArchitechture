@@ -24,15 +24,6 @@ public class AccountController {
         return (accountService.createAccount(account));
     }
 
-    @RequestMapping(value = "/find/username", method = RequestMethod.GET)
-    public Account findAccountByUsername(@RequestParam String username) {
-        return accountService.findAccountByUsername(username);
-    }
-
-    @RequestMapping(value = "/find/email", method = RequestMethod.GET)
-    public Account findAccountByEmail(@RequestParam String email) {
-        return accountService.findAccountByEmail(email);
-    }
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Account> findAll() {
         return accountService.findAllAccounts();
@@ -41,6 +32,16 @@ public class AccountController {
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public List<Account> findAccounts(@RequestBody Account account) {
         return accountService.findAccounts(account);
+    }
+
+    @RequestMapping(value = "/find/username", method = RequestMethod.GET)
+    public Account findAccountByUsername(@RequestParam String username) {
+        return accountService.findAccountByUsername(username);
+    }
+
+    @RequestMapping(value = "/find/email", method = RequestMethod.GET)
+    public Account findAccountByEmail(@RequestParam String email) {
+        return accountService.findAccountByEmail(email);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
@@ -52,4 +53,5 @@ public class AccountController {
     public String deleteAccount(@RequestParam Integer id){
         return accountService.deleteAccountById(id);
     }
+
 }
