@@ -9,9 +9,9 @@ public interface AccountServiceInterface {
 
     Account createAccount(Account account) throws NoSuchAlgorithmException, InvalidKeySpecException;
 
-    Account verifyAccountPassword(Account account) throws NoSuchAlgorithmException, InvalidKeySpecException;
+    Account findAccountByUsername(String username);
 
-    Account verifyAccountEmail(String email);
+    Account findAccountByEmail(String email);
 
     List<Account> findAllAccounts();
 

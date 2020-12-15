@@ -24,16 +24,15 @@ public class AccountController {
         return (accountService.createAccount(account));
     }
 
-    @RequestMapping(value = "/verify/password", method = RequestMethod.POST)
-    public Account verifyAccountPassword(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        return accountService.verifyAccountPassword(account);
+    @RequestMapping(value = "/find/username", method = RequestMethod.GET)
+    public Account findAccountByUsername(@RequestParam String username) {
+        return accountService.findAccountByUsername(username);
     }
 
-    @RequestMapping(value = "/verify/email", method = RequestMethod.POST)
-    public Account verifyAccountEmail(@RequestParam String email) {
-        return accountService.verifyAccountEmail(email);
+    @RequestMapping(value = "/find/email", method = RequestMethod.GET)
+    public Account findAccountByEmail(@RequestParam String email) {
+        return accountService.findAccountByEmail(email);
     }
-
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Account> findAll() {
         return accountService.findAllAccounts();

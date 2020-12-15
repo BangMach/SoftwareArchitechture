@@ -41,20 +41,17 @@ public class AccountServiceImpl implements AccountServiceInterface {
 
     @Override
     @Transactional
-    public Account verifyAccountPassword(Account account) {
-        List<Account> foundAccounts = accountDAO.findAccountByUsername(account.getUsername());
+    public Account findAccountByUsername(String username)  {
+        List<Account> foundAccounts = accountDAO.findAccountByUsername(username);
         if (foundAccounts.size() > 0) {
-            Account foundAccount = foundAccounts.get(0);
-            if (SecurityHelper.verifyPassword(account.getPassword(), foundAccount.getPassword())) {
-                return foundAccount;
-            }
+            return foundAccounts.get(0);
         }
         return null;
     }
 
     @Override
     @Transactional
-    public Account verifyAccountEmail(String email) {
+    public Account findAccountByEmail(String email) {
         List<Account> foundAccounts = accountDAO.findAccountByEmail(email);
         if (foundAccounts.size() > 0) {
             return foundAccounts.get(0);
