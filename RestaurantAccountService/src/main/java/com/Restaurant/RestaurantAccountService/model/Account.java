@@ -1,5 +1,7 @@
 package com.Restaurant.RestaurantAccountService.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 /**
@@ -19,12 +21,21 @@ public class Account {
     private String fullName;
 
     @Column
+    @NotNull
+    private String username;
+
+    @Column
+    @NotNull
+    private String password;
+
+    @Column
     private String phone;
 
     @Column
     private String address;
 
     @Column
+    @NotNull
     private String email;
 
     public Account() {
@@ -68,5 +79,21 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
