@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/RestaurantUserService/pom.xml" />
         <option value="$PROJECT_DIR$/RestaurantBookingService/pom.xml" />
         <option value="$PROJECT_DIR$/RestaurantAccountService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantLoginService/pom.xml" />
       </list>
     </option>
   </component>
