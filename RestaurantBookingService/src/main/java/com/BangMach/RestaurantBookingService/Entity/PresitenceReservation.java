@@ -31,14 +31,7 @@ public class PresitenceReservation {
     @NotEmpty
     private String roomCode;
 
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "MEMBER_ROLES",joinColumns = {
-//            @JoinColumn(name = "MEMBER_EMAIL",referencedColumnName = "email")
-//    },inverseJoinColumns = {
-//            @JoinColumn(name =  "ROLE_NAME",referencedColumnName = "name")
-//    })
-
+    @javax.persistence.Id
     public int getId() {
         return id;
     }

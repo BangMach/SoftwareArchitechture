@@ -4,10 +4,7 @@ import com.BangMach.RestaurantBookingService.Entity.Reservation;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Qualifier("HardCodeImpl")
@@ -40,7 +37,8 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public List<Reservation> getAllReservation() {
+    public Collection<Reservation> getAllReservation() {
+        return reservations.values();
     }
 
     @Override
@@ -50,9 +48,24 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public void updateReservation(Reservation reservation) {
-        int id = reservation.getId()
-        return reservations.put(id, reservation);
+        int id = reservation.getId();
+        reservations.put(id, reservation);
 
+    }
+
+    @Override
+    public List<Reservation> findReservationByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Reservation> findReservationByPhone(String phone) {
+        return null;
+    }
+
+    @Override
+    public List<Reservation> findReservationByDate(Date date) {
+        return null;
     }
 
 
