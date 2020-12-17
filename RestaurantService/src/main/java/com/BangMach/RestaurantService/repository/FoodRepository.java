@@ -12,7 +12,7 @@ import com.BangMach.RestaurantService.model.Food;
 public class FoodRepository {
     
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     private static final String KEY = "FOOD";
 
@@ -21,8 +21,8 @@ public class FoodRepository {
 		return food;
     }
     
-    public List<Food> getAll() {
-        List<Food> food = redisTemplate.opsForHash().values(KEY);
+    public List<Object> getAll() {
+        List<Object> food = redisTemplate.opsForHash().values(KEY);
         return food;
     }
 

@@ -18,7 +18,7 @@ public class FoodService {
         return foodRepository.add(food);
     }
 
-    public List<Food> getAllFood() {
+    public List<Object> getAllFood() {
         return foodRepository.getAll();
     }
 

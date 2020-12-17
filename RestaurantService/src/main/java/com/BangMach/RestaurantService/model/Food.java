@@ -3,10 +3,15 @@ package com.BangMach.RestaurantService.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import lombok.Data;
+import org.springframework.stereotype.Component;
 
-@Data
+@Component
 public class Food implements Serializable{
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4083836730911937938L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

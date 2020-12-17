@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
         <module name="RestaurantBookingService" />
-        <module name="RestaurantService" />
         <module name="RestaurantAccountService" />
+        <module name="RestaurantService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
