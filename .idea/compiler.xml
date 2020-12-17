@@ -8,13 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
         <module name="RestaurantBookingService" />
-        <module name="RestaurantAccountService" />
         <module name="RestaurantService" />
+        <module name="RestaurantAccountService" />
+        <module name="RestaurantLoginService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="RestaurantAccountService" target="15" />
       <module name="RestaurantBookingService" target="11" />
+      <module name="RestaurantLoginService" target="15" />
       <module name="RestaurantService" target="11" />
       <module name="RestaurantUserService" target="11" />
     </bytecodeTargetLevel>
@@ -23,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="RestaurantAccountService" options="-parameters" />
       <module name="RestaurantBookingService" options="-parameters" />
+      <module name="RestaurantLoginService" options="-parameters" />
       <module name="RestaurantService" options="-parameters" />
       <module name="RestaurantUserService" options="-parameters" />
     </option>
