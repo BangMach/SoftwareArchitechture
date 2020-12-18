@@ -1,12 +1,14 @@
 package com.Restaurant.RestaurantLoginService.service;
 
-import com.Restaurant.RestaurantLoginService.helper.SecurityHelper;
 import com.Restaurant.RestaurantLoginService.DAO.AccountDAOInterface;
+import com.Restaurant.RestaurantLoginService.helper.HttpHelper;
+import com.Restaurant.RestaurantLoginService.helper.SecurityHelper;
 import com.Restaurant.RestaurantLoginService.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -21,10 +23,10 @@ public class LoginServiceImpl implements LoginServiceInterface {
 
     @Override
     @Transactional
-    public Account verifyAccountPassword(Account account) {
-        List<Account> foundAccounts = accountDAO.findAccountByUsername(account.getUsername());
-        if (foundAccounts.size() > 0) {
-            Account foundAccount = foundAccounts.get(0);
+    public Account verifyAccountPassword(Account account) throws IOException {
+        String url = "accounts/find/username?username=" + account.getUsername();
+        Account foundAccount = HttpHelper.setUpGetConnection(url);
+        if (foundAccount != null) {
             if (SecurityHelper.verifyPassword(account.getPassword(), foundAccount.getPassword())) {
                 return foundAccount;
             }
