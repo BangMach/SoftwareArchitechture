@@ -16,14 +16,16 @@ import java.util.List;
 public class ReservationServiceImpl implements  ReservationServiceInterface {
     private ReservationDAO reservationDAO;
 
-
+    @Override
+    public void insertReservation(Reservation reservation) {
+        reservationDAO.insertReservation(reservation);
+    }
     @Autowired
     public ReservationServiceImpl(@Qualifier("PostgresReservationDAOImpl") ReservationDAO reservationDAO){
         this.reservationDAO = reservationDAO;
     }
 
     @Override
-    @Transactional
     public Collection<Reservation> getAllReservation() {
         return reservationDAO.getAllReservation();
     }
@@ -38,10 +40,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
         reservationDAO.updateReservation(reservation);
     }
 
-    @Override
-    public void insertReservation(Reservation reservation) {
-        reservationDAO.insertReservation(reservation);
-    }
+
 
     @Override
     public void deleteReservationByID(int id) {

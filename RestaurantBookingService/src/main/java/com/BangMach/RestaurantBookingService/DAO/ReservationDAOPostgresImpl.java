@@ -2,6 +2,7 @@ package com.BangMach.RestaurantBookingService.DAO;
 
 import com.BangMach.RestaurantBookingService.Entity.Reservation;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
@@ -15,17 +16,19 @@ import java.util.List;
 @Repository
 @Qualifier("PostgresReservationDAOImpl")
 public class ReservationDAOPostgresImpl implements ReservationDAO {
+
+    @Autowired
     private EntityManager entityManager;
 
     private Query createQuery(String stringQuery) {
         return (Query) entityManager.createQuery(stringQuery);
     }
 
-
     @Override
     public Collection<Reservation> getAllReservation() {
         Query query = createQuery("from Reservation order by id");
-        return query.getResultList();    }
+        return query.getResultList();
+    }
 
     @Override
     public Reservation getReservationById(int id) {

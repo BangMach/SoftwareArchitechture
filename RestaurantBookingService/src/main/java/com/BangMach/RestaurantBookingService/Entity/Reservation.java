@@ -11,13 +11,30 @@ public class Reservation {
     private Date startTime;
     private String roomCode;
 
-
-    public Reservation(int id, String roomCode, String name, String phone, Date startTime) {
+    public Reservation(int id, String name, String phone, String email, Integer numberOfPeople, Date startTime, String roomCode) {
         this.id = id;
-        this.roomCode = roomCode;
         this.name = name;
         this.phone = phone;
+        this.email = email;
+        this.numberOfPeople = numberOfPeople;
         this.startTime = startTime;
+        this.roomCode = roomCode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(Integer numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
     }
 
     public int getId() {

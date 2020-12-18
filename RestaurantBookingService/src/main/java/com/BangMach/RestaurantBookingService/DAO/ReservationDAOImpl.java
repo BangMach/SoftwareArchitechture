@@ -13,13 +13,8 @@ public class ReservationDAOImpl implements ReservationDAO {
     static {
         ReservationDAOImpl.reservations = new HashMap<Integer, Reservation>() {
             {
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
-                put(1, new Reservation(1, "A1", "Bang Mach", "+84906973206", new Date()));
+                put(1, new Reservation(1,"Bang Mach","84906973206","machdieubang211@gmail.com",2, new Date(),"VIP Room1"));
+
 
             }
             private int id;
