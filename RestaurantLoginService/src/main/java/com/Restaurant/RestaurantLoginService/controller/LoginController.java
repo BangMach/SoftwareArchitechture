@@ -19,7 +19,7 @@ public class LoginController {
         this.loginService = accountService;
     }
 
-    @RequestMapping(value = "/verify/password", method = RequestMethod.POST)
+    @PostMapping("/password")
     public ResponseEntity verifyAccountPassword(@RequestBody Account account) throws IOException {
         Account verifiedAccount = loginService.verifyAccountPassword(account);
         if (verifiedAccount == null) {
@@ -35,9 +35,20 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/verify/email", method = RequestMethod.POST)
-    public Account verifyAccountEmail(@RequestParam String email) {
-        return loginService.verifyAccountEmail(email);
+    @GetMapping("/google")
+    public ResponseEntity verifyAccountEmail() throws IOException {
+        Account verifiedAccount = loginService.verifyAccountEmail();
+        if (verifiedAccount == null) {
+            return new ResponseEntity<>(
+                    "User not found",
+                    HttpStatus.BAD_REQUEST
+            );
+        } else {
+            return new ResponseEntity<>(
+                    verifiedAccount,
+                    HttpStatus.OK
+            );
+        }
     }
 
 }
