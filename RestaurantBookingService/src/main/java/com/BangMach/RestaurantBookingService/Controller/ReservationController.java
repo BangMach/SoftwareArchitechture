@@ -2,9 +2,7 @@ package com.BangMach.RestaurantBookingService.Controller;
 
 
 import com.BangMach.RestaurantBookingService.Entity.Reservation;
-import com.BangMach.RestaurantBookingService.Service.ReservationService;
 import com.BangMach.RestaurantBookingService.Service.ReservationServiceImpl;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +12,15 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/reservations/")
 public class ReservationController {
 
-    @Autowired
+
     private ReservationServiceImpl reservationService;
-    public ReservationController() {
+
+    @Autowired
+    public ReservationController(ReservationServiceImpl reservationService) {
+        this.reservationService = reservationService;
     }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -45,11 +46,6 @@ public class ReservationController {
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void updateAccount(@RequestBody Reservation reservation) throws InvalidKeySpecException, NoSuchAlgorithmException {
         reservationService.updateReservation(reservation);
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteAccount(@RequestParam Integer id){
-        reservationService.deleteReservationByID(id);
     }
 
 
