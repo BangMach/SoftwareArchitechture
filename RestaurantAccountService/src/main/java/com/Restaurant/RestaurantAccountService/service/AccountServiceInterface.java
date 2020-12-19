@@ -13,7 +13,7 @@ public interface AccountServiceInterface {
 
     Account findAccountByEmail(String email);
 
-    List<Account> findAllAccounts();
+    List<Account> getAllAccounts();
 
     Account findAccountById(int id);
 

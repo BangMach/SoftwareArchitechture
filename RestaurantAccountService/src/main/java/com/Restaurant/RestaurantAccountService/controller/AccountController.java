@@ -19,37 +19,37 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping("/create")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Account addAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return (accountService.createAccount(account));
     }
 
-    @GetMapping("/find/username")
+    @RequestMapping(value = "/find/username", method = RequestMethod.GET)
     public Account findAccountByUsername(@RequestParam String username) {
         return accountService.findAccountByUsername(username);
     }
 
-    @GetMapping("/find/email")
+    @RequestMapping(value = "/find/email", method = RequestMethod.GET)
     public Account findAccountByEmail(@RequestParam String email) {
         return accountService.findAccountByEmail(email);
     }
 
-    @GetMapping("/all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Account> findAll() {
-        return accountService.findAllAccounts();
+        return accountService.getAllAccounts();
     }
 
-    @GetMapping("/find")
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
     public List<Account> findAccounts(@RequestBody Account account) {
         return accountService.findAccounts(account);
     }
 
-    @PutMapping("/update")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Account updateAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return accountService.updateAccount(account);
     }
 
-    @DeleteMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public String deleteAccount(@RequestParam Integer id){
         return accountService.deleteAccountById(id);
     }

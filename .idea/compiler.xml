@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
         <module name="RestaurantBookingService" />
+        <module name="RestaurantTableService" />
         <module name="RestaurantService" />
         <module name="RestaurantAccountService" />
         <module name="RestaurantLoginService" />
@@ -18,6 +19,7 @@
       <module name="RestaurantBookingService" target="11" />
       <module name="RestaurantLoginService" target="15" />
       <module name="RestaurantService" target="11" />
+      <module name="RestaurantTableService" target="15" />
       <module name="RestaurantUserService" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -27,6 +29,7 @@
       <module name="RestaurantBookingService" options="-parameters" />
       <module name="RestaurantLoginService" options="-parameters" />
       <module name="RestaurantService" options="-parameters" />
+      <module name="RestaurantTableService" options="-parameters" />
       <module name="RestaurantUserService" options="-parameters" />
     </option>
   </component>
