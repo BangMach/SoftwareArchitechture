@@ -1,25 +1,16 @@
 package com.Restaurant.RestaurantLoginService.service;
 
-import com.Restaurant.RestaurantLoginService.DAO.AccountDAOInterface;
 import com.Restaurant.RestaurantLoginService.helper.HttpHelper;
 import com.Restaurant.RestaurantLoginService.helper.SecurityHelper;
 import com.Restaurant.RestaurantLoginService.model.Account;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginServiceInterface {
-
-    private AccountDAOInterface accountDAO;
-
-    @Autowired
-    public LoginServiceImpl(@Qualifier("accountDAOImpl") AccountDAOInterface accountDAO){
-        this.accountDAO = accountDAO;
-    }
 
     @Override
     @Transactional
@@ -36,13 +27,16 @@ public class LoginServiceImpl implements LoginServiceInterface {
 
     @Override
     @Transactional
-    public Account verifyAccountEmail(String email) {
-        List<Account> foundAccounts = accountDAO.findAccountByEmail(email);
-        if (foundAccounts.size() > 0) {
-            return foundAccounts.get(0);
-        } else {
-            return null;
-        }
+    public Account verifyAccountEmail() throws IOException {
+        String verifiedEmail = (String)((DefaultOidcUser) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getAttributes()
+                .get("email");
+        SecurityContextHolder.getContext().setAuthentication(null);
+        String url = "accounts/find/email?email=" + verifiedEmail;
+        return HttpHelper.setUpGetConnection(url);
     }
 
 }
