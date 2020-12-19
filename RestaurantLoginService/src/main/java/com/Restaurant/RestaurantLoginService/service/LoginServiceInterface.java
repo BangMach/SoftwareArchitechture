@@ -7,6 +7,6 @@ public interface LoginServiceInterface {
 
     Account verifyAccountPassword(Account account) throws IOException;
 
-    Account verifyAccountEmail(String email);
+    Account verifyAccountEmail() throws IOException;
 
 }
