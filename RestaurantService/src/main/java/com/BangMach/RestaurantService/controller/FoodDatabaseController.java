@@ -33,6 +33,11 @@ public class FoodDatabaseController {
         return foodDatabaseService.getFoodById(id);
     }
 
+    @PutMapping("/dtb/food")
+    public Food update(@RequestBody Food food) {
+        return foodDatabaseService.updateFood(food);
+    }
+
     @DeleteMapping("/dtb/food/{id}")
     public int delete(@PathVariable("id") int id) {
         return foodDatabaseService.deleteFood(id);

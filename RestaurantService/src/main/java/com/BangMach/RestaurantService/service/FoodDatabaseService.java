@@ -38,6 +38,13 @@ public class FoodDatabaseService {
     }
 
     @Transactional
+    public Food updateFood(Food food) {
+        Food newFood = getFoodById(food.getId());
+        foodDatabaseRepository.save(food);
+        return food;
+    }
+
+    @Transactional
     public int deleteFood(int id) {
         foodDatabaseRepository.delete(getFoodById(id));
         return id;
