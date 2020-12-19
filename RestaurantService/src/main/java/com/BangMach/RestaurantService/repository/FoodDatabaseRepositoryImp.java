@@ -1,13 +1,11 @@
 package com.BangMach.RestaurantService.repository;
 
 import com.BangMach.RestaurantService.model.Food;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-@Qualifier("FoodDatabaseRepositoryImp")
 public class FoodDatabaseRepositoryImp implements FoodDatabaseRepository{
 
     @Override
