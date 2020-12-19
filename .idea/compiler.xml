@@ -9,7 +9,6 @@
         <module name="RestaurantUserService" />
         <module name="RestaurantTableService" />
         <module name="RestaurantAccountService" />
-        <module name="discovery-server" />
         <module name="RestaurantReservationService" />
         <module name="RestaurantService" />
         <module name="RestaurantLoginService" />
