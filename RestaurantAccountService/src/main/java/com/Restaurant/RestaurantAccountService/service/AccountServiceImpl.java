@@ -68,7 +68,7 @@ public class AccountServiceImpl implements AccountServiceInterface {
 
     @Override
     @Transactional
-    public List<Account> findAllAccounts() {
+    public List<Account> getAllAccounts() {
         return accountDAO.getAllAccounts();
     }
 

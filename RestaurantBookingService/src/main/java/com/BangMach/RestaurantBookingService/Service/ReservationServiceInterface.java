@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReservationServiceInterface {
     Collection<Reservation> getAllReservation();
 
-    Reservation getReservationById(int id);
+    Reservation findReservationById(int id);
 
     void updateReservation(Reservation reservation);
 

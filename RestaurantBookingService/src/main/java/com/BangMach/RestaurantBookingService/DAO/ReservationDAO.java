@@ -10,9 +10,7 @@ public interface ReservationDAO {
 
     Collection<Reservation> getAllReservation();
 
-    Reservation getReservationById(int id);
-
-    void updateReservation(Reservation reservation);
+    Reservation findReservationById(int id);
 
     List<Reservation> findReservationByName(String name);
 

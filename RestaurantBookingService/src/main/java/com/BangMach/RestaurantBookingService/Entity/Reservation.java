@@ -1,24 +1,35 @@
 package com.BangMach.RestaurantBookingService.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
+
+@Entity
 public class Reservation {
+    @Id
+    @NotEmpty
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String phone;
+
+    @Email
     private String email;
+
+    @NotEmpty
+    private String name;
+
+    @NotEmpty
+    private String phone;
+    @NotEmpty
     private Integer numberOfPeople;
+    @NotEmpty
     private Date startTime;
+    @NotEmpty
     private String roomCode;
-
-
-    public Reservation(int id, String roomCode, String name, String phone, Date startTime) {
-        this.id = id;
-        this.roomCode = roomCode;
-        this.name = name;
-        this.phone = phone;
-        this.startTime = startTime;
-    }
 
     public int getId() {
         return id;
@@ -28,12 +39,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getRoomCode() {
-        return roomCode;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRoomCode(String roomCode) {
-        this.roomCode = roomCode;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -52,11 +63,30 @@ public class Reservation {
         this.phone = phone;
     }
 
+    public Integer getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(Integer numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
     public Date getStartTime() {
         return startTime;
     }
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public String getRoomCode() {
+        return roomCode;
+    }
+
+    public void setRoomCode(String roomCode) {
+        this.roomCode = roomCode;
+    }
+
+    public Reservation() {
     }
 }

@@ -2,9 +2,7 @@ package com.BangMach.RestaurantBookingService.Controller;
 
 
 import com.BangMach.RestaurantBookingService.Entity.Reservation;
-import com.BangMach.RestaurantBookingService.Service.ReservationService;
 import com.BangMach.RestaurantBookingService.Service.ReservationServiceImpl;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,26 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Collection;
-import java.util.List;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/reservations/")
 public class ReservationController {
 
-    @Autowired
+
     private ReservationServiceImpl reservationService;
-    public ReservationController() {
+
+    @Autowired
+    public ReservationController(ReservationServiceImpl reservationService) {
+        this.reservationService = reservationService;
     }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public Collection<Reservation> getAllReservation() {
         return reservationService.getAllReservation();
     }
-
-//    @RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
-//    public Reservation getReservationById(@PathVariable("id") int id) {
-//        return (Reservation) reservationService.getAllReservation();
-//    }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public void deleteReservationById(@PathVariable("id") int id) {
@@ -41,27 +36,16 @@ public class ReservationController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateReservation(@RequestBody Reservation  reservation) {
         reservationService.updateReservation(reservation);
-
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public void addReservation(@RequestBody Reservation reservation) throws InvalidKeySpecException, NoSuchAlgorithmException {
         reservationService.insertReservation(reservation);
-    }
-
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Collection<Reservation> findAll() {
-        return reservationService.getAllReservation();
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void updateAccount(@RequestBody Reservation reservation) throws InvalidKeySpecException, NoSuchAlgorithmException {
         reservationService.updateReservation(reservation);
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteAccount(@RequestParam Integer id){
-        reservationService.deleteReservationByID(id);
     }
 
 
