@@ -33,9 +33,10 @@ public class AccountController {
     public Account findAccountByEmail(@RequestParam String email) {
         return accountService.findAccountByEmail(email);
     }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Account> findAll() {
-        return accountService.findAllAccounts();
+        return accountService.getAllAccounts();
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)

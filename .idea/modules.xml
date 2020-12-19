@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/RestaurantBookingService/RestaurantBookingService.iml" filepath="$PROJECT_DIR$/RestaurantBookingService/RestaurantBookingService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" filepath="$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantService/RestaurantService.iml" filepath="$PROJECT_DIR$/RestaurantService/RestaurantService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantTableService/RestaurantTableService.iml" filepath="$PROJECT_DIR$/RestaurantTableService/RestaurantTableService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" filepath="$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" filepath="$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" />
     </modules>
