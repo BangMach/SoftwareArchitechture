@@ -3,10 +3,10 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 
 ## Project micro-services  
 - [ ] User Service
-    - [ ] Table Service
+    - [x] Table Service
     - [ ] Menu Service
-    - [ ] Reservation Service
+    - [x] Reservation Service
 - [ ] Admin Service
     - [x] Account Service
-    - [ ] Login service     
+    - [x] Login service     
     - [ ] Reservation Service

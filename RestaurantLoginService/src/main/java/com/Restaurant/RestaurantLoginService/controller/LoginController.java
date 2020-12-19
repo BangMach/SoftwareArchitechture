@@ -12,7 +12,7 @@ import java.io.IOException;
 @RequestMapping(path = "/login/")
 public class LoginController {
 
-    private LoginServiceInterface loginService;
+    private final LoginServiceInterface loginService;
 
     @Autowired
     public LoginController(LoginServiceInterface accountService){
