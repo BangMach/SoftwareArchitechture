@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/RestaurantService/RestaurantService.iml" filepath="$PROJECT_DIR$/RestaurantService/RestaurantService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" filepath="$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" filepath="$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantLoginService/.mvn/wrapper/wrapper.iml" filepath="$PROJECT_DIR$/RestaurantLoginService/.mvn/wrapper/wrapper.iml" />
     </modules>
   </component>
 </project>
