@@ -23,6 +23,7 @@
       <module name="RestaurantService" target="11" />
       <module name="RestaurantTableService" target="15" />
       <module name="RestaurantUserService" target="11" />
+      <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

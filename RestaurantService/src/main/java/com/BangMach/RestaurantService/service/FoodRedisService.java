@@ -6,27 +6,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.BangMach.RestaurantService.model.Food;
-import com.BangMach.RestaurantService.repository.FoodRepository;
+import com.BangMach.RestaurantService.repository.FoodRedisRepository;
 
 @Service
-public class FoodService {
+public class FoodRedisService {
 
     @Autowired
-    private FoodRepository foodRepository;
+    private FoodRedisRepository foodRedisRepository;
 
     public Food saveFood(Food food) {
-        return foodRepository.add(food);
+        return foodRedisRepository.add(food);
     }
 
     public List<Object> getAllFood() {
-        return foodRepository.getAll();
+        return foodRedisRepository.getAll();
     }
 
     public Food getFoodById(int id) {
-        return foodRepository.getById(id);
+        return foodRedisRepository.getById(id);
     }
 
     public int deleteFood(int id) {
-        return foodRepository.delete(id);
+        return foodRedisRepository.delete(id);
     }
 }

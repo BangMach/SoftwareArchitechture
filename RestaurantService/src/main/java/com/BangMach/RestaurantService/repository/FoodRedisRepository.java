@@ -9,7 +9,7 @@ import java.util.List;
 import com.BangMach.RestaurantService.model.Food;
 
 @Repository
-public class FoodRepository {
+public class FoodRedisRepository {
     
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

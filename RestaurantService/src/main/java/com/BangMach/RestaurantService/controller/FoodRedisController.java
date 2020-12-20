@@ -6,31 +6,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.BangMach.RestaurantService.model.Food;
-import com.BangMach.RestaurantService.service.FoodService;
+import com.BangMach.RestaurantService.service.FoodRedisService;
 
 @RestController
-public class FoodController {
+public class FoodRedisController {
 
     @Autowired
-    private FoodService foodService;
+    private FoodRedisService foodRedisService;
 
     @PostMapping("/food")
     public Food add(@RequestBody Food food){
-        return foodService.saveFood(food);
+        return foodRedisService.saveFood(food);
     }
 
     @GetMapping("/food")
     public List<Object> getAll() {
-        return foodService.getAllFood();
+        return foodRedisService.getAllFood();
     }
 
     @GetMapping("/food/{id}")
     public Food getById(@PathVariable("id") int id) {
-        return foodService.getFoodById(id);
+        return foodRedisService.getFoodById(id);
     }
 
     @DeleteMapping("/food/{id}")
     public int delete(@PathVariable("id") int id) {
-        return foodService.deleteFood(id);
+        return foodRedisService.deleteFood(id);
     }
 }
