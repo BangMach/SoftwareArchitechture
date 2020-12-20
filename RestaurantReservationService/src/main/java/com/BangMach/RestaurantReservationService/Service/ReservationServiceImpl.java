@@ -28,7 +28,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
             String phone = reservation.getPhone();
                 if (phone != null && !phone.equals("")) {
                     Timestamp timestamp = reservation.getStartTime();
-                    if (reservation.getStartTime() != null) {
+                    if (timestamp != null) {
                         reservation.setStartTime(new Timestamp(timestamp.getTime() - 1000*60*60*7));
                         if (reservation.getTableId() != 0) {
                             String status = "booked";
@@ -79,7 +79,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
 
     @Override
     @Transactional
-    public Reservation updateReservation(Reservation  reservation)  {
+    public Reservation updateReservation(Reservation reservation)  {
         Reservation currentReservation = findReservationById(reservation.getId());
         if (currentReservation != null) {
             String name = reservation.getName();
@@ -110,7 +110,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
             }
             Timestamp startTime = reservation.getStartTime();
             if (startTime != null) {
-                currentReservation.setStartTime(startTime);
+                currentReservation.setStartTime(new Timestamp(startTime.getTime() - 1000*60*60*7));
             }
             return reservationDAO.createReservation(currentReservation);
         }

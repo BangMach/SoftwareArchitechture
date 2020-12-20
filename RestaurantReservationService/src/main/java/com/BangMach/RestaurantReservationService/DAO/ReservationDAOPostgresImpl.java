@@ -40,8 +40,6 @@ public class ReservationDAOPostgresImpl implements ReservationDAO {
         return entityManager.find(Reservation.class, id);
     }
 
-
-
     @Override
     @Transactional
     public List<Reservation> findReservationByName(String name) {
