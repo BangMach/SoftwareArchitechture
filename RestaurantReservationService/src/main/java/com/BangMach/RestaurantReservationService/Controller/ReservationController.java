@@ -3,7 +3,6 @@ package com.BangMach.RestaurantReservationService.Controller;
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import com.BangMach.RestaurantReservationService.Service.ReservationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
@@ -28,11 +27,6 @@ public class ReservationController {
         reservationService.deleteReservationByID(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateReservation(@RequestBody Reservation  reservation) {
-        reservationService.updateReservation(reservation);
-    }
-
     @PostMapping(value = "/create")
     public Reservation addReservation(@RequestBody Reservation reservation) {
         return reservationService.createReservation(reservation);
@@ -42,6 +36,5 @@ public class ReservationController {
     public Reservation updateAccount(@RequestBody Reservation reservation) {
         return reservationService.updateReservation(reservation);
     }
-
 
 }

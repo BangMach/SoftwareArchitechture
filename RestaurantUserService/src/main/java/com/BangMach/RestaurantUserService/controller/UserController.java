@@ -1,12 +1,13 @@
 package com.BangMach.RestaurantUserService.controller;
 
+import com.BangMach.RestaurantUserService.model.Reservation;
+import com.BangMach.RestaurantUserService.model.ReservationDetail;
 import com.BangMach.RestaurantUserService.model.RestaurantTable;
 import com.BangMach.RestaurantUserService.service.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -24,5 +25,20 @@ public class UserController {
     @GetMapping(value = "/available/tables")
     public List<RestaurantTable> searchAvailableTables(@RequestParam Timestamp startTime) {
         return userService.searchAvailableTables(startTime);
+    }
+
+    @GetMapping(value = "/reservation/detail")
+    public List<ReservationDetail> getAllReservationDetail() {
+        return userService.getAll();
+    }
+
+    @PostMapping(value = "/reservation/create")
+    public Reservation createReservation(@RequestBody Reservation reservation) {
+        return userService.createReservation(reservation);
+    }
+
+    @PutMapping(value = "/reservation/update")
+    public ResponseEntity<Reservation> updateReservation(@RequestBody Reservation reservation) {
+        return userService.updateReservation(reservation);
     }
 }

@@ -1,5 +1,6 @@
 package com.BangMach.RestaurantUserService.DAO;
 
+import com.BangMach.RestaurantUserService.model.ReservationDetail;
 import com.BangMach.RestaurantUserService.model.RestaurantTable;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 @Qualifier("userDAOImpl")
 public class UserDAOImpl implements UserDAOInterface {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public UserDAOImpl(EntityManager entityManager){
@@ -25,23 +26,34 @@ public class UserDAOImpl implements UserDAOInterface {
     }
 
     @Override
-    public List<RestaurantTable> searchAvailableTable(Timestamp startTime) {
+    public List<RestaurantTable> searchAvailableTables(Timestamp startTime) {
         Timestamp prevTableStartTime = new Timestamp(startTime.getTime() - (1000 * 60 * 60 * 2));
         Timestamp expectedEndTime = new Timestamp(startTime.getTime() + (1000 * 60 * 60 * 2));
         Query query = createQuery(
-                "SELECT table " +
-                        "FROM RestaurantTable table " +
-                        "WHERE table.id " +
-                        "NOT IN ( " +
-                            "SELECT resv.tableId " +
-                            "FROM Reservation resv " +
-                            "WHERE resv.startTime >= :prevTableStartTime " +
-                            "AND resv.startTime <= :expectedEndTime " +
-                            "AND resv.status = 'booked'" +
-                        ")"
+    "SELECT table " +
+            "FROM RestaurantTable table " +
+            "WHERE table.id " +
+            "NOT IN ( " +
+                "SELECT resv.tableId " +
+                "FROM Reservation resv " +
+                "WHERE resv.startTime >= :prevTableStartTime " +
+                "AND resv.startTime <= :expectedEndTime " +
+                "AND resv.status = 'booked'" +
+            ")"
         );
         query.setParameter("prevTableStartTime", prevTableStartTime);
         query.setParameter("expectedEndTime", expectedEndTime);
+        return query.getResultList();
+    }
+
+    public List<ReservationDetail> getAll() {
+        Query query = createQuery(
+    "SELECT new ReservationDetail(" +
+            "res.id, res.email, res.name, res.phone, res.startTime, " +
+            "res.note, res.status, res.tableId, table.seats) " +
+            "FROM RestaurantTable table, Reservation res " +
+            "WHERE table.id = res.tableId"
+        );
         return query.getResultList();
     }
 

@@ -28,6 +28,11 @@ public class TableController {
         return tableService.findTables(table);
     }
 
+    @GetMapping(value = "/find/id")
+    public RestaurantTable findTableById(@RequestParam int id) {
+        return tableService.findTableById(id);
+    }
+
     @GetMapping(value = "/all")
     public List<RestaurantTable> findAll() {
         return tableService.getAllTables();
