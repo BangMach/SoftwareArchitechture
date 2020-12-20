@@ -8,28 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/menu/redis")
 public class DishRedisController {
 
-    @Autowired
-    private DishRedisService dishRedisService;
+    private final DishRedisService dishRedisService;
 
-    @PostMapping("/food")
+    @Autowired
+    public DishRedisController(DishRedisService dishRedisService) {
+        this.dishRedisService = dishRedisService;
+    }
+
+    @PostMapping("/add")
     public Dish add(@RequestBody Dish dish){
         return dishRedisService.saveDish(dish);
     }
 
-    @GetMapping("/food")
+    @GetMapping("/all")
     public List<Object> getAll() {
         return dishRedisService.getAllDish();
     }
 
-    @GetMapping("/food/{id}")
-    public Dish getById(@PathVariable("id") int id) {
+    @GetMapping("/find")
+    public Dish getById(@RequestParam int id) {
         return dishRedisService.getDishById(id);
     }
 
-    @DeleteMapping("/food/{id}")
-    public int delete(@PathVariable("id") int id) {
+    @DeleteMapping("/delete")
+    public int delete(@RequestParam int id) {
         return dishRedisService.deleteDish(id);
     }
 }

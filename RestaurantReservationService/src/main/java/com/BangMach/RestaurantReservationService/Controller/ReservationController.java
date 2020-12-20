@@ -17,13 +17,13 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/all")
     public Collection<Reservation> getAllReservation() {
         return reservationService.getAllReservation();
     }
 
-    @DeleteMapping(value = "/{id}")
-    public void deleteReservationById(@PathVariable("id") int id) {
+    @DeleteMapping(value = "/delete")
+    public void deleteReservationById(@RequestParam int id) {
         reservationService.deleteReservationByID(id);
     }
 

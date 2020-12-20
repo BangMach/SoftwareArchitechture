@@ -7,37 +7,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/menu/")
+@RequestMapping(path = "/menu/dtb")
 public class DishDatabaseController {
 
-    private DishDatabaseService dishDatabaseService;
+    private final DishDatabaseService dishDatabaseService;
 
     @Autowired
     public DishDatabaseController(DishDatabaseService dishDatabaseService) {
         this.dishDatabaseService = dishDatabaseService;
     }
 
-    @PostMapping("/dtb/food")
+    @PostMapping("/add")
     public Dish add(@RequestBody Dish dish){
         return dishDatabaseService.addDish(dish);
     }
 
-    @GetMapping("/dtb/food")
+    @GetMapping("/all")
     public List<Dish> getAll() {
         return dishDatabaseService.getAllDish();
     }
 
-    @GetMapping("/dtb/food/{id}")
-    public Dish getById(@PathVariable("id") int id) {
+    @GetMapping("/find")
+    public Dish getById(@RequestParam int id) {
         return dishDatabaseService.getDishById(id);
     }
 
-    @PutMapping("/dtb/food")
+    @PutMapping("/update")
     public Dish update(@RequestBody Dish dish) {
         return dishDatabaseService.updateDish(dish);
     }
 
-    @DeleteMapping("/dtb/food/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         return dishDatabaseService.deleteDish(id);
     }

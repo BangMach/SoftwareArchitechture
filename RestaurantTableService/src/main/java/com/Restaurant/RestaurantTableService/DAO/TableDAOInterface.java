@@ -13,5 +13,4 @@ public interface TableDAOInterface {
 
     RestaurantTable saveTable(RestaurantTable account);
 
-    void deleteTableById(int id);
 }

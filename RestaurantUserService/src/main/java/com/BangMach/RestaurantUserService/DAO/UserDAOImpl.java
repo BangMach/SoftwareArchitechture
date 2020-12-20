@@ -39,14 +39,15 @@ public class UserDAOImpl implements UserDAOInterface {
                 "WHERE resv.startTime >= :prevTableStartTime " +
                 "AND resv.startTime <= :expectedEndTime " +
                 "AND resv.status = 'booked'" +
-            ")"
+            ") " +
+            "AND table.status = 'available'"
         );
         query.setParameter("prevTableStartTime", prevTableStartTime);
         query.setParameter("expectedEndTime", expectedEndTime);
         return query.getResultList();
     }
 
-    public List<ReservationDetail> getAll() {
+    public List<ReservationDetail> getAllReservationDetails() {
         Query query = createQuery(
     "SELECT new ReservationDetail(" +
             "res.id, res.email, res.name, res.phone, res.startTime, " +

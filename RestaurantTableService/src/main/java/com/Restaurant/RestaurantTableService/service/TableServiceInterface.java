@@ -15,5 +15,4 @@ public interface TableServiceInterface {
 
     RestaurantTable updateTable(RestaurantTable table);
 
-    String deleteTableById(int id);
 }

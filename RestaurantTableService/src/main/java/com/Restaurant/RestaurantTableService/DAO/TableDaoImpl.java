@@ -50,10 +50,4 @@ public class TableDaoImpl implements TableDAOInterface {
         return entityManager.merge(table);
     }
 
-    @Override
-    public void deleteTableById(int id) {
-        Query query = createQuery("delete from RestaurantTable where id=:id");
-        query.setParameter("id", id);
-        query.executeUpdate();
-    }
 }

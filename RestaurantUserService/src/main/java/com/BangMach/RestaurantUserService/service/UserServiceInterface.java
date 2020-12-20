@@ -12,7 +12,7 @@ public interface UserServiceInterface {
 
     List<RestaurantTable> searchAvailableTables(Timestamp startTime);
 
-    List<ReservationDetail> getAll();
+    List<ReservationDetail> getAllReservationDetails();
 
     Reservation createReservation(Reservation reservation);
 

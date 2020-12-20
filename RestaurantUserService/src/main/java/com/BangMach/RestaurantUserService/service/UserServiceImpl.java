@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     @Transactional
-    public List<ReservationDetail> getAll() {
-        return userDAO.getAll();
+    public List<ReservationDetail> getAllReservationDetails() {
+        return userDAO.getAllReservationDetails();
     }
 
     @Override
