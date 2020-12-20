@@ -39,7 +39,7 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @GetMapping(value = "/find")
+    @GetMapping(value = "/filter")
     public List<Account> findAccounts(@RequestBody Account account) {
         return accountService.findAccounts(account);
     }

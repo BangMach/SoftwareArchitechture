@@ -27,17 +27,17 @@ public class UserController {
         return userService.searchAvailableTables(startTime);
     }
 
-    @GetMapping(value = "/reservation/detail")
+    @GetMapping(value = "/reservation/details")
     public List<ReservationDetail> getAllReservationDetail() {
-        return userService.getAll();
+        return userService.getAllReservationDetails();
     }
 
-    @PostMapping(value = "/reservation/create")
+    @PostMapping(value = "/create/reservation")
     public Reservation createReservation(@RequestBody Reservation reservation) {
         return userService.createReservation(reservation);
     }
 
-    @PutMapping(value = "/reservation/update")
+    @PutMapping(value = "/update/reservation")
     public ResponseEntity<Reservation> updateReservation(@RequestBody Reservation reservation) {
         return userService.updateReservation(reservation);
     }

@@ -16,7 +16,7 @@ import java.util.List;
 @Qualifier("PostgresReservationDAOImpl")
 public class ReservationDAOPostgresImpl implements ReservationDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public ReservationDAOPostgresImpl(EntityManager entityManager) {

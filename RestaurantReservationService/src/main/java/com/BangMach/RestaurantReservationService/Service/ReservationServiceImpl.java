@@ -96,7 +96,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
             }
             String note = reservation.getNote();
             if (note != null) {
-                currentReservation.setName(note);
+                currentReservation.setNote(note);
             }
             int tableId = reservation.getTableId();
             if (tableId != 0) {

@@ -23,12 +23,12 @@ public class TableController {
         return (tableService.createTable(table));
     }
 
-    @GetMapping(value = "/find")
+    @GetMapping(value = "/filter")
     public List<RestaurantTable> findTables(@RequestBody RestaurantTable table) {
         return tableService.findTables(table);
     }
 
-    @GetMapping(value = "/find/id")
+    @GetMapping(value = "/find")
     public RestaurantTable findTableById(@RequestParam int id) {
         return tableService.findTableById(id);
     }
@@ -41,11 +41,6 @@ public class TableController {
     @PutMapping(value = "/update")
     public RestaurantTable updateTable(@RequestBody RestaurantTable table) {
         return tableService.updateTable(table);
-    }
-
-    @DeleteMapping(value = "/delete")
-    public String deleteTable(@RequestParam Integer id){
-        return tableService.deleteTableById(id);
     }
 
 }

@@ -21,7 +21,19 @@ public class RestaurantTable {
     @NotNull
     private int seats;
 
+    @Column
+    @NotNull
+    private String status;
+
     public RestaurantTable() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getId() {
