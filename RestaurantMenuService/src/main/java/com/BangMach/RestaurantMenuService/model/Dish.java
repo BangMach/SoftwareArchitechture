@@ -1,14 +1,14 @@
 package com.BangMach.RestaurantMenuService.model;
 
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Component
 @Entity
-@Table(name = "food")
-public class Food implements Serializable{
+@Table(name = "dish")
+public class Dish implements Serializable{
 
     /**
      *
@@ -21,29 +21,27 @@ public class Food implements Serializable{
     private int id;
 
     @Column
+    @NotEmpty
     private String name;
 
     @Column
+    @NotEmpty
     private String category;
 
     @Column
     private String description;
 
     @Column
-    private int price;
-
-    @Column
     private String imagePath;
 
-    public Food() {
+    public Dish() {
     }
 
-    public Food(int id, String name, String category, String description, int price, String imagePath) {
+    public Dish(int id, String name, String category, String description, int price, String imagePath) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.description = description;
-        this.price = price;
         this.imagePath = imagePath;
     }
 
@@ -77,14 +75,6 @@ public class Food implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public String getImagePath() {
