@@ -20,7 +20,7 @@
       <module name="RestaurantAccountService" target="15" />
       <module name="RestaurantLoginService" target="15" />
       <module name="RestaurantReservationService" target="11" />
-      <module name="RestaurantService" target="11" />
+      <module name="RestaurantMenuService" target="11" />
       <module name="RestaurantTableService" target="15" />
       <module name="RestaurantUserService" target="11" />
       <module name="wrapper" target="1.5" />
@@ -32,7 +32,7 @@
       <module name="RestaurantAccountService" options="-parameters" />
       <module name="RestaurantLoginService" options="-parameters" />
       <module name="RestaurantReservationService" options="-parameters" />
-      <module name="RestaurantService" options="-parameters" />
+      <module name="RestaurantMenuService" options="-parameters" />
       <module name="RestaurantTableService" options="-parameters" />
       <module name="RestaurantUserService" options="-parameters" />
     </option>
