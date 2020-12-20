@@ -23,7 +23,7 @@ public class DishDatabaseService {
     public Dish addDish(Dish dish) {
         String dishName = dish.getName();
         if (dishName != null && !dishName.equals("")) {
-            String dishCategory = "NA";
+            String dishCategory = "na";
             if (dish.getCategory() != null) {
                 if (Arrays.asList("main", "appetizer", "dessert", "na").contains(dish.getCategory().trim().toLowerCase())) {
                     dishCategory = dish.getCategory().trim().toLowerCase();
@@ -54,12 +54,6 @@ public class DishDatabaseService {
             if (dishName != null && !dishName.equals("")) {
                 currentDish.setName(dishName);
             }
-            if (dish.getDescription() != null) {
-                currentDish.setName(dish.getName());
-            }
-            if (dish.getImagePath() != null) {
-                currentDish.setImagePath(dish.getImagePath());
-            }
             String dishCategory = dish.getCategory();
             if (dishCategory != null) {
                 if (Arrays.asList("main", "appetizer", "dessert", "na").contains(dishCategory.trim().toLowerCase())) {
@@ -67,6 +61,14 @@ public class DishDatabaseService {
                 } else if (dishCategory.equals("")) {
                     currentDish.setCategory("na");
                 }
+            }
+            String description = dish.getDescription();
+            if ( description != null) {
+                currentDish.setDescription(description);
+            }
+            String imagePath = dish.getImagePath();
+            if (imagePath != null) {
+                currentDish.setImagePath(imagePath);
             }
             dishDatabaseRepository.save(currentDish);
             return currentDish;

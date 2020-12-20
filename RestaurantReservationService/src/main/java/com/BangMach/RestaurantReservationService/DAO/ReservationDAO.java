@@ -18,7 +18,7 @@ public interface ReservationDAO {
 
     List<Reservation> findReservationByDate(Date date);
 
-    void insertReservation(Reservation reservation);
+    Reservation insertReservation(Reservation reservation);
 
     void deleteReservation(int id);
 

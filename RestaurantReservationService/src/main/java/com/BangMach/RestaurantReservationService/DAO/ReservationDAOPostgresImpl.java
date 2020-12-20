@@ -66,8 +66,8 @@ public class ReservationDAOPostgresImpl implements ReservationDAO {
 
     @Override
     @Transactional
-    public void insertReservation(Reservation reservation) {
-        entityManager.merge(reservation);
+    public Reservation insertReservation(Reservation reservation) {
+        return entityManager.merge(reservation);
     }
 
     @Override

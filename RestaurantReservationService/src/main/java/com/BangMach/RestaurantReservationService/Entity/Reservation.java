@@ -1,16 +1,14 @@
 package com.BangMach.RestaurantReservationService.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
-
 @Entity
+@Table(name="reservation")
 public class Reservation {
+
     @Id
     @NotEmpty
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +22,21 @@ public class Reservation {
 
     @NotEmpty
     private String phone;
-    @NotEmpty
-    private Integer numberOfPeople;
+
     @NotEmpty
     private Date startTime;
+
+    @Column
+    private String note;
+
+    @Column
+    private String status;
+
     @NotEmpty
-    private String roomCode;
+    private int tableId;
+
+    public Reservation() {
+    }
 
     public int getId() {
         return id;
@@ -63,14 +70,6 @@ public class Reservation {
         this.phone = phone;
     }
 
-    public Integer getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(Integer numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
-    }
-
     public Date getStartTime() {
         return startTime;
     }
@@ -79,14 +78,27 @@ public class Reservation {
         this.startTime = startTime;
     }
 
-    public String getRoomCode() {
-        return roomCode;
+    public int getTableId() {
+        return tableId;
     }
 
-    public void setRoomCode(String roomCode) {
-        this.roomCode = roomCode;
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
     }
 
-    public Reservation() {
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
