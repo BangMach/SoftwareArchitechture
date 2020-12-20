@@ -11,34 +11,34 @@ import java.util.List;
 @RequestMapping(path = "/tables/")
 public class TableController {
 
-    private TableServiceInterface tableService;
+    private final TableServiceInterface tableService;
 
     @Autowired
     public TableController(TableServiceInterface tableService){
         this.tableService = tableService;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     public RestaurantTable addTable(@RequestBody RestaurantTable table) {
         return (tableService.createTable(table));
     }
 
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    @GetMapping(value = "/find")
     public List<RestaurantTable> findTables(@RequestBody RestaurantTable table) {
         return tableService.findTables(table);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<RestaurantTable> findAll() {
         return tableService.getAllTables();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PutMapping(value = "/update")
     public RestaurantTable updateTable(@RequestBody RestaurantTable table) {
         return tableService.updateTable(table);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete")
     public String deleteTable(@RequestParam Integer id){
         return tableService.deleteTableById(id);
     }

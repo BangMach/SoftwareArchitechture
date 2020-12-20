@@ -12,44 +12,44 @@ import java.util.List;
 @RequestMapping(path = "/accounts/")
 public class AccountController {
 
-    private AccountServiceInterface accountService;
+    private final AccountServiceInterface accountService;
 
     @Autowired
     public AccountController(AccountServiceInterface accountService){
         this.accountService = accountService;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create")
     public Account addAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return (accountService.createAccount(account));
     }
 
-    @RequestMapping(value = "/find/username", method = RequestMethod.GET)
+    @GetMapping(value = "/find/username")
     public Account findAccountByUsername(@RequestParam String username) {
         return accountService.findAccountByUsername(username);
     }
 
-    @RequestMapping(value = "/find/email", method = RequestMethod.GET)
+    @GetMapping(value = "/find/email")
     public Account findAccountByEmail(@RequestParam String email) {
         return accountService.findAccountByEmail(email);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<Account> findAll() {
         return accountService.getAllAccounts();
     }
 
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    @GetMapping(value = "/find")
     public List<Account> findAccounts(@RequestBody Account account) {
         return accountService.findAccounts(account);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PutMapping(value = "/update")
     public Account updateAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return accountService.updateAccount(account);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @PostMapping(value = "/delete")
     public String deleteAccount(@RequestParam Integer id){
         return accountService.deleteAccountById(id);
     }
