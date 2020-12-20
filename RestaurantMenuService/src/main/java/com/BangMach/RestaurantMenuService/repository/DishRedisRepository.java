@@ -1,6 +1,6 @@
 package com.BangMach.RestaurantMenuService.repository;
 
-import com.BangMach.RestaurantMenuService.model.Food;
+import com.BangMach.RestaurantMenuService.model.Dish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,16 +8,16 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class FoodRedisRepository {
+public class DishRedisRepository {
     
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     private static final String KEY = "FOOD";
 
-    public Food add(Food food) {
-        redisTemplate.opsForHash().put(KEY, Integer.toString(food.getId()), food);
-		return food;
+    public Dish add(Dish dish) {
+        redisTemplate.opsForHash().put(KEY, Integer.toString(dish.getId()), dish);
+		return dish;
     }
     
     public List<Object> getAll() {
@@ -25,9 +25,9 @@ public class FoodRedisRepository {
         return food;
     }
 
-    public Food getById(int id) {
-        Food food = (Food) redisTemplate.opsForHash().get(KEY, Integer.toString(id));
-        return food;
+    public Dish getById(int id) {
+        Dish dish = (Dish) redisTemplate.opsForHash().get(KEY, Integer.toString(id));
+        return dish;
     }
 
     public int delete(int id) {
