@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
-        <module name="RestaurantService" />
         <module name="RestaurantBookingService" />
+        <module name="RestaurantTableService" />
+        <module name="RestaurantService" />
         <module name="RestaurantAccountService" />
         <module name="RestaurantLoginService" />
       </profile>
@@ -20,7 +21,9 @@
       <module name="RestaurantBookingService" target="11" />
       <module name="RestaurantLoginService" target="15" />
       <module name="RestaurantService" target="11" />
+      <module name="RestaurantTableService" target="15" />
       <module name="RestaurantUserService" target="11" />
+      <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -30,6 +33,7 @@
       <module name="RestaurantBookingService" options="-parameters" />
       <module name="RestaurantLoginService" options="-parameters" />
       <module name="RestaurantService" options="-parameters" />
+      <module name="RestaurantTableService" options="-parameters" />
       <module name="RestaurantUserService" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
     </option>
