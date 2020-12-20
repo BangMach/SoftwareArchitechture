@@ -10,3 +10,5 @@ This project is to develop a Restaurant website applying modern, scalable, high 
     - [x] Account Service
     - [x] Login service     
     - [ ] Reservation Service
+    
+## Endpoints

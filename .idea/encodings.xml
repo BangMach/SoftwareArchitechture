@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/DiscoveryService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RestaurantAccountService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RestaurantLoginService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RestaurantMenuService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RestaurantMenuService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RestaurantReservationService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RestaurantReservationService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RestaurantTableService/src/main/java" charset="UTF-8" />

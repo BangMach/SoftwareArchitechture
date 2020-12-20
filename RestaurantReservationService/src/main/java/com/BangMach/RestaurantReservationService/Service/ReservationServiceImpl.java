@@ -5,13 +5,11 @@ import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-
 
 @Service
 public class ReservationServiceImpl implements  ReservationServiceInterface {
@@ -24,22 +22,23 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
     }
 
     @Override
-    public Reservation insertReservation(Reservation reservation) {
+    public Reservation createReservation(Reservation reservation) {
         String name = reservation.getName();
         if (name != null && !name.equals("")) {
             String phone = reservation.getPhone();
                 if (phone != null && !phone.equals("")) {
+                    Timestamp timestamp = reservation.getStartTime();
                     if (reservation.getStartTime() != null) {
+                        reservation.setStartTime(new Timestamp(timestamp.getTime() - 1000*60*60*7));
                         if (reservation.getTableId() != 0) {
                             String status = "booked";
                             if (reservation.getStatus() != null) {
-                                if (Arrays.asList("booked", "cancelled").contains(reservation.getStatus().trim().toLowerCase())) {
+                                if (Arrays.asList("booked", "cancelled", "done").contains(reservation.getStatus().trim().toLowerCase())) {
                                     status = reservation.getStatus().trim().toLowerCase();
                                 }
                             }
                             reservation.setStatus(status);
-                            reservationDAO.insertReservation(reservation);
-                            return reservation;
+                            return reservationDAO.createReservation(reservation);
                         }
                     }
                 }
@@ -74,8 +73,8 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
 
     @Override
     @Transactional
-    public List<Reservation> findReservationByDate(Date date) {
-        return reservationDAO.findReservationByDate(date);
+    public List<Reservation> findReservationByDate(Timestamp timestamp) {
+        return reservationDAO.findReservationByDate(timestamp);
     }
 
     @Override
@@ -104,14 +103,16 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
                 currentReservation.setTableId(tableId);
             }
             String status = reservation.getStatus();
-            if (status != null && !status.equals("")) {
-                currentReservation.setStatus(status);
+            if (status != null) {
+                if (Arrays.asList("booked", "cancelled", "done").contains(status.trim().toLowerCase())) {
+                    currentReservation.setStatus(status.trim().toLowerCase());
+                }
             }
-            Date startTime = reservation.getStartTime();
-            if (startTime != null && !startTime.equals("")) {
+            Timestamp startTime = reservation.getStartTime();
+            if (startTime != null) {
                 currentReservation.setStartTime(startTime);
             }
-            return reservationDAO.insertReservation(currentReservation);
+            return reservationDAO.createReservation(currentReservation);
         }
         return null;
     }

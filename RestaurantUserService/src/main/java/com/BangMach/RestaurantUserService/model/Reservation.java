@@ -1,4 +1,4 @@
-package com.BangMach.RestaurantReservationService.Entity;
+package com.BangMach.RestaurantUserService.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

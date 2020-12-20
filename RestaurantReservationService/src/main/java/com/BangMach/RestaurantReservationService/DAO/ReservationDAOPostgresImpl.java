@@ -5,18 +5,19 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 
 @Repository
 @Qualifier("PostgresReservationDAOImpl")
 public class ReservationDAOPostgresImpl implements ReservationDAO {
+
     private EntityManager entityManager;
+
     @Autowired
     public ReservationDAOPostgresImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -58,15 +59,15 @@ public class ReservationDAOPostgresImpl implements ReservationDAO {
 
     @Override
     @Transactional
-    public List<Reservation> findReservationByDate(Date date) {
-        Query query = createQuery("from Reservation where Date LIKE :Date");
-        query.setParameter("date", date);
+    public List<Reservation> findReservationByDate(Timestamp timestamp) {
+        Query query = createQuery("from Reservation where startTime = :timestamp");
+        query.setParameter("timestamp", timestamp);
         return query.getResultList();
     }
 
     @Override
     @Transactional
-    public Reservation insertReservation(Reservation reservation) {
+    public Reservation createReservation(Reservation reservation) {
         return entityManager.merge(reservation);
     }
 

@@ -30,7 +30,6 @@ public class TableDaoImpl implements TableDAOInterface {
         return query.getResultList();
     }
 
-
     @Override
     public RestaurantTable findTableById(int id) {
         return entityManager.find(RestaurantTable.class, id);
