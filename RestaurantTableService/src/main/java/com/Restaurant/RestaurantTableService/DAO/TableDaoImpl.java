@@ -40,10 +40,8 @@ public class TableDaoImpl implements TableDAOInterface {
     public List<RestaurantTable> findTables(RestaurantTable table) {
         Query query = createQuery(
         "from RestaurantTable where " +
-                "status LIKE CASE WHEN :status = '' OR :status IS NULL THEN status ELSE :status END AND  " +
                 "seats LIKE CASE WHEN :seats = 0 OR :seats IS NULL THEN seats ELSE :seats END"
         );
-        query.setParameter("status","%" + table.getStatus() + "%");
         query.setParameter("seats", "%" + table.getSeats() + "%");
         return query.getResultList();
     }

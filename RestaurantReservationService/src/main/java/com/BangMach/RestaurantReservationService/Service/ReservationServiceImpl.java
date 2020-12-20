@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -14,16 +15,36 @@ import java.util.List;
 
 @Service
 public class ReservationServiceImpl implements  ReservationServiceInterface {
-    private ReservationDAO reservationDAO;
 
-    @Override
-    public void insertReservation(Reservation reservation) {
-        reservationDAO.insertReservation(reservation);
-    }
+    private final ReservationDAO reservationDAO;
 
     @Autowired
     public ReservationServiceImpl(@Qualifier("PostgresReservationDAOImpl") ReservationDAO reservationDAO){
         this.reservationDAO = reservationDAO;
+    }
+
+    @Override
+    public Reservation insertReservation(Reservation reservation) {
+        String name = reservation.getName();
+        if (name != null && !name.equals("")) {
+            String phone = reservation.getPhone();
+                if (phone != null && !phone.equals("")) {
+                    if (reservation.getStartTime() != null) {
+                        if (reservation.getTableId() != 0) {
+                            String status = "booked";
+                            if (reservation.getStatus() != null) {
+                                if (Arrays.asList("booked", "cancelled").contains(reservation.getStatus().trim().toLowerCase())) {
+                                    status = reservation.getStatus().trim().toLowerCase();
+                                }
+                            }
+                            reservation.setStatus(status);
+                            reservationDAO.insertReservation(reservation);
+                            return reservation;
+                        }
+                    }
+                }
+            }
+        return null;
     }
 
     @Override
@@ -59,28 +80,39 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
 
     @Override
     @Transactional
-    public void updateReservation(Reservation  reservation)  {
+    public Reservation updateReservation(Reservation  reservation)  {
         Reservation currentReservation = findReservationById(reservation.getId());
         if (currentReservation != null) {
-            if (reservation.getName() != null) {
-                currentReservation.setName(reservation.getName());
+            String name = reservation.getName();
+            if (name != null && !name.equals("")) {
+                currentReservation.setName(name);
             }
-            if (reservation.getEmail() != null) {
-                currentReservation.setEmail(reservation.getEmail());
+            String phone = reservation.getPhone();
+            if (phone != null && !phone.equals("")) {
+                currentReservation.setPhone(phone);
             }
-            if (reservation.getNumberOfPeople() != null) {
-                currentReservation.setNumberOfPeople(reservation.getNumberOfPeople());
+            String email = reservation.getEmail();
+            if (email != null) {
+                currentReservation.setEmail(email);
             }
-            if (reservation.getStartTime() != null) {
-                currentReservation.setEmail(reservation.getEmail());
+            String note = reservation.getNote();
+            if (note != null) {
+                currentReservation.setName(note);
             }
-            if (reservation.getRoomCode() != null) {
-                currentReservation.setRoomCode(reservation.getRoomCode());
+            int tableId = reservation.getTableId();
+            if (tableId != 0) {
+                currentReservation.setTableId(tableId);
             }
-            if (reservation.getPhone() != null) {
-                currentReservation.setPhone(reservation.getPhone());
+            String status = reservation.getStatus();
+            if (status != null && !status.equals("")) {
+                currentReservation.setStatus(status);
             }
-            reservationDAO.insertReservation(currentReservation);
+            Date startTime = reservation.getStartTime();
+            if (startTime != null && !startTime.equals("")) {
+                currentReservation.setStartTime(startTime);
+            }
+            return reservationDAO.insertReservation(currentReservation);
         }
+        return null;
     }
 }

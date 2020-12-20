@@ -35,13 +35,13 @@ public class ReservationController {
     }
 
     @PostMapping(value = "/insert")
-    public void addReservation(@RequestBody Reservation reservation) {
-        reservationService.insertReservation(reservation);
+    public Reservation addReservation(@RequestBody Reservation reservation) {
+        return reservationService.insertReservation(reservation);
     }
 
     @PutMapping(value = "/update")
-    public void updateAccount(@RequestBody Reservation reservation) {
-        reservationService.updateReservation(reservation);
+    public Reservation updateAccount(@RequestBody Reservation reservation) {
+        return reservationService.updateReservation(reservation);
     }
 
 

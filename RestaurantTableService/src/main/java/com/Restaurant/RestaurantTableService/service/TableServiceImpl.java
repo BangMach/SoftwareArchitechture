@@ -5,6 +5,7 @@ import com.Restaurant.RestaurantTableService.model.RestaurantTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -21,13 +22,7 @@ public class TableServiceImpl implements TableServiceInterface {
     @Override
     @Transactional
     public RestaurantTable createTable(RestaurantTable table) {
-        if (table.getSeats() != null) {
-                if (table.getStatus() == null) {
-                    table.setStatus("Available");
-                    return tableDAO.saveTable(table);
-                }
-            }
-        return null;
+        return tableDAO.saveTable(table);
     }
 
     @Override
@@ -47,10 +42,7 @@ public class TableServiceImpl implements TableServiceInterface {
     public RestaurantTable updateTable(RestaurantTable table)  {
         RestaurantTable currentTable = findTableById(table.getId());
         if (currentTable != null) {
-            if (table.getStatus() != null) {
-                currentTable.setStatus(table.getStatus());
-            }
-            if (table.getSeats() != null) {
+            if (table.getSeats() != 0) {
                 currentTable.setSeats(table.getSeats());
             }
             return tableDAO.saveTable(currentTable);

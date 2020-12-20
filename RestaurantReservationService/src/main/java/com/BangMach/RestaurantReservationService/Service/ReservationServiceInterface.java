@@ -7,13 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 public interface ReservationServiceInterface {
+
     Collection<Reservation> getAllReservation();
 
     Reservation findReservationById(int id);
 
-    void updateReservation(Reservation reservation);
+    Reservation updateReservation(Reservation reservation);
 
-    void insertReservation(Reservation reservation);
+    Reservation insertReservation(Reservation reservation);
 
     void deleteReservationByID(int id);
 

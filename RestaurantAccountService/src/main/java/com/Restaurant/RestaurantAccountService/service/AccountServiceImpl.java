@@ -22,14 +22,17 @@ public class AccountServiceImpl implements AccountServiceInterface {
     @Override
     @Transactional
     public Account createAccount(Account account) {
-        if (account.getUsername() != null) {
-            List<Account> foundAccounts = accountDAO.findAccountByUsername(account.getUsername());
+        String username = account.getUsername();
+        if (username != null && !username.equals("")) {
+            List<Account> foundAccounts = accountDAO.findAccountByUsername(username);
             if (foundAccounts.size() == 0) {
-                if (account.getEmail() != null) {
-                    foundAccounts = accountDAO.findAccountByEmail(account.getEmail());
+                String email = account.getEmail();
+                if (email != null && !email.equals("")) {
+                    foundAccounts = accountDAO.findAccountByEmail(email);
                     if (foundAccounts.size() == 0) {
-                        if (account.getPassword() != null) {
-                            account.setPassword(SecurityHelper.encryptPassword((account.getPassword())));
+                        String password = account.getPassword();
+                        if (password != null && !password.equals("")) {
+                            account.setPassword(SecurityHelper.encryptPassword(password));
                             return accountDAO.saveAccount(account);
                         }
                     }
@@ -77,24 +80,30 @@ public class AccountServiceImpl implements AccountServiceInterface {
     public Account updateAccount(Account account)  {
         Account currentAccount = findAccountById(account.getId());
         if (currentAccount != null) {
-                if (account.getUsername() != null) {
-                    currentAccount.setUsername(account.getUsername());
-                }
-                if (account.getPassword() != null) {
-                    currentAccount.setPassword(SecurityHelper.encryptPassword((account.getPassword())));
-                }
-                if (account.getFullName() != null) {
-                    currentAccount.setFullName(account.getFullName());
-                }
-                if (account.getEmail() != null) {
-                    currentAccount.setEmail(account.getEmail());
-                }
-                if (account.getPhone() != null) {
-                    currentAccount.setPhone(account.getPhone());
-                }
-                if (account.getAddress() != null) {
-                    currentAccount.setAddress(account.getAddress());
-                }
+            String username = account.getUsername();
+            if (username != null && !username.equals("")) {
+                currentAccount.setUsername(username);
+            }
+            String password = account.getPassword();
+            if (password != null && !password.equals("")) {
+                currentAccount.setPassword(SecurityHelper.encryptPassword(password));
+            }
+            String email = account.getEmail();
+            if (email != null && !email.equals("")) {
+                currentAccount.setEmail(email);
+            }
+            String fullName = account.getFullName();
+            if (fullName != null) {
+                currentAccount.setFullName(fullName);
+            }
+            String phone = account.getPhone();
+            if (phone != null) {
+                currentAccount.setPhone(phone);
+            }
+            String address = account.getAddress();
+            if (address != null) {
+                currentAccount.setAddress(address);
+            }
             return accountDAO.saveAccount(currentAccount);
         } else {
             return null;

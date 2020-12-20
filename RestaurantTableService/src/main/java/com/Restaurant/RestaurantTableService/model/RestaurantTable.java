@@ -18,11 +18,8 @@ public class RestaurantTable {
     private int id;
 
     @Column
-    private String status;
-
-    @Column
     @NotNull
-    private Integer seats;
+    private int seats;
 
     public RestaurantTable() {
     }
@@ -35,19 +32,11 @@ public class RestaurantTable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Integer getSeats() {
+    public int getSeats() {
         return seats;
     }
 
-    public void setSeats(Integer seats) {
+    public void setSeats(int seats) {
         this.seats = seats;
     }
 }
