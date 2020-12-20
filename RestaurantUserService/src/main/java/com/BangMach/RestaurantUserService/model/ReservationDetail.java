@@ -1,12 +1,10 @@
 package com.BangMach.RestaurantUserService.model;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name="reservation_detail")
@@ -20,12 +18,15 @@ public class ReservationDetail {
     @Email
     private String email;
 
+    @Column
     @NotEmpty
     private String name;
 
+    @Column
     @NotEmpty
     private String phone;
 
+    @Column
     @NotEmpty
     private Timestamp startTime;
 
@@ -35,11 +36,12 @@ public class ReservationDetail {
     @Column
     private String status;
 
+    @Column
     @NotEmpty
     private int tableId;
 
     @Column
-    @NotNull
+    @NotEmpty
     private int seats;
 
     public ReservationDetail(int id, String email, String name, String phone, Date startTime, String note, String status, int tableId, int seats) {

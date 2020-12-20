@@ -6,7 +6,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.List;
@@ -15,13 +14,12 @@ import java.util.List;
 @Qualifier("userDAOImpl")
 public class UserDAOImpl implements UserDAOInterface {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public UserDAOImpl(EntityManager entityManager){
         this.entityManager = entityManager;
     }
-
 
     private Query createQuery(String stringQuery) {
         return (Query) entityManager.createQuery(stringQuery);

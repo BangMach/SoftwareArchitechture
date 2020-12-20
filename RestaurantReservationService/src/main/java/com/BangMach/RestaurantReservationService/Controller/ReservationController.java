@@ -29,7 +29,6 @@ public class ReservationController {
 
     @PostMapping(value = "/create")
     public Reservation addReservation(@RequestBody Reservation reservation) {
-        System.out.println(reservation.getTableId());
         return reservationService.createReservation(reservation);
     }
 
