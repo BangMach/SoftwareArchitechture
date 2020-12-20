@@ -3,7 +3,7 @@ package com.BangMach.RestaurantReservationService.Service;
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
 
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface ReservationServiceInterface {
@@ -14,7 +14,7 @@ public interface ReservationServiceInterface {
 
     Reservation updateReservation(Reservation reservation);
 
-    Reservation insertReservation(Reservation reservation);
+    Reservation createReservation(Reservation reservation);
 
     void deleteReservationByID(int id);
 
@@ -22,6 +22,6 @@ public interface ReservationServiceInterface {
 
     List<Reservation> findReservationByPhone(String phone);
 
-    List<Reservation> findReservationByDate(Date date);
+    List<Reservation> findReservationByDate(Timestamp timestamp);
 
 }

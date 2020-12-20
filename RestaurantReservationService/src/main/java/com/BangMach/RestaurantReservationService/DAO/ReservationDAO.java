@@ -2,8 +2,8 @@ package com.BangMach.RestaurantReservationService.DAO;
 
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
 
+import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 public interface ReservationDAO {
@@ -16,9 +16,9 @@ public interface ReservationDAO {
 
     List<Reservation> findReservationByPhone(String phone);
 
-    List<Reservation> findReservationByDate(Date date);
+    List<Reservation> findReservationByDate(Timestamp timestamp);
 
-    Reservation insertReservation(Reservation reservation);
+    Reservation createReservation(Reservation reservation);
 
     void deleteReservation(int id);
 

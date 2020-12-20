@@ -11,7 +11,7 @@ class RestaurantUserServiceApplicationTests {
 	void contextLoads() {
 	}
 	public static void main(String[] args) {
-		SpringApplication.run(UserRatingsServiceApplication.class, args);
+		SpringApplication.run(RestaurantUserServiceApplicationTests.class, args);
 	}
 
 }

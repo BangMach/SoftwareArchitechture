@@ -5,7 +5,6 @@ import com.BangMach.RestaurantReservationService.Service.ReservationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 
 @RestController
@@ -34,9 +33,9 @@ public class ReservationController {
         reservationService.updateReservation(reservation);
     }
 
-    @PostMapping(value = "/insert")
+    @PostMapping(value = "/create")
     public Reservation addReservation(@RequestBody Reservation reservation) {
-        return reservationService.insertReservation(reservation);
+        return reservationService.createReservation(reservation);
     }
 
     @PutMapping(value = "/update")
