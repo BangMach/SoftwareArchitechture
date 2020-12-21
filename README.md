@@ -1,5 +1,5 @@
 # Software Architecture
-This project is to develop a Restaurant website applying modern, scalable, high available architecture by implementing OAuth2, micro-service, Reddis, Kafka message queue, Docker, Kubernetes and AWS cloud. 
+This project is to develop a Restaurant website applying modern, scalable, high available architecture by implementing OAuth2, micro-service, Redis, Kafka message queue, Docker, Kubernetes and AWS cloud. 
 
 ## Project micro-services  
 - [x] Account Service
@@ -26,13 +26,8 @@ This project is to develop a Restaurant website applying modern, scalable, high 
     - /dtb
         - /add
         - /all
-        - /find
+        - /find/category
         - /update
-        - /delete
-    - /redis
-        - /add
-        - /all
-        - /find
         - /delete
 - Table Service (http://localhost:8082/tables)
     - /create
@@ -51,3 +46,10 @@ This project is to develop a Restaurant website applying modern, scalable, high 
     - /create/reservation
     - /update/reservation
 
+## Redis usage
+- Save/load main courses of the menu
+
+## Work flow
+1. Start Discovery service first.
+2. Run Table and Reservation services before User service.
+3. Run Redis server before Menu service: Redis -> 64 BIT -> redis-server

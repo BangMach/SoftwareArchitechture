@@ -27,9 +27,9 @@ public class DishDatabaseController {
         return dishDatabaseService.getAllDish();
     }
 
-    @GetMapping("/find")
-    public Dish getById(@RequestParam int id) {
-        return dishDatabaseService.getDishById(id);
+    @GetMapping("/find/category")
+    public List<?> findDishByCategory(@RequestParam String category) {
+        return dishDatabaseService.findDishByCategory(category);
     }
 
     @PutMapping("/update")
@@ -37,8 +37,8 @@ public class DishDatabaseController {
         return dishDatabaseService.updateDish(dish);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
+    @DeleteMapping("/delete")
+    public String delete(@RequestParam int id) {
         return dishDatabaseService.deleteDish(id);
     }
 }

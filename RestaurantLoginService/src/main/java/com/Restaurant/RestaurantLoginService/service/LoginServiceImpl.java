@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 @Service
 public class LoginServiceImpl implements LoginServiceInterface {
 
-    public RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Autowired
     public LoginServiceImpl(RestTemplate restTemplate) {

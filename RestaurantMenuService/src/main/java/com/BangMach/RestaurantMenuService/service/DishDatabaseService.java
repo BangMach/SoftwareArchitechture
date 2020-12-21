@@ -1,66 +1,80 @@
 package com.BangMach.RestaurantMenuService.service;
 
+import com.BangMach.RestaurantMenuService.DAO.DishDAOImpl;
 import com.BangMach.RestaurantMenuService.model.Dish;
-import com.BangMach.RestaurantMenuService.repository.DishDatabaseRepository;
+import com.BangMach.RestaurantMenuService.repository.DishRedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class DishDatabaseService {
 
-    private DishDatabaseRepository dishDatabaseRepository;
+    private final DishDAOImpl dishDAO;
+    private final DishRedisRepository dishRedisRepository;
+    private final List<String> dishCategories = Arrays.asList("main", "appetizer", "dessert", "na");
 
     @Autowired
-    public DishDatabaseService(DishDatabaseRepository dishDatabaseRepository) {
-        this.dishDatabaseRepository = dishDatabaseRepository;
+    public DishDatabaseService(@Qualifier("dishDAOImpl") DishDAOImpl dishDAO, DishRedisRepository dishRedisRepository) {
+        this.dishDAO = dishDAO;
+        this.dishRedisRepository = dishRedisRepository;
     }
 
     @Transactional
     public Dish addDish(Dish dish) {
         String dishName = dish.getName();
         if (dishName != null && !dishName.equals("")) {
-            String dishCategory = "na";
             if (dish.getCategory() != null) {
-                if (Arrays.asList("main", "appetizer", "dessert", "na").contains(dish.getCategory().trim().toLowerCase())) {
-                    dishCategory = dish.getCategory().trim().toLowerCase();
+                String dishCategory = dish.getCategory().trim().toLowerCase();
+                if (dishCategories.contains(dishCategory)) {
+                    dish.setCategory(dishCategory);
+                } else if (dishCategory.equals("")) {
+                    dish.setCategory("na");
                 }
             }
-            dish.setCategory(dishCategory);
-            dishDatabaseRepository.save(dish);
-            return dish;
+            Dish newDish = dishDAO.saveDish(dish);
+            if (dish.getCategory().equals("main")) {
+                dishRedisRepository.add(newDish);
+            }
+            return newDish;
         }
         return null;
     }
 
     @Transactional
     public List<Dish> getAllDish() {
-        return (List<Dish>) dishDatabaseRepository.findAll();
+        return dishDAO.getAllDishes();
     }
 
     @Transactional
-    public Dish getDishById(int id) {
-        return dishDatabaseRepository.findById(id).get();
+    public List<?> findDishByCategory(String category)  {
+        if (category.equals("main")) {
+            List<Object> redisDishes = dishRedisRepository.getAll();
+            if (!redisDishes.isEmpty()) {
+                return redisDishes;
+            } else {
+                List<Dish> dtbDishes = dishDAO.findDishByCategory(category);
+                return dishRedisRepository.addDishes(dtbDishes);
+            }
+        } else {
+            return dishDAO.findDishByCategory(category);
+        }
     }
 
     @Transactional
     public Dish updateDish(Dish dish) {
-        try {
-            Dish currentDish = getDishById(dish.getId());
+        int id = dish.getId();
+        Dish currentDish = dishRedisRepository.getById(id);
+        if (currentDish == null) {
+            currentDish = dishDAO.findDishById(id);
+        }
+        if (currentDish != null) {
             String dishName = dish.getName();
             if (dishName != null && !dishName.equals("")) {
                 currentDish.setName(dishName);
-            }
-            String dishCategory = dish.getCategory();
-            if (dishCategory != null) {
-                if (Arrays.asList("main", "appetizer", "dessert", "na").contains(dishCategory.trim().toLowerCase())) {
-                    currentDish.setCategory(dishCategory.trim().toLowerCase());
-                } else if (dishCategory.equals("")) {
-                    currentDish.setCategory("na");
-                }
             }
             String description = dish.getDescription();
             if ( description != null) {
@@ -70,20 +84,41 @@ public class DishDatabaseService {
             if (imagePath != null) {
                 currentDish.setImagePath(imagePath);
             }
-            dishDatabaseRepository.save(currentDish);
-            return currentDish;
-        } catch(Exception e) {
+            if (dish.getCategory() != null) {
+                String dishCategory = dish.getCategory().trim().toLowerCase();
+                if (dishCategories.contains(dishCategory)) {
+                    if (!dishCategory.equals("main")) {
+                        dishRedisRepository.delete(id);
+                    }
+                    currentDish.setCategory(dishCategory);
+                } else if (dishCategory.equals("")) {
+                    currentDish.setCategory("na");
+                    dishRedisRepository.delete(id);
+                }
+            }
+            if (currentDish.getCategory().equals("main")) {
+                dishRedisRepository.add(currentDish);
+            }
+            return dishDAO.saveDish(currentDish);
+        } else {
             return null;
         }
     }
 
     @Transactional
     public String deleteDish(int id) {
-        try {
-            dishDatabaseRepository.delete(getDishById(id));
-            return "Delete dish id " + id;
-        } catch (Exception e) {
-            return "No dish found";
+        Dish currentDish = dishRedisRepository.getById(id);
+        if (currentDish == null) {
+            currentDish = dishDAO.findDishById(id);
+        }
+        if (currentDish != null) {
+            if (currentDish.getCategory().equals("main")) {
+                dishRedisRepository.delete(id);
+            }
+            dishDAO.deleteDishById(id);
+            return "Deleted dish id " + id;
+        } else {
+            return "Dish id not found";
         }
     }
 }

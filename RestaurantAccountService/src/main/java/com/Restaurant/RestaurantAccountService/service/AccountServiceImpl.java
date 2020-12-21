@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements AccountServiceInterface {
 
-    private AccountDAOInterface accountDAO;
+    private final AccountDAOInterface accountDAO;
 
     @Autowired
     public AccountServiceImpl(@Qualifier("accountDAOImpl") AccountDAOInterface accountDAO){
@@ -116,9 +116,9 @@ public class AccountServiceImpl implements AccountServiceInterface {
         Account currentAccount = findAccountById(id);
         if (currentAccount != null) {
             accountDAO.deleteAccountById(id);
-            return "deleted account id " + id;
+            return "Deleted account id " + id;
         } else {
-            return "Account Id not found";
+            return "Account id not found";
         }
     }
 

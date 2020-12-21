@@ -6,32 +6,39 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Repository
 public class DishRedisRepository {
-    
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
 
-    private static final String KEY = "FOOD";
+    private final RedisTemplate<String, Object> redisTemplate;
+    private static final String KEY = "DISH";
+
+    @Autowired
+    public DishRedisRepository(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.redisTemplate.expire(KEY, 30, TimeUnit.DAYS);
+    }
 
     public Dish add(Dish dish) {
         redisTemplate.opsForHash().put(KEY, Integer.toString(dish.getId()), dish);
 		return dish;
     }
+
+    public List<Object> addDishes(List<Dish> dishes) {
+        dishes.forEach(this::add);
+        return getAll();
+    }
     
     public List<Object> getAll() {
-        List<Object> food = redisTemplate.opsForHash().values(KEY);
-        return food;
+        return redisTemplate.opsForHash().values(KEY);
     }
 
     public Dish getById(int id) {
-        Dish dish = (Dish) redisTemplate.opsForHash().get(KEY, Integer.toString(id));
-        return dish;
+        return (Dish) redisTemplate.opsForHash().get(KEY, Integer.toString(id));
     }
 
-    public int delete(int id) {
+    public void delete(int id) {
         redisTemplate.opsForHash().delete(KEY, Integer.toString(id));
-        return id;
     }
 }
