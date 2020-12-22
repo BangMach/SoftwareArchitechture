@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserServiceInterface {
     @Override
     @Transactional
     public ResponseEntity<Reservation> updateReservation(Reservation reservation) {
-       if (checkAvailableTableForUpdate(reservation.getTableId(), reservation.getStartTime())) {
+       if (checkAvailableTableForUpdate(reservation.getTableId(), reservation.getStartTime(), reservation.getId())) {
             String url = "http://RESERVATION-SERVICE/reservations/update";
             HttpEntity<Reservation> requestEntity = new HttpEntity<>(reservation);
             return restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Reservation.class);
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     private boolean checkAvailableTableForCreate(int tableId, Timestamp timestamp) {
-        String url = "http://TABLE-SERVICE/tables/find/id?id=" + tableId;
+        String url = "http://TABLE-SERVICE/tables/find?id=" + tableId;
         RestaurantTable reservedTable = restTemplate.getForObject(url, RestaurantTable.class);
         if (timestamp != null && reservedTable != null) {
             List<RestaurantTable> reservableTables = searchAvailableTables(new Timestamp(timestamp.getTime() - 1000*60*60*7));
@@ -70,17 +70,23 @@ public class UserServiceImpl implements UserServiceInterface {
         return false;
     }
 
-    private boolean checkAvailableTableForUpdate(int tableId, Timestamp timestamp) {
-        String url = "http://TABLE-SERVICE/tables/find/id?id=" + tableId;
-        RestaurantTable reservedTable = restTemplate.getForObject(url, RestaurantTable.class);
-        if (tableId == 0) {
-            return (timestamp == null);
-        } else if (reservedTable != null) {
-            if (timestamp != null) {
-                List<RestaurantTable> reservableTables = searchAvailableTables(new Timestamp(timestamp.getTime() - 1000*60*60*7));
-                return reservableTables.stream().anyMatch(o -> o.getId() == reservedTable.getId());
+    private boolean checkAvailableTableForUpdate(int tableId, Timestamp timestamp, int id) {
+        String currentReservationURL = "http://RESERVATION-SERVICE/reservations/find?id=" + id;
+        Reservation currentReservation = restTemplate.getForObject(currentReservationURL, Reservation.class);
+        if (currentReservation != null) {
+            if (tableId == 0 || tableId == currentReservation.getTableId()) {
+                return (timestamp == null) || (new Timestamp(timestamp.getTime() - 1000 * 60 * 60 * 7).equals(currentReservation.getStartTime()));
             } else {
-                return false;
+                String changeTableURL = "http://TABLE-SERVICE/tables/find?id=" + tableId;
+                RestaurantTable changeTable = restTemplate.getForObject(changeTableURL, RestaurantTable.class);
+                if (changeTable != null) {
+                    if (timestamp != null) {
+                        List<RestaurantTable> reservableTables = searchAvailableTables(new Timestamp(timestamp.getTime() - 1000*60*60*7));
+                        return reservableTables.stream().anyMatch(o -> o.getId() == changeTable.getId());
+                    } else {
+                        return false;
+                    }
+                }
             }
         }
         return false;

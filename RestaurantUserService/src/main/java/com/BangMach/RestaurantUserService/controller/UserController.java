@@ -5,6 +5,7 @@ import com.BangMach.RestaurantUserService.model.ReservationDetail;
 import com.BangMach.RestaurantUserService.model.RestaurantTable;
 import com.BangMach.RestaurantUserService.service.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,12 +34,34 @@ public class UserController {
     }
 
     @PostMapping(value = "/create/reservation")
-    public Reservation createReservation(@RequestBody Reservation reservation) {
-        return userService.createReservation(reservation);
+    public ResponseEntity createReservation(@RequestBody Reservation reservation) {
+        Reservation newReservation = userService.createReservation(reservation);
+        if (newReservation == null) {
+            return new ResponseEntity<>(
+                    "Failed to create new reservation",
+                    HttpStatus.BAD_REQUEST
+            );
+        } else {
+            return new ResponseEntity<>(
+                    newReservation,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     @PutMapping(value = "/update/reservation")
-    public ResponseEntity<Reservation> updateReservation(@RequestBody Reservation reservation) {
-        return userService.updateReservation(reservation);
+    public ResponseEntity updateReservation(@RequestBody Reservation reservation) {
+        ResponseEntity<Reservation> updatedReservation = userService.updateReservation(reservation);
+        if (updatedReservation == null) {
+            return new ResponseEntity<>(
+                "Failed to update reservation",
+                HttpStatus.BAD_REQUEST
+            );
+        } else {
+            return new ResponseEntity<>(
+                updatedReservation.getBody(),
+                HttpStatus.BAD_REQUEST
+            );
+        }
     }
 }

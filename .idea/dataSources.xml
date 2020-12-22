@@ -6,7 +6,7 @@
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com:5432/table</jdbc-url>
+      <jdbc-url>jdbc:postgresql://restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com:5432/account</jdbc-url>
     </data-source>
   </component>
 </project>

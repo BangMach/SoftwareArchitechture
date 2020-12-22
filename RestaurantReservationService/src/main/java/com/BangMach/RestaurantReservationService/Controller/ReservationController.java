@@ -23,8 +23,13 @@ public class ReservationController {
     }
 
     @DeleteMapping(value = "/delete")
-    public void deleteReservationById(@RequestParam int id) {
-        reservationService.deleteReservationByID(id);
+    public String deleteReservationById(@RequestParam int id) {
+        return reservationService.deleteReservationByID(id);
+    }
+
+    @GetMapping(value = "/find")
+    public Reservation findById(@RequestParam int id) {
+        return reservationService.findReservationById(id);
     }
 
     @PostMapping(value = "/create")

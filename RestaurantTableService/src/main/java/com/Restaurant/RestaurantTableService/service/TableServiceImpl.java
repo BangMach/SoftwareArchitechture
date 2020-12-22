@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class TableServiceImpl implements TableServiceInterface {
 
-    private TableDAOInterface tableDAO;
+    private final TableDAOInterface tableDAO;
+    private List<String> statuses = Arrays.asList("available", "unavailable");
 
     @Autowired
     public TableServiceImpl(@Qualifier("tableDAOImpl") TableDAOInterface tableDAO){
@@ -24,7 +25,7 @@ public class TableServiceImpl implements TableServiceInterface {
     public RestaurantTable createTable(RestaurantTable table) {
         String status = "available";
         if (table.getStatus() != null) {
-            if (Arrays.asList("available", "unavailable").contains(table.getStatus().trim().toLowerCase())) {
+            if (statuses.contains(table.getStatus().trim().toLowerCase())) {
                 status = table.getStatus().trim().toLowerCase();
             }
         }
@@ -54,7 +55,7 @@ public class TableServiceImpl implements TableServiceInterface {
             }
             String status = table.getStatus();
             if (status != null) {
-                if (Arrays.asList("available", "unavailable").contains(table.getStatus().trim().toLowerCase())) {
+                if (statuses.contains(table.getStatus().trim().toLowerCase())) {
                     currentTable.setStatus(status.trim().toLowerCase());
                 }
             }

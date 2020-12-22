@@ -5,11 +5,11 @@ import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 @Service
 public class ReservationServiceImpl implements  ReservationServiceInterface {
@@ -22,6 +22,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
     }
 
     @Override
+    @Transactional
     public Reservation createReservation(Reservation reservation) {
         String name = reservation.getName();
         if (name != null && !name.equals("")) {
@@ -47,34 +48,26 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
     }
 
     @Override
+    @Transactional
     public Collection<Reservation> getAllReservation() {
         return reservationDAO.getAllReservation();
     }
 
     @Override
+    @Transactional
     public Reservation findReservationById(int id) {
         return reservationDAO.findReservationById(id);
     }
 
     @Override
-    public void deleteReservationByID(int id) {
-        reservationDAO.deleteReservation(id);
-    }
-
-    @Override
-    public List<Reservation> findReservationByName(String name) {
-        return reservationDAO.findReservationByName(name);
-    }
-
-    @Override
-    public List<Reservation> findReservationByPhone(String phone) {
-        return reservationDAO.findReservationByPhone(phone);
-    }
-
-    @Override
     @Transactional
-    public List<Reservation> findReservationByDate(Timestamp timestamp) {
-        return reservationDAO.findReservationByDate(timestamp);
+    public String deleteReservationByID(int id) {
+        Reservation reservation = findReservationById(id);
+        if (reservation != null) {
+            reservationDAO.deleteReservation(id);
+            return "Deleted reservation id "+ id;
+        }
+        return "Reservation id not found";
     }
 
     @Override

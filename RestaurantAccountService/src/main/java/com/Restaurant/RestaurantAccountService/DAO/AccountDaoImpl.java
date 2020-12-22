@@ -50,16 +50,33 @@ public class AccountDaoImpl implements AccountDAOInterface {
 
     @Override
     public List<Account> findAccounts(Account account) {
+        if (account.getUsername() == null) {
+            account.setUsername("");
+        }
+        if (account.getEmail() == null) {
+            account.setEmail("");
+        }
+        if (account.getFullName() == null) {
+            account.setFullName("");
+        }
+        if (account.getAddress() == null) {
+            account.setAddress("");
+        }
+        if (account.getPhone() == null) {
+            account.setPhone("");
+        }
         Query query = createQuery(
-        "from Account where " +
-                "fullName LIKE CASE WHEN :fullName = '' OR :fullName IS NULL THEN fullName ELSE :fullName END AND  " +
-                "phone LIKE CASE WHEN :phone = '' OR :phone IS NULL THEN phone ELSE :phone END AND " +
-                "address LIKE CASE WHEN :address = '' OR :address IS NULL THEN address ELSE :address END AND " +
-                "email LIKE CASE WHEN :email = '' OR :email IS NULL THEN email ELSE :email END "
+                " from Account where " +
+                "username LIKE CASE WHEN :username = '' THEN username ELSE :username END AND  " +
+                "fullName LIKE CASE WHEN :fullName = '' THEN fullName ELSE :fullName END AND  " +
+                "phone LIKE CASE WHEN :phone = '' THEN phone ELSE :phone END AND " +
+                "address LIKE CASE WHEN :address = '' THEN address ELSE :address END AND " +
+                "email LIKE CASE WHEN :email = '' THEN email ELSE :email END "
         );
+        query.setParameter("username","%" + account.getUsername() + "%");
         query.setParameter("fullName","%" + account.getFullName() + "%");
-        query.setParameter("phone", "%" +account.getPhone() + "%");
-        query.setParameter("address", "%" +account.getAddress() + "%");
+        query.setParameter("phone", "%" + account.getPhone() + "%");
+        query.setParameter("address", "%" + account.getAddress() + "%");
         query.setParameter("email", "%" + account.getEmail() + "%");
         return query.getResultList();
     }

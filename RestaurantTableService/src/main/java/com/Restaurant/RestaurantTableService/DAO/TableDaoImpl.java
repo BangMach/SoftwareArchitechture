@@ -13,7 +13,7 @@ import java.util.List;
 @Qualifier("tableDAOImpl")
 public class TableDaoImpl implements TableDAOInterface {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public TableDaoImpl(EntityManager entityManager){
@@ -37,11 +37,16 @@ public class TableDaoImpl implements TableDAOInterface {
 
     @Override
     public List<RestaurantTable> findTables(RestaurantTable table) {
+        if (table.getStatus() == null) {
+            table.setStatus("");
+        }
         Query query = createQuery(
         "from RestaurantTable where " +
-                "seats LIKE CASE WHEN :seats = 0 OR :seats IS NULL THEN seats ELSE :seats END"
+                "seats = CASE WHEN :seats = 0 THEN seats ELSE :seats END " +
+                "AND status = CASE WHEN :status = '' THEN status ELSE :status END "
         );
-        query.setParameter("seats", "%" + table.getSeats() + "%");
+        query.setParameter("seats", table.getSeats());
+        query.setParameter("status", table.getStatus());
         return query.getResultList();
     }
 

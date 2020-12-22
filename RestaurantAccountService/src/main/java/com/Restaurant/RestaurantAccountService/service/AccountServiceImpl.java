@@ -26,10 +26,12 @@ public class AccountServiceImpl implements AccountServiceInterface {
         if (username != null && !username.equals("")) {
             List<Account> foundAccounts = accountDAO.findAccountByUsername(username);
             if (foundAccounts.size() == 0) {
+                account.setUsername(username.trim());
                 String email = account.getEmail();
                 if (email != null && !email.equals("")) {
                     foundAccounts = accountDAO.findAccountByEmail(email);
                     if (foundAccounts.size() == 0) {
+                        account.setEmail(email.trim());
                         String password = account.getPassword();
                         if (password != null && !password.equals("")) {
                             account.setPassword(SecurityHelper.encryptPassword(password));
@@ -81,16 +83,22 @@ public class AccountServiceImpl implements AccountServiceInterface {
         Account currentAccount = findAccountById(account.getId());
         if (currentAccount != null) {
             String username = account.getUsername();
-            if (username != null && !username.equals("")) {
-                currentAccount.setUsername(username);
+            if (username != null && !username.equals("") && !username.equals(currentAccount.getUsername())) {
+                List<Account> foundAccounts = accountDAO.findAccountByUsername(username);
+                if (foundAccounts.size() == 0) {
+                    currentAccount.setUsername(username.trim());
+                }
             }
             String password = account.getPassword();
             if (password != null && !password.equals("")) {
                 currentAccount.setPassword(SecurityHelper.encryptPassword(password));
             }
             String email = account.getEmail();
-            if (email != null && !email.equals("")) {
-                currentAccount.setEmail(email);
+            if (email != null && !email.equals("") && !email.equals(currentAccount.getEmail())) {
+                List<Account> foundAccounts = accountDAO.findAccountByEmail(email);
+                if (foundAccounts.size() == 0) {
+                    currentAccount.setEmail(email.trim());
+                }
             }
             String fullName = account.getFullName();
             if (fullName != null) {

@@ -3,6 +3,8 @@ package com.Restaurant.RestaurantAccountService.controller;
 import com.Restaurant.RestaurantAccountService.model.Account;
 import com.Restaurant.RestaurantAccountService.service.AccountServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -20,8 +22,19 @@ public class AccountController {
     }
 
     @PostMapping(value = "/create")
-    public Account addAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        return (accountService.createAccount(account));
+    public ResponseEntity addAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        Account newAccount = accountService.createAccount(account);
+        if (newAccount == null) {
+            return new ResponseEntity<>(
+                    "Failed to create new account",
+                    HttpStatus.BAD_REQUEST
+            );
+        } else {
+            return new ResponseEntity<>(
+                    newAccount,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     @GetMapping(value = "/find/username")
@@ -45,11 +58,22 @@ public class AccountController {
     }
 
     @PutMapping(value = "/update")
-    public Account updateAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        return accountService.updateAccount(account);
+    public ResponseEntity updateAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        Account updatedAccount = accountService.updateAccount(account);
+        if (updatedAccount == null) {
+            return new ResponseEntity<>(
+                    "Failed to update account",
+                    HttpStatus.BAD_REQUEST
+            );
+        } else {
+            return new ResponseEntity<>(
+                    updatedAccount,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/delete")
     public String deleteAccount(@RequestParam Integer id){
         return accountService.deleteAccountById(id);
     }

@@ -18,9 +18,6 @@ public class Account {
     private int id;
 
     @Column
-    private String fullName;
-
-    @Column
     @NotNull
     private String username;
 
@@ -29,14 +26,18 @@ public class Account {
     private String password;
 
     @Column
+    @NotNull
+    private String email;
+
+    @Column
+    private String fullName;
+
+    @Column
     private String phone;
 
     @Column
     private String address;
 
-    @Column
-    @NotNull
-    private String email;
 
     public Account() {
     }

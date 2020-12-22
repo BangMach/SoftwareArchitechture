@@ -29,17 +29,18 @@ public class DishService {
         if (dishName != null && !dishName.equals("")) {
             if (dish.getCategory() != null) {
                 String dishCategory = dish.getCategory().trim().toLowerCase();
+                if (dishCategory.equals("")) {
+                    dishCategory = "na";
+                }
                 if (dishCategories.contains(dishCategory)) {
                     dish.setCategory(dishCategory);
-                } else if (dishCategory.equals("")) {
-                    dish.setCategory("na");
+                    Dish newDish = dishDAO.saveDish(dish);
+                    if (newDish.getCategory().equals("main")) {
+                        dishRedisRepository.add(newDish);
+                    }
+                    return newDish;
                 }
             }
-            Dish newDish = dishDAO.saveDish(dish);
-            if (dish.getCategory().equals("main")) {
-                dishRedisRepository.add(newDish);
-            }
-            return newDish;
         }
         return null;
     }
