@@ -75,3 +75,16 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 - Valid statuses { booked, cancelled, done }
 - Name, phone, start time, table id are required for creating new reservation
 - One reservation can last up to 2 hours
+
+## Use cases
+### User
+- Search, view menu
+- Search, view available tables
+- Create reservation
+
+### Admin
+- Login by username password, google
+- Search, view, available, unavailable tables
+- Search, view, create, update, delete accounts
+- Search, view, create, update, delete menu
+- Search, view, create, update, delete reservation
