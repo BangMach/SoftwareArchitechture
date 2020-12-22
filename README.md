@@ -23,12 +23,12 @@ This project is to develop a Restaurant website applying modern, scalable, high 
     - /password
     - /google
 - Menu Service (http://localhost:8084/menu)
-    - /dtb
-        - /add
-        - /all
-        - /find/category
-        - /update
-        - /delete
+    - /add
+    - /all
+    - /find/category 
+        [x] cache main courses
+    - /update
+    - /delete
 - Table Service (http://localhost:8082/tables)
     - /create
     - /filter

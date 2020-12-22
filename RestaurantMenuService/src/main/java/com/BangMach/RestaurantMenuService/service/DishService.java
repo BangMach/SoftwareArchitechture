@@ -11,14 +11,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class DishDatabaseService {
+public class DishService {
 
     private final DishDAOImpl dishDAO;
     private final DishRedisRepository dishRedisRepository;
     private final List<String> dishCategories = Arrays.asList("main", "appetizer", "dessert", "na");
 
     @Autowired
-    public DishDatabaseService(@Qualifier("dishDAOImpl") DishDAOImpl dishDAO, DishRedisRepository dishRedisRepository) {
+    public DishService(@Qualifier("dishDAOImpl") DishDAOImpl dishDAO, DishRedisRepository dishRedisRepository) {
         this.dishDAO = dishDAO;
         this.dishRedisRepository = dishRedisRepository;
     }

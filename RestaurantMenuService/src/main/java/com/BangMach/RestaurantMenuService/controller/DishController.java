@@ -1,44 +1,44 @@
 package com.BangMach.RestaurantMenuService.controller;
 
 import com.BangMach.RestaurantMenuService.model.Dish;
-import com.BangMach.RestaurantMenuService.service.DishDatabaseService;
+import com.BangMach.RestaurantMenuService.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/menu/dtb")
-public class DishDatabaseController {
+@RequestMapping(path = "/menu")
+public class DishController {
 
-    private final DishDatabaseService dishDatabaseService;
+    private final DishService dishService;
 
     @Autowired
-    public DishDatabaseController(DishDatabaseService dishDatabaseService) {
-        this.dishDatabaseService = dishDatabaseService;
+    public DishController(DishService dishService) {
+        this.dishService = dishService;
     }
 
     @PostMapping("/add")
     public Dish add(@RequestBody Dish dish){
-        return dishDatabaseService.addDish(dish);
+        return dishService.addDish(dish);
     }
 
     @GetMapping("/all")
     public List<Dish> getAll() {
-        return dishDatabaseService.getAllDish();
+        return dishService.getAllDish();
     }
 
     @GetMapping("/find/category")
     public List<?> findDishByCategory(@RequestParam String category) {
-        return dishDatabaseService.findDishByCategory(category);
+        return dishService.findDishByCategory(category);
     }
 
     @PutMapping("/update")
     public Dish update(@RequestBody Dish dish) {
-        return dishDatabaseService.updateDish(dish);
+        return dishService.updateDish(dish);
     }
 
     @DeleteMapping("/delete")
     public String delete(@RequestParam int id) {
-        return dishDatabaseService.deleteDish(id);
+        return dishService.deleteDish(id);
     }
 }
