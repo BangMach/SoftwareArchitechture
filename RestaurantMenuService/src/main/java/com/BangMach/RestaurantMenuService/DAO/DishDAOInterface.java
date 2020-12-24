@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DishDAOInterface {
 
-    List<Dish> getAllDishes();
+    List<Dish> getAllDishes(int startAt, int maxResults);
 
     Dish findDishById(int id);
 
@@ -14,6 +14,8 @@ public interface DishDAOInterface {
 
     void deleteDishById(int id);
 
-    List<Dish> findDishByCategory(String category);
+    List<Dish> findDishByCategory(String category, int startAt, int maxResults);
+
+    List<Dish> findDishes(Dish dish, int startAt, int maxResults);
 
 }

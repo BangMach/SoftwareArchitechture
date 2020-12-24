@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/reservation/details")
-    public List<ReservationDetail> getAllReservationDetail() {
-        return userService.getAllReservationDetails();
+    public List<ReservationDetail> findReservationDetails(@RequestBody ReservationDetail reservationDetail, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return userService.findReservationDetails(reservationDetail, startAt, maxResults);
     }
 
     @PostMapping(value = "/create/reservation")

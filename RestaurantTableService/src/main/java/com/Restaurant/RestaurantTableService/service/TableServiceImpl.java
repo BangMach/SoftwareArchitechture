@@ -23,26 +23,29 @@ public class TableServiceImpl implements TableServiceInterface {
     @Override
     @Transactional
     public RestaurantTable createTable(RestaurantTable table) {
-        String status = "available";
-        if (table.getStatus() != null) {
-            if (statuses.contains(table.getStatus().trim().toLowerCase())) {
-                status = table.getStatus().trim().toLowerCase();
+        if (table.getSeats() != 0) {
+            String status = "available";
+            if (table.getStatus() != null) {
+                if (statuses.contains(table.getStatus().trim().toLowerCase())) {
+                    status = table.getStatus().trim().toLowerCase();
+                }
             }
+            table.setStatus(status);
+            return tableDAO.saveTable(table);
         }
-        table.setStatus(status);
-        return tableDAO.saveTable(table);
+        return null;
     }
 
     @Override
     @Transactional
-    public List<RestaurantTable> findTables(RestaurantTable table) {
-        return tableDAO.findTables(table);
+    public List<RestaurantTable> findTables(RestaurantTable table, int startAt, int maxResults) {
+        return tableDAO.findTables(table, startAt, maxResults);
     }
 
     @Override
     @Transactional
-    public List<RestaurantTable> getAllTables() {
-        return tableDAO.getAllTables();
+    public List<RestaurantTable> getAllTables(int startAt, int maxResults) {
+        return tableDAO.getAllTables(startAt, maxResults);
     }
 
     @Override

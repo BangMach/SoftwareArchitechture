@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface AccountDAOInterface {
 
-    List<Account> getAllAccounts();
+    List<Account> getAllAccounts(int startAt, int maxResults);
 
     Account findAccountById(int id);
 
@@ -13,7 +13,7 @@ public interface AccountDAOInterface {
 
     List<Account> findAccountByEmail(String email);
 
-    List<Account> findAccounts(Account account);
+    List<Account> findAccounts(Account account, int startAt, int maxResults);
 
     Account saveAccount(Account account);
 

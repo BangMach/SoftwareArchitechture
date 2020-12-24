@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface TableDAOInterface {
 
-    List<RestaurantTable> getAllTables();
+    List<RestaurantTable> getAllTables(int startAt, int maxResults);
 
     RestaurantTable findTableById(int id);
 
-    List<RestaurantTable> findTables(RestaurantTable account);
+    List<RestaurantTable> findTables(RestaurantTable account, int startAt, int maxResults);
 
     RestaurantTable saveTable(RestaurantTable account);
 

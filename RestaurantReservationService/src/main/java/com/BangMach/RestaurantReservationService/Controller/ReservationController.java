@@ -4,7 +4,6 @@ import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import com.BangMach.RestaurantReservationService.Service.ReservationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/reservations/")
@@ -15,11 +14,6 @@ public class ReservationController {
     @Autowired
     public ReservationController(ReservationServiceImpl reservationService) {
         this.reservationService = reservationService;
-    }
-
-    @GetMapping(value = "/all")
-    public Collection<Reservation> getAllReservation() {
-        return reservationService.getAllReservation();
     }
 
     @DeleteMapping(value = "/delete")

@@ -37,8 +37,8 @@ public class TableController {
     }
 
     @GetMapping(value = "/filter")
-    public List<RestaurantTable> findTables(@RequestBody RestaurantTable table) {
-        return tableService.findTables(table);
+    public List<RestaurantTable> findTables(@RequestBody RestaurantTable table, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return tableService.findTables(table, startAt, maxResults);
     }
 
     @GetMapping(value = "/find")
@@ -47,8 +47,8 @@ public class TableController {
     }
 
     @GetMapping(value = "/all")
-    public List<RestaurantTable> findAll() {
-        return tableService.getAllTables();
+    public List<RestaurantTable> findAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return tableService.getAllTables(startAt, maxResults);
     }
 
     @PutMapping(value = "/update")

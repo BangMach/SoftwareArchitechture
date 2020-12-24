@@ -6,8 +6,6 @@ import java.util.Collection;
 
 public interface ReservationServiceInterface {
 
-    Collection<Reservation> getAllReservation();
-
     Reservation findReservationById(int id);
 
     Reservation updateReservation(Reservation reservation);

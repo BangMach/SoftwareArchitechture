@@ -17,7 +17,7 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
     private final ReservationDAO reservationDAO;
 
     @Autowired
-    public ReservationServiceImpl(@Qualifier("PostgresReservationDAOImpl") ReservationDAO reservationDAO){
+    public ReservationServiceImpl(@Qualifier("ReservationDAOImpl") ReservationDAO reservationDAO){
         this.reservationDAO = reservationDAO;
     }
 
@@ -45,12 +45,6 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
                 }
             }
         return null;
-    }
-
-    @Override
-    @Transactional
-    public Collection<Reservation> getAllReservation() {
-        return reservationDAO.getAllReservation();
     }
 
     @Override

@@ -14,11 +14,13 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 - Account Service (http://localhost:8083/accounts)
     - /create 
     - /find/username 
-        - [x] Called by Login Service
+        - Called by Login Service
     - /find/email 
-        - [x] Called by Login Service
+        - Called by Login Service
     - /all
+        - Paginated with startAt and maxResults params
     - /filter
+        - Paginated with startAt and maxResults params
     - /update
     - /delete
 - Login Service (http://localhost:8081/login)
@@ -27,27 +29,33 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 - Menu Service (http://localhost:8084/menu)
     - /add
     - /all
+        - Paginated with startAt and maxResults params
     - /find/category 
-        - [x] Redis cache for main courses
+        - Redis cache for main courses
+        - Paginated with startAt and maxResults params
     - /update
     - /delete
+    - /filter
+        - Paginated with startAt and maxResults params
 - Table Service (http://localhost:8082/tables)
     - /create
     - /filter
+        - Paginated with startAt and maxResults params
     - /find
     - /all
+        - Paginated with startAt and maxResults params
     - /update
 - Reservation Service (http://localhost:8086/reservations)
-    - /all
     - /find
-        - [x] Called by User Service
+        - Called by User Service
     - /delete
     - /create
-        - [x] Called by User Service
+        - Called by User Service
     - /update
-        - [x] Called by User Service
+        - Called by User Service
 - User Service (http://localhost:8085/users)
     - /available/tables
+        - Paginated with startAt and maxResults params
     - /reservation/details
     - /create/reservation
     - /update/reservation
@@ -67,9 +75,11 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 
 ### Table
 - Valid statuses { available, unavailable }
+- Seats cannot be equal 0
 
 ### Menu
 - Valid categories { appetizer, main, dessert }
+- Category cannot be updated
 
 ### Reservation
 - Valid statuses { booked, cancelled, done }

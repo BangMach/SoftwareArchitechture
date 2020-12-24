@@ -13,13 +13,13 @@ import java.util.List;
 
 
 @Repository
-@Qualifier("PostgresReservationDAOImpl")
-public class ReservationDAOPostgresImpl implements ReservationDAO {
+@Qualifier("ReservationDAOImpl")
+public class ReservationDAOImpl implements ReservationDAO {
 
     private final EntityManager entityManager;
 
     @Autowired
-    public ReservationDAOPostgresImpl(EntityManager entityManager) {
+    public ReservationDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -29,38 +29,8 @@ public class ReservationDAOPostgresImpl implements ReservationDAO {
 
     @Override
     @Transactional
-    public Collection<Reservation> getAllReservation() {
-        Query query = createQuery("from Reservation order by id");
-        return query.getResultList();
-    }
-
-    @Override
-    @Transactional
     public Reservation findReservationById(int id) {
         return entityManager.find(Reservation.class, id);
-    }
-
-    @Override
-    @Transactional
-    public List<Reservation> findReservationByName(String name) {
-        Query query = createQuery("from Reservation where name LIKE :reservation");
-        query.setParameter("name", name);
-        return query.getResultList();    }
-
-    @Override
-    @Transactional
-    public List<Reservation> findReservationByPhone(String phone) {
-        Query query = createQuery("from Reservation where phone LIKE :phone");
-        query.setParameter("phone", phone);
-        return query.getResultList();
-    }
-
-    @Override
-    @Transactional
-    public List<Reservation> findReservationByDate(Timestamp timestamp) {
-        Query query = createQuery("from Reservation where startTime = :timestamp");
-        query.setParameter("timestamp", timestamp);
-        return query.getResultList();
     }
 
     @Override

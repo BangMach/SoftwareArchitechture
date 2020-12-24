@@ -9,6 +9,6 @@ public interface UserDAOInterface {
 
     List<RestaurantTable> searchAvailableTables(Timestamp startTime);
 
-    List<ReservationDetail> getAllReservationDetails();
+    List<ReservationDetail> findReservationDetails(ReservationDetail reservationDetail, int startAt, int maxResults);
 
 }

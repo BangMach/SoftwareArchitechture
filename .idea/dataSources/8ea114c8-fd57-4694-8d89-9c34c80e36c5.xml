@@ -790,9 +790,9 @@ false posixrules
     <database id="2" parent="1" name="account">
       <ObjectId>17213</ObjectId>
       <Owner>restaurant</Owner>
-      <IntrospectionStateNumber>4210</IntrospectionStateNumber>
+      <IntrospectionStateNumber>5244</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|18666|18668|1
+      <Relations>sequence|table|20914|20916|1
 </Relations>
     </database>
     <database id="3" parent="1" name="admin">
@@ -922,7 +922,7 @@ default_transaction_read_only=off</Config>
       <Comment>standard public schema</Comment>
       <StateNumber>529</StateNumber>
       <Owner>restaurant</Owner>
-      <IntrospectionStateNumber>4211</IntrospectionStateNumber>
+      <IntrospectionStateNumber>5245</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="30" parent="2" name="heap">
@@ -993,70 +993,70 @@ default_transaction_read_only=off</Config>
     <language id="40" parent="2" name="plpgsql"/>
     <language id="41" parent="2" name="sql"/>
     <sequence id="42" parent="29" name="account_id_seq">
-      <ObjectId>18666</ObjectId>
+      <ObjectId>20914</ObjectId>
       <Owner>restaurant</Owner>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <table id="43" parent="29" name="account">
-      <ObjectId>18668</ObjectId>
+      <ObjectId>20916</ObjectId>
       <Owner>restaurant</Owner>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
     </table>
     <column id="44" parent="43" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>23</TypeId>
       <IdentityKind>by-default</IdentityKind>
     </column>
     <column id="45" parent="43" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="46" parent="43" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="47" parent="43" name="full_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="48" parent="43" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="49" parent="43" name="phone">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="50" parent="43" name="username">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4208</StateNumber>
+      <StateNumber>5071</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="51" parent="43" name="account_pkey">
-      <ObjectId>18674</ObjectId>
-      <StateNumber>4208</StateNumber>
+      <ObjectId>20922</ObjectId>
+      <StateNumber>5071</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="52" parent="43" name="account_pkey">
-      <ObjectId>18675</ObjectId>
-      <StateNumber>4208</StateNumber>
+      <ObjectId>20923</ObjectId>
+      <StateNumber>5071</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>account_pkey</UnderlyingIndexName>
