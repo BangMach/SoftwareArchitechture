@@ -5,6 +5,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -25,6 +26,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     }
 
     @Override
+    @Transactional
     public List<Dish> getAllDishes(int startAt, int maxResults) {
         Query query = createQuery("from Dish order by id")
                         .setFirstResult(startAt)
@@ -33,16 +35,19 @@ public class DishDAOImpl implements  DishDAOInterface {
     }
 
     @Override
+    @Transactional
     public Dish findDishById(int id) {
         return entityManager.find(Dish.class, id);
     }
 
     @Override
+    @Transactional
     public Dish saveDish(Dish dish) {
         return entityManager.merge(dish);
     }
 
     @Override
+    @Transactional
     public void deleteDishById(int id) {
         Query query = createQuery("delete from Dish where id=:id")
                         .setParameter("id", id);
@@ -50,6 +55,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     }
 
     @Override
+    @Transactional
     public List<Dish> findDishByCategory(String category, int startAt, int maxResults) {
         Query query = createQuery(
     "from Dish where category LIKE :category order by id"
@@ -61,6 +67,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     }
 
     @Override
+    @Transactional
     public List<Dish> findDishes(Dish dish, int startAt, int maxResults) {
         String queryString = " from Dish where ";
         queryString += (dish.getId() != 0)
