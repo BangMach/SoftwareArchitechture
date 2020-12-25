@@ -46,22 +46,30 @@ public class DishService {
     }
 
     @Transactional
-    public List<Dish> getAllDish() {
-        return dishDAO.getAllDishes();
+    public List<Dish> getAllDish(int startAt, int maxResults) {
+        return dishDAO.getAllDishes(startAt, maxResults);
     }
 
     @Transactional
-    public List<?> findDishByCategory(String category)  {
+    public List<?> findDishByCategory(String category, int startAt, int maxResults)  {
         if (category.equals("main")) {
             List<Object> redisDishes = dishRedisRepository.getAll();
-            if (!redisDishes.isEmpty()) {
-                return redisDishes;
+            int redisSize = redisDishes.size();
+            if (redisSize >= startAt + maxResults) {
+                return redisDishes.subList(startAt, startAt + maxResults);
+            } else if (redisSize < startAt) {
+                List<Dish> dtbDishes = dishDAO.findDishByCategory(category, startAt, maxResults);
+                dishRedisRepository.addDishes(dtbDishes);
+                return dtbDishes;
             } else {
-                List<Dish> dtbDishes = dishDAO.findDishByCategory(category);
-                return dishRedisRepository.addDishes(dtbDishes);
+                List<Dish> dtbDishes = dishDAO.findDishByCategory(category, redisSize, startAt + maxResults - redisSize);
+                redisDishes = redisDishes.subList(startAt, redisSize);
+                redisDishes.addAll(dtbDishes);
+                dishRedisRepository.addDishes(dtbDishes);
+                return redisDishes;
             }
         } else {
-            return dishDAO.findDishByCategory(category);
+            return dishDAO.findDishByCategory(category, startAt, maxResults);
         }
     }
 
@@ -85,21 +93,6 @@ public class DishService {
             if (imagePath != null) {
                 currentDish.setImagePath(imagePath);
             }
-            if (dish.getCategory() != null) {
-                String dishCategory = dish.getCategory().trim().toLowerCase();
-                if (dishCategories.contains(dishCategory)) {
-                    if (!dishCategory.equals("main")) {
-                        dishRedisRepository.delete(id);
-                    }
-                    currentDish.setCategory(dishCategory);
-                } else if (dishCategory.equals("")) {
-                    currentDish.setCategory("na");
-                    dishRedisRepository.delete(id);
-                }
-            }
-            if (currentDish.getCategory().equals("main")) {
-                dishRedisRepository.add(currentDish);
-            }
             return dishDAO.saveDish(currentDish);
         } else {
             return null;
@@ -109,17 +102,20 @@ public class DishService {
     @Transactional
     public String deleteDish(int id) {
         Dish currentDish = dishRedisRepository.getById(id);
+        dishRedisRepository.delete(id);
         if (currentDish == null) {
             currentDish = dishDAO.findDishById(id);
         }
         if (currentDish != null) {
-            if (currentDish.getCategory().equals("main")) {
-                dishRedisRepository.delete(id);
-            }
             dishDAO.deleteDishById(id);
             return "Deleted dish id " + id;
         } else {
             return "Dish id not found";
         }
+    }
+
+    @Transactional
+    public List<Dish> findDishes(Dish dish, int startAt, int maxResults) {
+        return dishDAO.findDishes(dish, startAt, maxResults);
     }
 }

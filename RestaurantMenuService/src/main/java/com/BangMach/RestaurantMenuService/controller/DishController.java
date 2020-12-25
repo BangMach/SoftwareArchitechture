@@ -36,13 +36,18 @@ public class DishController {
     }
 
     @GetMapping("/all")
-    public List<Dish> getAll() {
-        return dishService.getAllDish();
+    public List<Dish> getAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return dishService.getAllDish(startAt, maxResults);
+    }
+
+    @GetMapping(value = "/filter")
+    public List<Dish> findDishes(@RequestBody Dish dish, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return dishService.findDishes(dish, startAt, maxResults);
     }
 
     @GetMapping("/find")
-    public List<?> findDishByCategory(@RequestParam String category) {
-        return dishService.findDishByCategory(category);
+    public List<?> findDishByCategory(@RequestParam String category, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return dishService.findDishByCategory(category, startAt, maxResults);
     }
 
     @PutMapping("/update")

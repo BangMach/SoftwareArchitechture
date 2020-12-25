@@ -24,8 +24,10 @@ public class AccountDaoImpl implements AccountDAOInterface {
     }
 
     @Override
-    public List<Account> getAllAccounts(){
-        Query query = createQuery("from Account order by id");
+    public List<Account> getAllAccounts(int startAt, int maxResults){
+        Query query = createQuery("from Account order by id")
+                        .setFirstResult(startAt)
+                        .setMaxResults(maxResults);
         return query.getResultList();
     }
 
@@ -36,48 +38,48 @@ public class AccountDaoImpl implements AccountDAOInterface {
 
     @Override
     public List<Account> findAccountByUsername(String username) {
-        Query query = createQuery("from Account where username LIKE :username");
-        query.setParameter("username", username);
+        Query query = createQuery("from Account where username LIKE :username")
+                        .setParameter("username", username);
         return query.getResultList();
     }
     @Override
 
     public List<Account> findAccountByEmail(String email) {
-        Query query = createQuery("from Account where email LIKE :email");
-        query.setParameter("email", email);
+        Query query = createQuery("from Account where email LIKE :email")
+                        .setParameter("email", email);
         return query.getResultList();
     }
 
     @Override
-    public List<Account> findAccounts(Account account) {
-        if (account.getUsername() == null) {
-            account.setUsername("");
-        }
-        if (account.getEmail() == null) {
-            account.setEmail("");
-        }
-        if (account.getFullName() == null) {
-            account.setFullName("");
-        }
-        if (account.getAddress() == null) {
-            account.setAddress("");
-        }
-        if (account.getPhone() == null) {
-            account.setPhone("");
-        }
-        Query query = createQuery(
-                " from Account where " +
-                "username LIKE CASE WHEN :username = '' THEN username ELSE :username END AND  " +
-                "fullName LIKE CASE WHEN :fullName = '' THEN fullName ELSE :fullName END AND  " +
-                "phone LIKE CASE WHEN :phone = '' THEN phone ELSE :phone END AND " +
-                "address LIKE CASE WHEN :address = '' THEN address ELSE :address END AND " +
-                "email LIKE CASE WHEN :email = '' THEN email ELSE :email END "
-        );
-        query.setParameter("username","%" + account.getUsername() + "%");
-        query.setParameter("fullName","%" + account.getFullName() + "%");
-        query.setParameter("phone", "%" + account.getPhone() + "%");
-        query.setParameter("address", "%" + account.getAddress() + "%");
-        query.setParameter("email", "%" + account.getEmail() + "%");
+    public List<Account> findAccounts(Account account, int startAt, int maxResults) {
+        String queryString = " from Account where ";
+        queryString += (account.getId() != 0)
+                ? " id = :id AND  "
+                : " :id = :id AND ";
+        queryString += (account.getUsername() != null)
+                ? " username LIKE CASE WHEN :username = '' THEN username ELSE :username END AND  "
+                : " :username LIKE :username AND ";
+        queryString += (account.getEmail() != null)
+                ? " email LIKE CASE WHEN :email = '' THEN email ELSE :email END AND  "
+                : " :email LIKE :email AND ";
+        queryString += (account.getFullName() != null)
+                ? " fullName LIKE CASE WHEN :fullName = '' THEN fullName ELSE :fullName END AND  "
+                : " :fullName LIKE :fullName AND ";
+        queryString += (account.getAddress() != null)
+                ? " address LIKE CASE WHEN :address = '' THEN address ELSE :address END AND  "
+                : " :address LIKE :address AND ";
+        queryString += (account.getPhone() != null)
+                ? " phone LIKE CASE WHEN :phone = '' THEN phone ELSE :phone END  "
+                : " :phone LIKE :phone ";
+        Query query = createQuery(queryString)
+                        .setParameter("id", account.getId())
+                        .setParameter("username","%" + account.getUsername() + "%")
+                        .setParameter("fullName","%" + account.getFullName() + "%")
+                        .setParameter("phone", "%" + account.getPhone() + "%")
+                        .setParameter("address", "%" + account.getAddress() + "%")
+                        .setParameter("email", "%" + account.getEmail() + "%")
+                        .setFirstResult(startAt)
+                        .setMaxResults(maxResults);
         return query.getResultList();
     }
 
@@ -88,8 +90,7 @@ public class AccountDaoImpl implements AccountDAOInterface {
 
     @Override
     public void deleteAccountById(int id) {
-        Query query = createQuery("delete from Account where id=:id");
-        query.setParameter("id", id);
+        Query query = createQuery("delete from Account where id=:id").setParameter("id", id);
         query.executeUpdate();
     }
 }

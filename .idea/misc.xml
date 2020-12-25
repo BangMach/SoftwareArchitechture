@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JavaScriptSettings">
-    <option name="languageLevel" value="ES6" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/RestaurantService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantUserService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantBookingService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantAccountService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantLoginService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantTableService/pom.xml" />
+        <option value="$PROJECT_DIR$/DiscoveryService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantReservationService/pom.xml" />
+        <option value="$PROJECT_DIR$/RestaurantMenuService/pom.xml" />
+        <option value="$PROJECT_DIR$/APIGateway/pom.xml" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="15" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="false" project-jdk-name="15" project-jdk-type="JavaSDK" />
 </project>

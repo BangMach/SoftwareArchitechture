@@ -7,11 +7,11 @@ public interface TableServiceInterface {
 
     RestaurantTable createTable(RestaurantTable table);
 
-    List<RestaurantTable> getAllTables();
+    List<RestaurantTable> getAllTables(int startAt, int maxResults);
 
     RestaurantTable findTableById(int id);
 
-    List<RestaurantTable> findTables(RestaurantTable table);
+    List<RestaurantTable> findTables(RestaurantTable table, int startAt, int maxResults);
 
     RestaurantTable updateTable(RestaurantTable table);
 

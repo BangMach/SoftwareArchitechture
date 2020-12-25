@@ -13,6 +13,7 @@ public class DishRedisRepository {
 
     private final RedisTemplate<String, Object> redisTemplate;
     private static final String KEY = "DISH";
+    private static int maximumRecords = 10;
 
     @Autowired
     public DishRedisRepository(RedisTemplate<String, Object> redisTemplate) {
@@ -21,7 +22,9 @@ public class DishRedisRepository {
     }
 
     public Dish add(Dish dish) {
-        redisTemplate.opsForHash().put(KEY, Integer.toString(dish.getId()), dish);
+        if (redisTemplate.opsForHash().size(KEY) < maximumRecords) {
+            redisTemplate.opsForHash().put(KEY, Integer.toString(dish.getId()), dish);
+        }
 		return dish;
     }
 

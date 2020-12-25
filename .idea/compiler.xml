@@ -12,11 +12,13 @@
         <module name="RestaurantMenuService" />
         <module name="RestaurantReservationService" />
         <module name="RestaurantService" />
+        <module name="APIGateway" />
         <module name="RestaurantLoginService" />
         <module name="DiscoveryService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="APIGateway" target="14" />
       <module name="DiscoveryService" target="11" />
       <module name="RestaurantAccountService" target="15" />
       <module name="RestaurantLoginService" target="15" />
@@ -29,6 +31,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="APIGateway" options="-parameters" />
       <module name="DiscoveryService" options="-parameters" />
       <module name="RestaurantAccountService" options="-parameters" />
       <module name="RestaurantLoginService" options="-parameters" />

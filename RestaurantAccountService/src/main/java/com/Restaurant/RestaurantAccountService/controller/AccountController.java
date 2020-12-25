@@ -48,13 +48,13 @@ public class AccountController {
     }
 
     @GetMapping(value = "/all")
-    public List<Account> findAll() {
-        return accountService.getAllAccounts();
+    public List<Account> findAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return accountService.getAllAccounts(startAt, maxResults);
     }
 
     @GetMapping(value = "/filter")
-    public List<Account> findAccounts(@RequestBody Account account) {
-        return accountService.findAccounts(account);
+    public List<Account> findAccounts(@RequestBody Account account, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return accountService.findAccounts(account, startAt, maxResults);
     }
 
     @PutMapping(value = "/update")

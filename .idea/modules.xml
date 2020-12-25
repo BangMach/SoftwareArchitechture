@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SoftwareArchitechture-22Dec.iml" filepath="$PROJECT_DIR$/.idea/SoftwareArchitechture-22Dec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APIGateway/APIGateway.iml" filepath="$PROJECT_DIR$/APIGateway/APIGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" filepath="$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantAccountService/RestaurantAccountService.iml" filepath="$PROJECT_DIR$/RestaurantAccountService/RestaurantAccountService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" filepath="$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantMenuService/RestaurantMenuService.iml" filepath="$PROJECT_DIR$/RestaurantMenuService/RestaurantMenuService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantReservationService/RestaurantReservationService.iml" filepath="$PROJECT_DIR$/RestaurantReservationService/RestaurantReservationService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantTableService/RestaurantTableService.iml" filepath="$PROJECT_DIR$/RestaurantTableService/RestaurantTableService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" filepath="$PROJECT_DIR$/RestaurantUserService/RestaurantUserService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" filepath="$PROJECT_DIR$/.idea/SoftwareArchitechture.iml" />
     </modules>
   </component>
 </project>

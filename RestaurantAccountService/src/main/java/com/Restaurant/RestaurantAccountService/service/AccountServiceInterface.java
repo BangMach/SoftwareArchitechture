@@ -13,11 +13,11 @@ public interface AccountServiceInterface {
 
     Account findAccountByEmail(String email);
 
-    List<Account> getAllAccounts();
+    List<Account> getAllAccounts(int startAt, int maxResults);
 
     Account findAccountById(int id);
 
-    List<Account> findAccounts(Account account);
+    List<Account> findAccounts(Account account, int startAt, int maxResults);
 
     Account updateAccount(Account account) throws InvalidKeySpecException, NoSuchAlgorithmException;
 

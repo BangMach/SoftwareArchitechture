@@ -25,8 +25,10 @@ public class TableDaoImpl implements TableDAOInterface {
     }
 
     @Override
-    public List<RestaurantTable> getAllTables(){
-        Query query = createQuery("from RestaurantTable order by id");
+    public List<RestaurantTable> getAllTables(int startAt, int maxResults){
+        Query query = createQuery("from RestaurantTable order by id")
+                        .setFirstResult(startAt)
+                        .setMaxResults(maxResults);
         return query.getResultList();
     }
 
@@ -36,17 +38,23 @@ public class TableDaoImpl implements TableDAOInterface {
     }
 
     @Override
-    public List<RestaurantTable> findTables(RestaurantTable table) {
-        if (table.getStatus() == null) {
-            table.setStatus("");
-        }
-        Query query = createQuery(
-        "from RestaurantTable where " +
-                "seats = CASE WHEN :seats = 0 THEN seats ELSE :seats END " +
-                "AND status = CASE WHEN :status = '' THEN status ELSE :status END "
-        );
-        query.setParameter("seats", table.getSeats());
-        query.setParameter("status", table.getStatus());
+    public List<RestaurantTable> findTables(RestaurantTable table, int startAt, int maxResults) {
+        String queryString = " from RestaurantTable where ";
+        queryString += (table.getId() != 0)
+                ? " id = :id AND  "
+                : " :id = :id AND ";
+        queryString += (table.getSeats() != 0)
+                ? " seats = :seats AND "
+                : " :seats = :seats AND ";
+        queryString += (table.getStatus() != null)
+                ? " status LIKE CASE WHEN :status = '' THEN status ELSE :status END "
+                : " :status LIKE :status ";
+        Query query = createQuery(queryString)
+                        .setParameter("id", table.getId())
+                        .setParameter("seats", table.getSeats())
+                        .setParameter("status", "%" + table.getStatus() + "%")
+                        .setFirstResult(startAt)
+                        .setMaxResults(maxResults);
         return query.getResultList();
     }
 

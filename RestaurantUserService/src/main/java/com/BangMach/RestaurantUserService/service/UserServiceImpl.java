@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     @Transactional
-    public List<ReservationDetail> getAllReservationDetails() {
-        return userDAO.getAllReservationDetails();
+    public List<ReservationDetail> findReservationDetails(ReservationDetail reservationDetail, int startAt, int maxResults) {
+        return userDAO.findReservationDetails(reservationDetail, startAt, maxResults);
     }
 
     @Override
@@ -64,7 +64,9 @@ public class UserServiceImpl implements UserServiceInterface {
         String url = "http://TABLE-SERVICE/tables/find?id=" + tableId;
         RestaurantTable reservedTable = restTemplate.getForObject(url, RestaurantTable.class);
         if (timestamp != null && reservedTable != null) {
-            List<RestaurantTable> reservableTables = searchAvailableTables(new Timestamp(timestamp.getTime() - 1000*60*60*7));
+            List<RestaurantTable> reservableTables = searchAvailableTables(
+                    new Timestamp(timestamp.getTime() - 1000*60*60*7)
+            );
             return reservableTables.stream().anyMatch(o -> o.getId() == reservedTable.getId());
         }
         return false;
@@ -81,7 +83,9 @@ public class UserServiceImpl implements UserServiceInterface {
                 RestaurantTable changeTable = restTemplate.getForObject(changeTableURL, RestaurantTable.class);
                 if (changeTable != null) {
                     if (timestamp != null) {
-                        List<RestaurantTable> reservableTables = searchAvailableTables(new Timestamp(timestamp.getTime() - 1000*60*60*7));
+                        List<RestaurantTable> reservableTables = searchAvailableTables(
+                                new Timestamp(timestamp.getTime() - 1000*60*60*7)
+                        );
                         return reservableTables.stream().anyMatch(o -> o.getId() == changeTable.getId());
                     } else {
                         return false;
