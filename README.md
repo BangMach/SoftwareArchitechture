@@ -12,6 +12,8 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 ## URLs
 ### Service Discovery 
 - `http://localhost:8761`
+### API Gateway  
+- `http://localhost:8989`
 ### Account Service 
 - `http://localhost:8083`
 #### `/accounts`
@@ -92,6 +94,7 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 1. Start Discovery service first.
 2. Run Table and Reservation services before User service.
 3. Run Redis server before Menu service: Redis -> 64 BIT -> redis-server
+4. All APIs should be called from API Gateway with port `8989`
 
 ## Constraints
 ### Account
