@@ -25,7 +25,7 @@ public class AccountDaoImpl implements AccountDAOInterface {
 
     @Override
     public List<Account> getAllAccounts(int startAt, int maxResults){
-        Query query = createQuery("from Account order by id")
+        Query query = createQuery("FROM Account ORDER BY id")
                         .setFirstResult(startAt)
                         .setMaxResults(maxResults);
         return query.getResultList();
@@ -52,7 +52,7 @@ public class AccountDaoImpl implements AccountDAOInterface {
 
     @Override
     public List<Account> findAccounts(Account account, int startAt, int maxResults) {
-        String queryString = " from Account where ";
+        String queryString = " FROM Account WHERE ";
         queryString += (account.getId() != 0)
                 ? " id = :id AND  "
                 : " :id = :id AND ";
@@ -71,15 +71,16 @@ public class AccountDaoImpl implements AccountDAOInterface {
         queryString += (account.getPhone() != null)
                 ? " phone LIKE CASE WHEN :phone = '' THEN phone ELSE :phone END  "
                 : " :phone LIKE :phone ";
+        queryString += " ORDER BY id";
         Query query = createQuery(queryString)
-                        .setParameter("id", account.getId())
-                        .setParameter("username","%" + account.getUsername() + "%")
-                        .setParameter("fullName","%" + account.getFullName() + "%")
-                        .setParameter("phone", "%" + account.getPhone() + "%")
-                        .setParameter("address", "%" + account.getAddress() + "%")
-                        .setParameter("email", "%" + account.getEmail() + "%")
-                        .setFirstResult(startAt)
-                        .setMaxResults(maxResults);
+                .setParameter("id", account.getId())
+                .setParameter("username","%" + account.getUsername() + "%")
+                .setParameter("fullName","%" + account.getFullName() + "%")
+                .setParameter("phone", "%" + account.getPhone() + "%")
+                .setParameter("address", "%" + account.getAddress() + "%")
+                .setParameter("email", "%" + account.getEmail() + "%")
+                .setFirstResult(startAt)
+                .setMaxResults(maxResults);
         return query.getResultList();
     }
 

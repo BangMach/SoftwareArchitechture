@@ -11,4 +11,5 @@ public interface UserDAOInterface {
 
     List<ReservationDetail> findReservationDetails(ReservationDetail reservationDetail, int startAt, int maxResults);
 
+    List<ReservationDetail> getAllReservationDetails(int startAt, int maxResults);
 }

@@ -35,7 +35,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/google")
+    @GetMapping("/email")
     public ResponseEntity verifyAccountEmail() throws IOException {
         Account verifiedAccount = loginService.verifyAccountEmail();
         if (verifiedAccount == null) {

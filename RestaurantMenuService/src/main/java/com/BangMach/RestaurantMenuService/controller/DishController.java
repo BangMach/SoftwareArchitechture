@@ -19,7 +19,7 @@ public class DishController {
         this.dishService = dishService;
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     public ResponseEntity add(@RequestBody Dish dish){
         Dish newDish = dishService.addDish(dish);
         if (newDish == null) {
@@ -35,22 +35,12 @@ public class DishController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public List<Dish> getAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
         return dishService.getAllDish(startAt, maxResults);
     }
 
-    @GetMapping(value = "/filter")
-    public List<Dish> findDishes(@RequestBody Dish dish, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
-        return dishService.findDishes(dish, startAt, maxResults);
-    }
-
-    @GetMapping("/find")
-    public List<?> findDishByCategory(@RequestParam String category, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
-        return dishService.findDishByCategory(category, startAt, maxResults);
-    }
-
-    @PutMapping("/update")
+    @PutMapping("")
     public ResponseEntity update(@RequestBody Dish dish) {
         Dish updatedDish = dishService.updateDish(dish);
         if (updatedDish == null) {
@@ -66,8 +56,19 @@ public class DishController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public String delete(@RequestParam int id) {
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable int id) {
         return dishService.deleteDish(id);
     }
+
+    @GetMapping("/{category}")
+    public List<?> findDishByCategory(@PathVariable String category, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return dishService.findDishByCategory(category, startAt, maxResults);
+    }
+
+    @PostMapping(value = "/attributes")
+    public List<Dish> findDishes(@RequestBody Dish dish, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return dishService.findDishes(dish, startAt, maxResults);
+    }
+
 }

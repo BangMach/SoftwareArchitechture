@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginServiceInterface {
     @Override
     @Transactional
     public Account verifyAccountPassword(Account account) {
-        String url = "http://ACCOUNT-SERVICE/accounts/find/username?username=" + account.getUsername();
+        String url = "http://ACCOUNT-SERVICE/accounts/username/" + account.getUsername();
         Account foundAccount = restTemplate.getForObject(url, Account.class);
         if (foundAccount != null) {
             if (SecurityHelper.verifyPassword(account.getPassword(), foundAccount.getPassword())) {
@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginServiceInterface {
                 .getAttributes()
                 .get("email");
         SecurityContextHolder.getContext().setAuthentication(null);
-        String url = "http://ACCOUNT-SERVICE/accounts/find/email?email=" + verifiedEmail;
+        String url = "http://ACCOUNT-SERVICE/accounts/email/" + verifiedEmail;
         return restTemplate.getForObject(url, Account.class);
     }
 

@@ -18,4 +18,5 @@ public interface UserServiceInterface {
 
     ResponseEntity<Reservation> updateReservation(Reservation reservation);
 
+    List<ReservationDetail> getAllReservationDetails(int startAt, int maxResults);
 }
