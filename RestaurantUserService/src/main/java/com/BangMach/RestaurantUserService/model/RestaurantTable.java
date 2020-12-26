@@ -24,6 +24,12 @@ public class RestaurantTable {
     @NotNull
     private String status;
 
+    public RestaurantTable(int id, int seats, @NotNull String status) {
+        this.id = id;
+        this.seats = seats;
+        this.status = status;
+    }
+
     public RestaurantTable() {
     }
 
