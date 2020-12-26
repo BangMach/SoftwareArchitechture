@@ -7,10 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.sql.Timestamp;
-import java.util.List;
-
 
 @Repository
 @Qualifier("ReservationDAOImpl")
@@ -42,7 +38,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Override
     @Transactional
     public void deleteReservation(int id) {
-        Query query = createQuery("delete from Reservation where id=:id ");
+        Query query = createQuery("DELETE FROM Reservation WHERE id=:id ");
         query.setParameter("id", id );
         query.executeUpdate();
     }

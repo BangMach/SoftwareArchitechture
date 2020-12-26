@@ -38,58 +38,79 @@ public class UserDAOImpl implements UserDAOInterface {
                 "FROM Reservation resv " +
                 "WHERE resv.startTime >= :prevTableStartTime " +
                 "AND resv.startTime <= :expectedEndTime " +
-                "AND resv.status = 'booked'" +
+                "AND resv.status = 'booked' " +
             ") " +
-            "AND table.status = 'available'"
+            "AND table.status = 'available' " +
+            "ORDER BY id"
         )
         .setParameter("prevTableStartTime", prevTableStartTime)
         .setParameter("expectedEndTime", expectedEndTime);
         return query.getResultList();
     }
 
+    @Override
     public List<ReservationDetail> findReservationDetails(ReservationDetail reservationDetail, int startAt, int maxResults) {
-       String queryString = "SELECT new ReservationDetail( " +
+        String queryString = "SELECT new ReservationDetail( " +
             "res.id, res.email, res.name, res.phone, res.startTime, " +
             "res.note, res.status, res.tableId, table.seats) " +
             "FROM RestaurantTable table, Reservation res " +
             "WHERE table.id = res.tableId AND ";
         queryString += (reservationDetail.getId() != 0)
-                ? " table.id = :id AND  "
+                ? " res.id = :id AND  "
                 : " :id = :id AND ";
         queryString += (reservationDetail.getName() != null)
-                ? " table.name LIKE CASE WHEN :name = '' THEN table.name ELSE :name END AND  "
-                : " :name LIKE :name AND ";
+                ? " res.name LIKE CASE WHEN :name = '' THEN res.name ELSE :name END  AND "
+                : " :name LIKE :name AND";
         queryString += (reservationDetail.getEmail() != null)
-                ? " table.email LIKE CASE WHEN :email = '' THEN table.email ELSE :email END AND  "
+                ? " res.email LIKE CASE WHEN :email = '' THEN res.email ELSE :email END AND "
                 : " :email LIKE :email AND ";
         queryString += (reservationDetail.getPhone() != null)
-                ? " table.phone LIKE CASE WHEN :phone = '' THEN table.phone ELSE :phone END  "
-                : " :phone LIKE :phone ";
+                ? " res.phone LIKE CASE WHEN :phone = '' THEN res.phone ELSE :phone END AND "
+                : " :phone LIKE :phone AND ";
         queryString += (reservationDetail.getTableId() != 0)
-                ? " table.tableId = :tableId AND  "
+                ? " res.tableId = :tableId AND "
                 : " :tableId = :tableId AND ";
         queryString += (reservationDetail.getSeats() != 0)
-                ? " table.seats = :seats AND  "
+                ? " table.seats = :seats AND "
                 : " :seats = :seats AND ";
-        queryString += (reservationDetail.getStartTime() != null)
-                ? " table.startTime LIKE CASE WHEN :startTime = '' THEN table.startTime ELSE :startTime END AND  "
-                : " :startTime LIKE :startTime AND ";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        if (reservationDetail.getStartTime() != null) {
+            queryString += " res.startTime = :startTime AND ";
+            timestamp = new Timestamp(reservationDetail.getStartTime().getTime() - (1000 *60*60*7));
+        } else {
+            queryString += " :startTime = :startTime AND ";
+        }
         queryString += (reservationDetail.getNote() != null)
-                ? " table.note LIKE CASE WHEN :note = '' THEN table.note ELSE :note END AND  "
+                ? " res.note LIKE CASE WHEN :note = '' THEN res.note ELSE :note END AND  "
                 : " :note LIKE :note AND ";
         queryString += (reservationDetail.getStatus() != null)
-                ? " table.status LIKE CASE WHEN :status = '' THEN table.status ELSE :status END  "
+                ? " res.status LIKE CASE WHEN :status = '' THEN res.status ELSE :status END  "
                 : " :status LIKE :status ";
+        queryString += " ORDER BY res.id";
         Query query = createQuery(queryString)
                         .setParameter("id", reservationDetail.getId())
-                        .setParameter("phone", "%" + reservationDetail.getPhone() + "%")
-                        .setParameter("email", "%" + reservationDetail.getEmail() + "%")
                         .setParameter("name", "%" + reservationDetail.getName() + "%")
+                        .setParameter("email", "%" + reservationDetail.getEmail() + "%")
+                        .setParameter("phone", "%" + reservationDetail.getPhone() + "%")
                         .setParameter("tableId",  reservationDetail.getTableId())
                         .setParameter("seats", reservationDetail.getSeats())
-                        .setParameter("startTime", reservationDetail.getStartTime())
+                        .setParameter("startTime", timestamp)
                         .setParameter("note", "%" + reservationDetail.getNote() + "%")
                         .setParameter("status", "%" + reservationDetail.getStatus() + "%")
+                        .setFirstResult(startAt)
+                        .setMaxResults(maxResults);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<ReservationDetail> getAllReservationDetails(int startAt, int maxResults) {
+        String queryString = "SELECT new ReservationDetail( " +
+                "res.id, res.email, res.name, res.phone, res.startTime, " +
+                "res.note, res.status, res.tableId, table.seats) " +
+                "FROM RestaurantTable table, Reservation res " +
+                "WHERE table.id = res.tableId " +
+                "ORDER BY res.id";
+        Query query = createQuery(queryString)
                         .setFirstResult(startAt)
                         .setMaxResults(maxResults);
         return query.getResultList();

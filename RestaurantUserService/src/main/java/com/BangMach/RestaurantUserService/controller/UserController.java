@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -23,17 +22,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/available/tables")
-    public List<RestaurantTable> searchAvailableTables(@RequestParam Timestamp startTime) {
+    @GetMapping(value = "/tables/{startTime}")
+    public List<RestaurantTable> searchAvailableTables(@PathVariable Timestamp startTime) {
         return userService.searchAvailableTables(startTime);
     }
 
-    @GetMapping(value = "/reservation/details")
+    @GetMapping(value = "/reservations")
+    public List<ReservationDetail> getAllReservationDetails(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return userService.getAllReservationDetails(startAt, maxResults);
+    }
+
+    @PostMapping(value = "/reservations/attributes")
     public List<ReservationDetail> findReservationDetails(@RequestBody ReservationDetail reservationDetail, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
         return userService.findReservationDetails(reservationDetail, startAt, maxResults);
     }
 
-    @PostMapping(value = "/create/reservation")
+    @PostMapping(value = "/reservations")
     public ResponseEntity createReservation(@RequestBody Reservation reservation) {
         Reservation newReservation = userService.createReservation(reservation);
         if (newReservation == null) {
@@ -49,7 +53,7 @@ public class UserController {
         }
     }
 
-    @PutMapping(value = "/update/reservation")
+    @PutMapping(value = "/reservations")
     public ResponseEntity updateReservation(@RequestBody Reservation reservation) {
         ResponseEntity<Reservation> updatedReservation = userService.updateReservation(reservation);
         if (updatedReservation == null) {

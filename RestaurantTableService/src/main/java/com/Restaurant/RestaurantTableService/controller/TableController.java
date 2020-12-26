@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/tables/")
+@RequestMapping(path = "/tables")
 public class TableController {
 
     private final TableServiceInterface tableService;
@@ -20,7 +19,7 @@ public class TableController {
         this.tableService = tableService;
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "")
     public ResponseEntity addTable(@RequestBody RestaurantTable table) {
         RestaurantTable newTable = tableService.createTable(table);
         if (newTable == null) {
@@ -36,22 +35,12 @@ public class TableController {
         }
     }
 
-    @GetMapping(value = "/filter")
-    public List<RestaurantTable> findTables(@RequestBody RestaurantTable table, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
-        return tableService.findTables(table, startAt, maxResults);
-    }
-
-    @GetMapping(value = "/find")
-    public RestaurantTable findTableById(@RequestParam int id) {
-        return tableService.findTableById(id);
-    }
-
-    @GetMapping(value = "/all")
+    @GetMapping(value = "")
     public List<RestaurantTable> findAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
         return tableService.getAllTables(startAt, maxResults);
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping(value = "")
     public ResponseEntity updateTable(@RequestBody RestaurantTable table) {
         RestaurantTable updatedTable = tableService.updateTable(table);
         if (updatedTable == null) {
@@ -65,6 +54,16 @@ public class TableController {
                 HttpStatus.BAD_REQUEST
             );
         }
+    }
+
+    @GetMapping(value = "/{id}")
+    public RestaurantTable findTableById(@PathVariable int id) {
+        return tableService.findTableById(id);
+    }
+
+    @PostMapping(value = "/attributes")
+    public List<RestaurantTable> findTables(@RequestBody RestaurantTable table, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return tableService.findTables(table, startAt, maxResults);
     }
 
 }

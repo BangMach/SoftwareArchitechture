@@ -5,7 +5,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class TableDaoImpl implements TableDAOInterface {
 
     @Override
     public List<RestaurantTable> getAllTables(int startAt, int maxResults){
-        Query query = createQuery("from RestaurantTable order by id")
+        Query query = createQuery("FROM RestaurantTable ORDER BY id")
                         .setFirstResult(startAt)
                         .setMaxResults(maxResults);
         return query.getResultList();
@@ -39,7 +38,7 @@ public class TableDaoImpl implements TableDAOInterface {
 
     @Override
     public List<RestaurantTable> findTables(RestaurantTable table, int startAt, int maxResults) {
-        String queryString = " from RestaurantTable where ";
+        String queryString = " FROM RestaurantTable WHERE ";
         queryString += (table.getId() != 0)
                 ? " id = :id AND  "
                 : " :id = :id AND ";
@@ -49,6 +48,7 @@ public class TableDaoImpl implements TableDAOInterface {
         queryString += (table.getStatus() != null)
                 ? " status LIKE CASE WHEN :status = '' THEN status ELSE :status END "
                 : " :status LIKE :status ";
+        queryString += " ORDER BY id";
         Query query = createQuery(queryString)
                         .setParameter("id", table.getId())
                         .setParameter("seats", table.getSeats())
