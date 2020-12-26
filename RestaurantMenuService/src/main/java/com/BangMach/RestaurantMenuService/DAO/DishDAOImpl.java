@@ -28,7 +28,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     @Override
     @Transactional
     public List<Dish> getAllDishes(int startAt, int maxResults) {
-        Query query = createQuery("from Dish order by id")
+        Query query = createQuery("FROM Dish ORDER BY id")
                         .setFirstResult(startAt)
                         .setMaxResults(maxResults);
         return query.getResultList();
@@ -57,9 +57,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     @Override
     @Transactional
     public List<Dish> findDishByCategory(String category, int startAt, int maxResults) {
-        Query query = createQuery(
-    "from Dish where category LIKE :category order by id"
-        )
+        Query query = createQuery("FROM Dish WHERE category LIKE :category ORDER BY id")
         .setParameter("category", category)
         .setFirstResult(startAt)
         .setMaxResults(maxResults);
@@ -69,7 +67,7 @@ public class DishDAOImpl implements  DishDAOInterface {
     @Override
     @Transactional
     public List<Dish> findDishes(Dish dish, int startAt, int maxResults) {
-        String queryString = " from Dish where ";
+        String queryString = " FROM Dish WHERE ";
         queryString += (dish.getId() != 0)
                 ? " id = :id AND  "
                 : " :id = :id AND ";
@@ -82,6 +80,7 @@ public class DishDAOImpl implements  DishDAOInterface {
         queryString += (dish.getDescription() != null)
                 ? " description LIKE CASE WHEN :description = '' THEN description ELSE :description END  "
                 : " :description LIKE :description ";
+        queryString += " ORDER BY id";
         Query query = createQuery(queryString)
                         .setParameter("id", dish.getId())
                         .setParameter("category","%" + dish.getCategory() + "%")

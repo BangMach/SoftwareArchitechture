@@ -11,7 +11,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/accounts/")
+@RequestMapping(path = "/accounts")
 public class AccountController {
 
     private final AccountServiceInterface accountService;
@@ -21,7 +21,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "")
     public ResponseEntity addAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         Account newAccount = accountService.createAccount(account);
         if (newAccount == null) {
@@ -37,27 +37,12 @@ public class AccountController {
         }
     }
 
-    @GetMapping(value = "/find/username")
-    public Account findAccountByUsername(@RequestParam String username) {
-        return accountService.findAccountByUsername(username);
-    }
-
-    @GetMapping(value = "/find/email")
-    public Account findAccountByEmail(@RequestParam String email) {
-        return accountService.findAccountByEmail(email);
-    }
-
-    @GetMapping(value = "/all")
+    @GetMapping(value = "")
     public List<Account> findAll(@RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
         return accountService.getAllAccounts(startAt, maxResults);
     }
 
-    @GetMapping(value = "/filter")
-    public List<Account> findAccounts(@RequestBody Account account, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
-        return accountService.findAccounts(account, startAt, maxResults);
-    }
-
-    @PutMapping(value = "/update")
+    @PutMapping(value = "")
     public ResponseEntity updateAccount(@RequestBody Account account) throws InvalidKeySpecException, NoSuchAlgorithmException {
         Account updatedAccount = accountService.updateAccount(account);
         if (updatedAccount == null) {
@@ -73,9 +58,24 @@ public class AccountController {
         }
     }
 
-    @DeleteMapping(value = "/delete")
-    public String deleteAccount(@RequestParam Integer id){
+    @DeleteMapping(value = "/{id}")
+    public String deleteAccount(@PathVariable Integer id){
         return accountService.deleteAccountById(id);
+    }
+
+    @PostMapping(value = "/attributes")
+    public List<Account> findAccounts(@RequestBody Account account, @RequestParam(value= "startAt", defaultValue = "0") Integer startAt, @RequestParam(value= "maxResults", defaultValue = "50") Integer maxResults) {
+        return accountService.findAccounts(account, startAt, maxResults);
+    }
+
+    @GetMapping(value = "/email/{email}")
+    public Account findAccountByEmail(@PathVariable String email) {
+        return accountService.findAccountByEmail(email);
+    }
+
+    @GetMapping(value = "/username/{username}")
+    public Account findAccountByUsername(@PathVariable String username) {
+        return accountService.findAccountByUsername(username);
     }
 
 }
