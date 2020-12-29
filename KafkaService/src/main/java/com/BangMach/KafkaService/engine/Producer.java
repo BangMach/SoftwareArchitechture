@@ -1,6 +1,5 @@
-package com.BangMach.RestaurantReservationService.engine;
+package com.BangMach.KafkaService.engine;
 
-import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +15,10 @@ public class Producer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendSaveMessage(Reservation reservation) {
-        logger.info(String.format("#### -> Producing message -> %s", reservation));
+    public <T> void sendSaveMessage(T t) {
+        logger.info(String.format("#### -> Producing message -> %s", t));
         Gson gson = new Gson();
-        String json = gson.toJson(reservation);
+        String json = gson.toJson(t);
 
         this.kafkaTemplate.send(SAVE_RESERVATION, json);
     }
