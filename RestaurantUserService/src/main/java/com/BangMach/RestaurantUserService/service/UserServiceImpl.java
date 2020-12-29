@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserServiceInterface {
     @Transactional
     public Reservation createReservation(Reservation reservation) {
         if (checkAvailableTableForCreate(reservation.getTableId(), reservation.getStartTime())) {
-            String url = "http://RESERVATION-SERVICE/reservations/create";
+            String url = "http://RESERVATION-SERVICE/reservations";
             return restTemplate.postForObject(url, reservation, Reservation.class);
         }
         return null;
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserServiceInterface {
     @Transactional
     public ResponseEntity<Reservation> updateReservation(Reservation reservation) {
        if (checkAvailableTableForUpdate(reservation.getTableId(), reservation.getStartTime(), reservation.getId())) {
-            String url = "http://RESERVATION-SERVICE/reservations/update";
+            String url = "http://RESERVATION-SERVICE/reservations";
             HttpEntity<Reservation> requestEntity = new HttpEntity<>(reservation);
             return restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Reservation.class);
         }
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     private boolean checkAvailableTableForCreate(int tableId, Timestamp timestamp) {
-        String url = "http://TABLE-SERVICE/tables/find?id=" + tableId;
+        String url = "http://TABLE-SERVICE/tables/" + tableId;
         RestaurantTable reservedTable = restTemplate.getForObject(url, RestaurantTable.class);
         if (timestamp != null && reservedTable != null) {
             List<RestaurantTable> reservableTables = searchAvailableTables(
@@ -81,13 +81,13 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     private boolean checkAvailableTableForUpdate(int tableId, Timestamp timestamp, int id) {
-        String currentReservationURL = "http://RESERVATION-SERVICE/reservations/find?id=" + id;
+        String currentReservationURL = "http://RESERVATION-SERVICE/reservations/" + id;
         Reservation currentReservation = getReservation(currentReservationURL);
         if (currentReservation != null) {
             if (tableId == 0 || tableId == currentReservation.getTableId()) {
                 return (timestamp == null) || (new Timestamp(timestamp.getTime() - 1000 * 60 * 60 * 7).equals(currentReservation.getStartTime()));
             } else {
-                String changeTableURL = "http://TABLE-SERVICE/tables/find?id=" + tableId;
+                String changeTableURL = "http://TABLE-SERVICE/tables/" + tableId;
                 RestaurantTable changeTable = getRestaurantTable(changeTableURL);
                 if (changeTable != null) {
                     if (timestamp != null) {
