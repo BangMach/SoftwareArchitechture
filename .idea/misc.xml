@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/RestaurantReservationService/pom.xml" />
         <option value="$PROJECT_DIR$/RestaurantMenuService/pom.xml" />
         <option value="$PROJECT_DIR$/APIGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/KafkaService/pom.xml" />
       </list>
     </option>
   </component>

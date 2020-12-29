@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APIGateway/APIGateway.iml" filepath="$PROJECT_DIR$/APIGateway/APIGateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" filepath="$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KafkaService/KafkaService.iml" filepath="$PROJECT_DIR$/KafkaService/KafkaService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantAccountService/RestaurantAccountService.iml" filepath="$PROJECT_DIR$/RestaurantAccountService/RestaurantAccountService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" filepath="$PROJECT_DIR$/RestaurantLoginService/RestaurantLoginService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantMenuService/RestaurantMenuService.iml" filepath="$PROJECT_DIR$/RestaurantMenuService/RestaurantMenuService.iml" />

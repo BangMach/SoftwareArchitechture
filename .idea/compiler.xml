@@ -11,6 +11,7 @@
         <module name="APIGateway" />
         <module name="RestaurantMenuService" />
         <module name="RestaurantTableService" />
+        <module name="KafkaService" />
         <module name="RestaurantAccountService" />
         <module name="RestaurantReservationService" />
         <module name="RestaurantLoginService" />
@@ -20,6 +21,7 @@
     <bytecodeTargetLevel>
       <module name="APIGateway" target="13" />
       <module name="DiscoveryService" target="11" />
+      <module name="KafkaService" target="15" />
       <module name="RestaurantAccountService" target="15" />
       <module name="RestaurantLoginService" target="15" />
       <module name="RestaurantMenuService" target="11" />
@@ -33,6 +35,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateway" options="-parameters" />
       <module name="DiscoveryService" options="-parameters" />
+      <module name="KafkaService" options="-parameters" />
       <module name="RestaurantAccountService" options="-parameters" />
       <module name="RestaurantLoginService" options="-parameters" />
       <module name="RestaurantMenuService" options="-parameters" />
