@@ -1,0 +1,70 @@
+version: "3.3"
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: docker-discovery-service-3
+    ports:
+      - 8761:8761
+    networks:
+      - emp-networks
+  api-gateway-service:
+    container_name: api-gateway-service
+    image: docker-api-gateway-service
+    ports:
+      - 8989:8989
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+  reservation-service:
+    container_name: reservation-service
+    image: docker-reservation-service
+    ports:
+      - 8086:8086
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+  account-service:
+    container_name: account-service
+    image: docker-account-service
+    ports:
+      - 8083:8083
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+  login-service:
+    container_name: login-service
+    image: docker-login-service
+    ports:
+      - 8081:8081
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+  table-service:
+    container_name: table-service
+    image: docker-table-service
+    ports:
+      - 8082:8082
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+
+  user-service:
+    container_name: user-service
+    image: docker-user-service
+    ports:
+      - 8085:8085
+    links:
+      - eureka-server:eureka-server
+    networks:
+      - emp-networks
+networks:
+  emp-networks:
+    driver: bridge
+
+
+

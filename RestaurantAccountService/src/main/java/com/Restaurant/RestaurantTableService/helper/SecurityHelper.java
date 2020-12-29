@@ -1,4 +1,4 @@
-package com.Restaurant.RestaurantAccountService.helper;
+package com.Restaurant.RestaurantTableService.helper;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -8,10 +8,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 @SpringBootApplication(exclude={SecurityAutoConfiguration.class})
 public class APIGatewayApplication {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(APIGatewayApplication.class, args);
 	}
-
 }
+
+

@@ -27,6 +27,13 @@ public class RestaurantTable {
     public RestaurantTable() {
     }
 
+    public RestaurantTable(int seats, @NotNull String status) {
+        this.seats = seats;
+        this.status = status;
+    }
+
+
+
     public String getStatus() {
         return status;
     }

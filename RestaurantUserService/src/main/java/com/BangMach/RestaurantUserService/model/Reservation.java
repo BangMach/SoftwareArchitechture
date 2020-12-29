@@ -38,6 +38,17 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(@NotEmpty int id, @Email String email, @NotEmpty String name, @NotEmpty String phone, @NotEmpty Timestamp startTime, String note, String status, @NotEmpty int tableId) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+        this.startTime = startTime;
+        this.note = note;
+        this.status = status;
+        this.tableId = tableId;
+    }
+
     public int getId() {
         return id;
     }

@@ -1,6 +1,7 @@
-package com.Restaurant.RestaurantAccountService.service;
+package com.Restaurant.RestaurantTableService.service;
 
-import com.Restaurant.RestaurantAccountService.model.Account;
+import com.Restaurant.RestaurantTableService.model.Account;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;

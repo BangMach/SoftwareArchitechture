@@ -1,11 +1,12 @@
-package com.Restaurant.RestaurantAccountService.controller;
+package com.Restaurant.RestaurantTableService.controller;
 
-import com.Restaurant.RestaurantAccountService.model.Account;
-import com.Restaurant.RestaurantAccountService.service.AccountServiceInterface;
+import com.Restaurant.RestaurantTableService.model.Account;
+import com.Restaurant.RestaurantTableService.service.AccountServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
