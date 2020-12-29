@@ -7,19 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
+        <module name="RestaurantService" />
+        <module name="APIGateway" />
+        <module name="RestaurantMenuService" />
         <module name="RestaurantTableService" />
         <module name="KafkaService" />
         <module name="RestaurantAccountService" />
-        <module name="RestaurantMenuService" />
         <module name="RestaurantReservationService" />
-        <module name="RestaurantService" />
-        <module name="APIGateway" />
         <module name="RestaurantLoginService" />
         <module name="DiscoveryService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="APIGateway" target="14" />
+      <module name="APIGateway" target="13" />
       <module name="DiscoveryService" target="11" />
       <module name="KafkaService" target="15" />
       <module name="RestaurantAccountService" target="15" />

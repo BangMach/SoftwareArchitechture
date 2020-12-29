@@ -1,10 +1,10 @@
-package com.BangMach.RestaurantService;
+package com.Restaurant.RestaurantTableService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestaurantServiceApplicationTests {
+class RestaurantTableServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
