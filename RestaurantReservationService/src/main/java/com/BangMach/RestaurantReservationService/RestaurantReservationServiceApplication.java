@@ -9,8 +9,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@EnableDiscoveryClient
+
 @EnableEurekaClient
+@EnableDiscoveryClient
 @SpringBootApplication(exclude={SecurityAutoConfiguration.class})
 public class RestaurantReservationServiceApplication {
 
