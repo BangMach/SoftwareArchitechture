@@ -2,6 +2,9 @@ version: "3.3"
 services:
   eureka-server:
     container_name: eureka-server
+    build:
+      context: ./DiscoveryService/
+      dockerfile: Dockerfile
     image: docker-discovery-service-3
     ports:
       - 8761:8761
@@ -9,6 +12,9 @@ services:
       - emp-networks
   api-gateway-service:
     container_name: api-gateway-service
+    build:
+      context: ./APIGateway/
+      dockerfile: Dockerfile
     image: docker-api-gateway-service
     ports:
       - 8989:8989
@@ -18,6 +24,9 @@ services:
       - emp-networks
   reservation-service:
     container_name: reservation-service
+    build:
+      context: ./RestaurantReservationService/
+      dockerfile: Dockerfile
     image: docker-reservation-service
     ports:
       - 8086:8086
@@ -27,6 +36,9 @@ services:
       - emp-networks
   account-service:
     container_name: account-service
+    build:
+      context: ./RestaurantAccountService/
+      dockerfile: Dockerfile
     image: docker-account-service
     ports:
       - 8083:8083
@@ -36,6 +48,9 @@ services:
       - emp-networks
   login-service:
     container_name: login-service
+    build:
+      context: ./RestaurantLoginService/
+      dockerfile: Dockerfile
     image: docker-login-service
     ports:
       - 8081:8081
@@ -45,6 +60,9 @@ services:
       - emp-networks
   table-service:
     container_name: table-service
+    build:
+      context: ./RestaurantTableService/
+      dockerfile: Dockerfile
     image: docker-table-service
     ports:
       - 8082:8082
@@ -52,9 +70,11 @@ services:
       - eureka-server:eureka-server
     networks:
       - emp-networks
-
   user-service:
     container_name: user-service
+    build:
+      context: ./RestaurantUserService/
+      dockerfile: Dockerfile
     image: docker-user-service
     ports:
       - 8085:8085
