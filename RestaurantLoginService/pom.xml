@@ -70,6 +70,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>Restaurant-Login-Service</finalName>
 	</build>
 
 </project>

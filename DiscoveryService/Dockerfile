@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/DiscoveryService-0.0.1-SNAPSHOT.jar DiscoveryService-0.0.1-SNAPSHOT.jar
+ADD target/Discovery-Service.jar Discovery-Service.jar
 EXPOSE 8761
-ENTRYPOINT ["java","-jar","DiscoveryService-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","Discovery-Service.jar"]

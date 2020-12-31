@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/RestaurantTableService-0.0.1-SNAPSHOT.jar RestaurantTableService-0.0.1-SNAPSHOT.jar
+ADD target/Restaurant-Table-Service.jar Restaurant-Table-Service.jar
 EXPOSE 8082
-ENTRYPOINT ["java" , "-jar","RestaurantTableService-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java" , "-jar","Restaurant-Table-Service.jar"]

@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/APIGateway-1.0-SNAPSHOT.jar APIGateway-1.0-SNAPSHOT.jar
+ADD target/API-Gateway-Service.jar API-Gateway-Service.jar
 EXPOSE 8989
-ENTRYPOINT ["java","-jar","APIGateway-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","API-Gateway-Service.jar"]
