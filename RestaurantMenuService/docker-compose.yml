@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    container_name: restaurant-menu-service
+    image: restaurant-menu-service
+    build:
+      context: ./RestaurantMenuService/
+      dockerfile: Dockerfile
+    links:
+      - redis
+      - eureka-server:eureka-server
+    ports:
+      - 8084:8084
+    volumes:
+      - ~/docker/redis:/redis-service/logs
+    networks:
+      - emp-networks
+  redis:
+    container_name: redis
+    image: redis
+    build:
+      context: ./RestaurantMenuService/redis/
+      dockerfile: Dockerfile
+    hostname: redis
+    ports:
+      - 6379:6379
