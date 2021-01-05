@@ -5,7 +5,7 @@ services:
     build:
       context: ./DiscoveryService/
       dockerfile: Dockerfile
-    image: docker-discovery-service-3
+    image: docker-discovery-service
     ports:
       - 8761:8761
     networks:
@@ -80,6 +80,32 @@ services:
       - 8085:8085
     links:
       - eureka-server:eureka-server
+    networks:
+      - emp-networks
+  app:
+    container_name: restaurant-menu-service
+    image: restaurant-menu-service
+    build:
+      context: ./RestaurantMenuService/
+      dockerfile: Dockerfile
+    links:
+      - redis
+      - eureka-server:eureka-server
+    ports:
+      - 8084:8084
+    volumes:
+      - ~/docker/redis:/redis-service/logs
+    networks:
+      - emp-networks
+  redis:
+    container_name: redis
+    image: redis
+    build:
+      context: ./RestaurantMenuService/redis/
+      dockerfile: Dockerfile
+    hostname: redis
+    ports:
+      - 6379:6379
     networks:
       - emp-networks
 networks:

@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/KafkaService-0.0.1-SNAPSHOT.jar KafkaService-0.0.1-SNAPSHOT.jar
+ADD target/Kafka-Service.jar Kafka-Service.jar
 EXPOSE 9000
-ENTRYPOINT ["java" , "-jar","KafkaService-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java" , "-jar","Kafka-Service.jar"]

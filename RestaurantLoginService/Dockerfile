@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/RestaurantLoginService-0.0.1-SNAPSHOT.jar RestaurantLoginService-0.0.1-SNAPSHOT.jar
+ADD target/Restaurant-Login-Service.jar Restaurant-Login-Service.jar
 EXPOSE 8081
-ENTRYPOINT ["java" , "-jar","RestaurantLoginService-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java" , "-jar","Restaurant-Login-Service.jar"]

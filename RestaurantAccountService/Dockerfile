@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/RestaurantAccountService-0.0.1-SNAPSHOT.jar RestaurantAccountService-0.0.1-SNAPSHOT.jar
+ADD target/Restaurant-Account-Service.jar Restaurant-Account-Service.jar
 EXPOSE 8083
-ENTRYPOINT ["java" , "-jar","RestaurantAccountService-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java" , "-jar","Restaurant-Account-Service.jar"]
