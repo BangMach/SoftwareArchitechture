@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/kafka_reservation")
+@RequestMapping(value = "/kafka")
 public class Controller {
     private final Producer producer;
 
@@ -14,9 +14,15 @@ public class Controller {
         this.producer = producer;
     }
 
-    @PostMapping(value = "/save")
-    public <T> String sendSaveMessageToKafkaTopic(@RequestBody T t) {
+    @PostMapping(value = "/reservation/save")
+    public <T> T sendSaveMessageToKafkaTopic(@RequestBody T t) {
         this.producer.sendSaveMessage(t);
-        return "Sent save message";
+        return t;
+    }
+
+    @PostMapping(value = "/reservation/put")
+    public <T> T sendPutMessageToKafkaTopic(@RequestBody T t) {
+        this.producer.sendPutMessage(t);
+        return t;
     }
 }

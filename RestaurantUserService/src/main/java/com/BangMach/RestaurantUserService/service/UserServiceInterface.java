@@ -14,9 +14,9 @@ public interface UserServiceInterface {
 
     List<ReservationDetail> findReservationDetails(ReservationDetail reservationDetail, int startAt, int maxResults);
 
-    Reservation createReservation(Reservation reservation);
+    String createReservation(Reservation reservation);
 
-    ResponseEntity<Reservation> updateReservation(Reservation reservation);
+    String updateReservation(Reservation reservation);
 
     List<ReservationDetail> getAllReservationDetails(int startAt, int maxResults);
 }
