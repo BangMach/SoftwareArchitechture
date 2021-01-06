@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  api-gateway-service:
+    container_name: api-gateway-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-api-gateway-service
+    ports:
+      - 8989:8989
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge

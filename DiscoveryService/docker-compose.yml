@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  discovery-service:
+    container_name: eureka-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-discovery-service
+    ports:
+      - 8761:8761
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge

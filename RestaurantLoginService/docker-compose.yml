@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  login-service:
+    container_name: login-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-login-service
+    ports:
+      - 8081:8081
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge
