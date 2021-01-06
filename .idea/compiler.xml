@@ -7,13 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RestaurantUserService" />
-        <module name="RestaurantService" />
-        <module name="APIGateway" />
-        <module name="RestaurantMenuService" />
         <module name="RestaurantTableService" />
         <module name="KafkaService" />
         <module name="RestaurantAccountService" />
+        <module name="RestaurantMenuService" />
         <module name="RestaurantReservationService" />
+        <module name="RestaurantService" />
+        <module name="APIGateway" />
         <module name="RestaurantLoginService" />
         <module name="DiscoveryService" />
       </profile>

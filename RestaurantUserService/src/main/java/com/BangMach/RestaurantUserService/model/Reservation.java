@@ -1,5 +1,8 @@
 package com.BangMach.RestaurantUserService.model;
 
+import com.BangMach.RestaurantUserService.engine.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -24,6 +27,7 @@ public class Reservation {
     private String phone;
 
     @NotEmpty
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Timestamp startTime;
 
     @Column

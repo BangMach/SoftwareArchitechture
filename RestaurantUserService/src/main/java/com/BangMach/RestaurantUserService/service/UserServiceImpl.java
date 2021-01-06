@@ -43,21 +43,20 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     @Transactional
-    public Reservation createReservation(Reservation reservation) {
+    public String createReservation(Reservation reservation) {
         if (checkAvailableTableForCreate(reservation.getTableId(), reservation.getStartTime())) {
-            String url = "http://RESERVATION-SERVICE/reservations";
-            return restTemplate.postForObject(url, reservation, Reservation.class);
+            String url = "http://KAFKA-SERVICE/kafka/reservation/save";
+            return restTemplate.postForObject(url, reservation, String.class);
         }
         return null;
     }
 
     @Override
     @Transactional
-    public ResponseEntity<Reservation> updateReservation(Reservation reservation) {
+    public String updateReservation(Reservation reservation) {
        if (checkAvailableTableForUpdate(reservation.getTableId(), reservation.getStartTime(), reservation.getId())) {
-            String url = "http://RESERVATION-SERVICE/reservations";
-            HttpEntity<Reservation> requestEntity = new HttpEntity<>(reservation);
-            return restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Reservation.class);
+            String url = "http://KAFKA-SERVICE/kafka/reservation/put";
+            return restTemplate.postForObject(url, reservation, String.class);
         }
         return null;
     }
