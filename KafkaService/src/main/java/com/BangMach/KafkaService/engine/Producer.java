@@ -10,30 +10,33 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Producer {
+
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
     private static final String SAVE_RESERVATION = "save_reservation";
     private static final String PUT_RESERVATION = "put_reservation";
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     public <T> void sendSaveMessage(T t) {
-        logger.info(String.format("#### -> Producing message -> %s", t));
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyy-MM-dd");
-        Gson gson = gsonBuilder.create();
-        String json = gson.toJson(t);
-
+        String json = parseJson(t);
         this.kafkaTemplate.send(SAVE_RESERVATION, json);
     }
 
     public <T> void sendPutMessage(T t) {
+        String json = parseJson(t);
+        this.kafkaTemplate.send(PUT_RESERVATION, json);
+    }
+
+    public <T> String parseJson(T t) {
         logger.info(String.format("#### -> Producing message -> %s", t));
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("yyyy-MM-dd");
         Gson gson = gsonBuilder.create();
-        String json = gson.toJson(t);
-
-        this.kafkaTemplate.send(PUT_RESERVATION, json);
+        return gson.toJson(t);
     }
+
 }

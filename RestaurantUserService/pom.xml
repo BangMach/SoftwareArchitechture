@@ -83,7 +83,6 @@
 		</plugins>
 		<finalName>Restaurant-User-Service</finalName>
 	</build>
-
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
