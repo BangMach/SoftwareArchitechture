@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import com.BangMach.RestaurantUserService.helper.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name="reservation")
@@ -24,6 +26,7 @@ public class Reservation {
     private String phone;
 
     @NotEmpty
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Timestamp startTime;
 
     @Column

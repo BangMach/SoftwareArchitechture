@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping(value = "/reservations")
     public ResponseEntity createReservation(@RequestBody Reservation reservation) {
-        Reservation newReservation = userService.createReservation(reservation);
+        String newReservation = userService.createReservation(reservation);
         if (newReservation == null) {
             return new ResponseEntity<>(
                     "Failed to create new reservation",
@@ -55,16 +55,16 @@ public class UserController {
 
     @PutMapping(value = "/reservations")
     public ResponseEntity updateReservation(@RequestBody Reservation reservation) {
-        ResponseEntity<Reservation> updatedReservation = userService.updateReservation(reservation);
+        String updatedReservation = userService.updateReservation(reservation);
         if (updatedReservation == null) {
             return new ResponseEntity<>(
-                "Failed to update reservation",
-                HttpStatus.BAD_REQUEST
+                    "Failed to update reservation",
+                    HttpStatus.BAD_REQUEST
             );
         } else {
             return new ResponseEntity<>(
-                updatedReservation.getBody(),
-                HttpStatus.BAD_REQUEST
+                    updatedReservation,
+                    HttpStatus.BAD_REQUEST
             );
         }
     }
