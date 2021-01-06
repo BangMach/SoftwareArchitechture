@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  reservation-service:
+    container_name: reservation-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-reservation-service
+    ports:
+      - 8086:8086
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge

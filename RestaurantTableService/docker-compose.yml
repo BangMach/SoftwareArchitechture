@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  table-service:
+    container_name: table-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-table-service
+    ports:
+      - 8082:8082
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge

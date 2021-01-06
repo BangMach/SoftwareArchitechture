@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://discovery-service:8761/eureka/
     register-with-eureka: true
 
 

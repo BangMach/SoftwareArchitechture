@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  user-service:
+    container_name: user-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-user-service
+    ports:
+      - 8085:8085
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge

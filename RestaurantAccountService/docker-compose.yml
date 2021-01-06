@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  account-service:
+    container_name: account-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-account-service
+    ports:
+      - 8083:8083
+    networks:
+      - restaurant
+networks:
+  restaurant:
+    name: restaurant
+    driver: bridge
