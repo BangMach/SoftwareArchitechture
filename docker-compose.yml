@@ -11,7 +11,7 @@ services:
     networks:
       - restaurant
   discovery-service:
-    container_name: eureka-server
+    container_name: discovery-service
     build:
       context: ./DiscoveryService/
       dockerfile: Dockerfile

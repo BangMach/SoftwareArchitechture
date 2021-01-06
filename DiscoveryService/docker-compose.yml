@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   discovery-service:
-    container_name: eureka-server
+    container_name: discovery-service
     build:
       context: .
       dockerfile: Dockerfile
