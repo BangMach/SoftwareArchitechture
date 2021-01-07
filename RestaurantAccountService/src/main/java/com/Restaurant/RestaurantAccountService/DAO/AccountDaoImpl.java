@@ -1,6 +1,6 @@
-package com.Restaurant.RestaurantTableService.DAO;
+package com.Restaurant.RestaurantAccountService.DAO;
 
-import com.Restaurant.RestaurantTableService.model.Account;
+import com.Restaurant.RestaurantAccountService.model.Account;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,14 +1,16 @@
-package com.Restaurant.RestaurantTableService;
+package com.Restaurant.RestaurantAccountService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableEurekaClient
 @SpringBootApplication(exclude={SecurityAutoConfiguration.class})
-public class RestaurantTableServiceApplication {
+public class RestaurantAccountServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestaurantTableServiceApplication.class, args);
+		SpringApplication.run(RestaurantAccountServiceApplication.class, args);
 	}
 
 }
