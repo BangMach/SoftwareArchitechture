@@ -1,5 +1,5 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://52.13.100.209:8761:8761/eureka/
+      defaultZone: http://52.13.100.209:8761/eureka/
     register-with-eureka: true
