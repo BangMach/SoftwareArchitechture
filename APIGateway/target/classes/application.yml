@@ -34,7 +34,10 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://discovery-service:8761/eureka/
+      defaultZone: http://54.202.53.123:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 34.212.9.5
 
 server:
   port: 8989
