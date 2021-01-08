@@ -1,4 +1,4 @@
-package com.Restaurant.RestaurantTableService.model;
+package com.Restaurant.RestaurantAccountService.model;
 
 import com.sun.istack.NotNull;
 

@@ -22,11 +22,11 @@
       <module name="APIGateway" target="14" />
       <module name="DiscoveryService" target="11" />
       <module name="KafkaService" target="15" />
-      <module name="RestaurantAccountService" target="15" />
-      <module name="RestaurantLoginService" target="15" />
+      <module name="RestaurantAccountService" target="11" />
+      <module name="RestaurantLoginService" target="11" />
       <module name="RestaurantMenuService" target="11" />
       <module name="RestaurantReservationService" target="11" />
-      <module name="RestaurantTableService" target="15" />
+      <module name="RestaurantTableService" target="11" />
       <module name="RestaurantUserService" target="11" />
       <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>

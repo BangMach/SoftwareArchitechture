@@ -1,8 +1,8 @@
-package com.Restaurant.RestaurantTableService.service;
+package com.Restaurant.RestaurantAccountService.service;
 
-import com.Restaurant.RestaurantTableService.DAO.AccountDAOInterface;
-import com.Restaurant.RestaurantTableService.helper.SecurityHelper;
-import com.Restaurant.RestaurantTableService.model.Account;
+import com.Restaurant.RestaurantAccountService.DAO.AccountDAOInterface;
+import com.Restaurant.RestaurantAccountService.helper.SecurityHelper;
+import com.Restaurant.RestaurantAccountService.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

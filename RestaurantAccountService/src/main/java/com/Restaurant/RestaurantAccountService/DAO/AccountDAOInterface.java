@@ -1,7 +1,6 @@
-package com.Restaurant.RestaurantTableService.DAO;
+package com.Restaurant.RestaurantAccountService.DAO;
 
-import com.Restaurant.RestaurantTableService.model.Account;
-
+import com.Restaurant.RestaurantAccountService.model.Account;
 import java.util.List;
 
 public interface AccountDAOInterface {

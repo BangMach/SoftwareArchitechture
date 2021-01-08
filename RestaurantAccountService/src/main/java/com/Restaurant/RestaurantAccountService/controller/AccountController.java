@@ -1,7 +1,7 @@
-package com.Restaurant.RestaurantTableService.controller;
+package com.Restaurant.RestaurantAccountService.controller;
 
-import com.Restaurant.RestaurantTableService.model.Account;
-import com.Restaurant.RestaurantTableService.service.AccountServiceInterface;
+import com.Restaurant.RestaurantAccountService.model.Account;
+import com.Restaurant.RestaurantAccountService.service.AccountServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

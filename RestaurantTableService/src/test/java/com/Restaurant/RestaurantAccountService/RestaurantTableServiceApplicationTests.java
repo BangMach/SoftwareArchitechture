@@ -1,9 +1,10 @@
-package com.Restaurant.RestaurantTableService;
+package com.Restaurant.RestaurantAccountService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import javax.ws.rs.core.Application;
 
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
 class RestaurantTableServiceApplicationTests {
 
 	@Test
