@@ -10,7 +10,7 @@ services:
       - 8085:8085
     networks:
       - restaurant
-    restart: always
+#    restart: always
 networks:
   restaurant:
     name: restaurant

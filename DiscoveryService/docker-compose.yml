@@ -8,4 +8,4 @@ services:
     image: docker-discovery-service
     ports:
       - 8761:8761
-    restart: always
+#    restart: always
