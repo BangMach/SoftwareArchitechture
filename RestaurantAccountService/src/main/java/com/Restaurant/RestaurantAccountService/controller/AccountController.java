@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/accounts")
+@CrossOrigin(origins ="http://192.168.1.6:3000")
 public class AccountController {
 
     private final AccountServiceInterface accountService;
