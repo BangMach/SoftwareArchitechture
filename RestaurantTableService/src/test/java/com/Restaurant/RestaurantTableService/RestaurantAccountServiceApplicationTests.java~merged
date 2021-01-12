@@ -1,0 +1,29 @@
+<<<<<<< HEAD
+package com.Restaurant.RestaurantTableService;
+=======
+<<<<<<< HEAD:KafkaService/src/test/java/com/BangMach/KafkaService/KafkaServiceApplicationTests.java
+package com.BangMach.KafkaService;
+=======
+package com.Restaurant.RestaurantTableService;
+>>>>>>> HystrixImpl:RestaurantTableService/src/test/java/com/Restaurant/RestaurantTableService/RestaurantAccountServiceApplicationTests.java
+>>>>>>> HystrixImpl
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+<<<<<<< HEAD
+class RestaurantTableServiceApplicationTests {
+=======
+<<<<<<< HEAD:KafkaService/src/test/java/com/BangMach/KafkaService/KafkaServiceApplicationTests.java
+class KafkaServiceApplicationTests {
+=======
+class RestaurantTableServiceApplicationTests {
+>>>>>>> HystrixImpl:RestaurantTableService/src/test/java/com/Restaurant/RestaurantTableService/RestaurantAccountServiceApplicationTests.java
+>>>>>>> HystrixImpl
+
+	@Test
+	void contextLoads() {
+	}
+
+}

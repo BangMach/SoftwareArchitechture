@@ -3,6 +3,9 @@ eureka:
     serviceUrl:
       defaultZone: http://discovery-service:8761/eureka/
     register-with-eureka: true
+  instance:
+    prefer-ip-address: : true
+    ip-address: 54.187.108.29
 spring:
   kafka:
     consumer:

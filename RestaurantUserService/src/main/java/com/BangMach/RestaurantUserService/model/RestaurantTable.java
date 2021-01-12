@@ -32,15 +32,6 @@ public class RestaurantTable {
         this.status = status;
     }
 
-
-
-    public RestaurantTable(int seats, @NotNull String status) {
-        this.seats = seats;
-        this.status = status;
-    }
-
-
-
     public String getStatus() {
         return status;
     }
