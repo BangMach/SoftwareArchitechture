@@ -3,9 +3,8 @@ package com.Restaurant.RestaurantLoginService.controller;
 import com.Restaurant.RestaurantLoginService.model.Account;
 import com.Restaurant.RestaurantLoginService.service.LoginServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import java.io.IOException;
 
 @RestController
@@ -20,35 +19,27 @@ public class LoginController {
     }
 
     @PostMapping("/password")
-    public ResponseEntity verifyAccountPassword(@RequestBody Account account) throws IOException {
+    public RedirectView verifyAccountPassword(@RequestBody Account account) throws IOException {
         Account verifiedAccount = loginService.verifyAccountPassword(account);
+        RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            return new ResponseEntity<>(
-                "User not found",
-                HttpStatus.BAD_REQUEST
-            );
+            redirectView.setUrl("http://localhost:3000/login");
         } else {
-            return new ResponseEntity<>(
-                verifiedAccount,
-                HttpStatus.OK
-            );
+            redirectView.setUrl("http://localhost:3000/accounts");
         }
+        return redirectView;
     }
 
     @GetMapping("/email")
-    public ResponseEntity verifyAccountEmail() throws IOException {
+    public RedirectView verifyAccountEmail() throws IOException {
         Account verifiedAccount = loginService.verifyAccountEmail();
+        RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            return new ResponseEntity<>(
-                    "User not found",
-                    HttpStatus.BAD_REQUEST
-            );
+            redirectView.setUrl("http://localhost:3000/login");
         } else {
-            return new ResponseEntity<>(
-                    verifiedAccount,
-                    HttpStatus.OK
-            );
+            redirectView.setUrl("http://localhost:3000/accounts");
         }
+        return redirectView;
     }
 
 }
