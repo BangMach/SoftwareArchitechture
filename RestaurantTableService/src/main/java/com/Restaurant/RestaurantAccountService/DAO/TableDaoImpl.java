@@ -47,12 +47,12 @@ public class TableDaoImpl implements TableDAOInterface {
                 : " :seats = :seats AND ";
         queryString += (table.getStatus() != null)
                 ? " status LIKE CASE WHEN :status = '' THEN status ELSE :status END "
-                : " :status LIKE :status ";
+                : " :status = :status ";
         queryString += " ORDER BY id";
         Query query = createQuery(queryString)
                         .setParameter("id", table.getId())
                         .setParameter("seats", table.getSeats())
-                        .setParameter("status", "%" + table.getStatus() + "%")
+                        .setParameter("status", table.getStatus())
                         .setFirstResult(startAt)
                         .setMaxResults(maxResults);
         return query.getResultList();

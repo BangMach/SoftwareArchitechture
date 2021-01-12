@@ -13,7 +13,8 @@ import java.util.List;
 public class TableServiceImpl implements TableServiceInterface {
 
     private final TableDAOInterface tableDAO;
-    private List<String> statuses = Arrays.asList("available", "unavailable");
+
+    private final List<String> statuses = Arrays.asList("available", "unavailable");
 
     @Autowired
     public TableServiceImpl(@Qualifier("tableDAOImpl") TableDAOInterface tableDAO){

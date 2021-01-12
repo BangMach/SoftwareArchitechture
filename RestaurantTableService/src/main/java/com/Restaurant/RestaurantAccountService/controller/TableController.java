@@ -30,7 +30,7 @@ public class TableController {
         } else {
             return new ResponseEntity<>(
                     newTable,
-                    HttpStatus.BAD_REQUEST
+                    HttpStatus.OK
             );
         }
     }
@@ -51,7 +51,7 @@ public class TableController {
         } else {
             return new ResponseEntity<>(
                 updatedTable,
-                HttpStatus.BAD_REQUEST
+                HttpStatus.OK
             );
         }
     }

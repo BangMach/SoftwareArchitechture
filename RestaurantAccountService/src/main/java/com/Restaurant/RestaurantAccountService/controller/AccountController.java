@@ -27,13 +27,13 @@ public class AccountController {
         Account newAccount = accountService.createAccount(account);
         if (newAccount == null) {
             return new ResponseEntity<>(
-                    "Failed to create new account",
-                    HttpStatus.BAD_REQUEST
+                "Failed to create new account",
+                HttpStatus.BAD_REQUEST
             );
         } else {
             return new ResponseEntity<>(
-                    newAccount,
-                    HttpStatus.BAD_REQUEST
+                newAccount,
+                HttpStatus.OK
             );
         }
     }

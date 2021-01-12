@@ -59,16 +59,16 @@ services:
       - 8083:8083
     networks:
       - restaurant
-  login-service:
-    container_name: login-service
-    build:
-      context: ./RestaurantLoginService/
-      dockerfile: Dockerfile
-    image: docker-login-service
-    ports:
-      - 8081:8081
-    networks:
-      - restaurant
+#  login-service:
+#    container_name: login-service
+#    build:
+#      context: ./RestaurantLoginService/
+#      dockerfile: Dockerfile
+#    image: docker-login-service
+#    ports:
+#      - 8081:8081
+#    networks:
+#      - restaurant
 #  menu-service:
 #    container_name: menu-service
 #    image: restaurant-menu-service
@@ -94,16 +94,16 @@ services:
 #      - 6379:6379
 #    networks:
 #      - restaurant
-#  table-service:
-#    container_name: table-service
-#    build:
-#      context: ./RestaurantTableService/
-#      dockerfile: Dockerfile
-#    image: docker-table-service
-#    ports:
-#      - 8082:8082
-#    networks:
-#      - restaurant
+  table-service:
+    container_name: table-service
+    build:
+      context: ./RestaurantTableService/
+      dockerfile: Dockerfile
+    image: docker-table-service
+    ports:
+      - 8082:8082
+    networks:
+      - restaurant
 #  reservation-service:
 #    container_name: reservation-service
 #    build:
