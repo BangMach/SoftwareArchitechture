@@ -1,4 +1,4 @@
-package com.BangMach.RestaurantReservationService.engine;
+package com.BangMach.RestaurantReservationService.Engine;
 
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
 import com.BangMach.RestaurantReservationService.Service.ReservationServiceImpl;
@@ -20,9 +20,9 @@ public class Consumer {
     private ReservationServiceImpl reservationService;
 
     @KafkaListener(topics = "save_reservation", groupId = "group_id")
-    public void save(String json) throws IOException {
+    public void save(String json) {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyy-MM-dd");
+        gsonBuilder.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         Gson gson = gsonBuilder.create();
         Reservation reservation = gson.fromJson(json, Reservation.class);
         logger.info(String.format("#### -> Consumed message -> %s", reservation));
@@ -33,9 +33,9 @@ public class Consumer {
     }
 
     @KafkaListener(topics = "put_reservation", groupId = "group_id")
-    public void put(String json) throws IOException {
+    public void put(String json) {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyy-MM-dd");
+        gsonBuilder.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         Gson gson = gsonBuilder.create();
         Reservation reservation = gson.fromJson(json, Reservation.class);
         logger.info(String.format("#### -> Consumed message -> %s", reservation));

@@ -79,11 +79,11 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 #### `/users/tables/{startTime}`
 - GET
     - Find available tables from a given time
-#### `/reservations`
+#### `/users/reservations`
 - GET
     - Params: startAt, maxResults
 - POST, PUT
-#### `/reservations/attributes`
+#### `/users/reservations/attributes`
 - POST
     - Find reservations by different attributes
 

@@ -83,15 +83,16 @@ public class UserServiceImpl implements UserServiceInterface {
         String currentReservationURL = "http://RESERVATION-SERVICE/reservations/" + id;
         Reservation currentReservation = getReservation(currentReservationURL);
         if (currentReservation != null) {
-            if (tableId == 0 || tableId == currentReservation.getTableId()) {
-                return (timestamp == null) || (new Timestamp(timestamp.getTime() - 1000 * 60 * 60 * 7).equals(currentReservation.getStartTime()));
+            if ((tableId == 0 || tableId == currentReservation.getTableId())
+                && ((timestamp == null) || (new Timestamp(timestamp.getTime() - 1000 * 60 * 60 * 7).equals(currentReservation.getStartTime())))) {
+                return true;
             } else {
                 String changeTableURL = "http://TABLE-SERVICE/tables/" + tableId;
                 RestaurantTable changeTable = getRestaurantTable(changeTableURL);
                 if (changeTable != null) {
                     if (timestamp != null) {
                         List<RestaurantTable> reservableTables = searchAvailableTables(
-                                new Timestamp(timestamp.getTime() - 1000*60*60*7)
+                                new Timestamp(timestamp.getTime() - 1000 * 60 * 60 * 7)
                         );
                         return reservableTables.stream().anyMatch(o -> o.getId() == changeTable.getId());
                     } else {

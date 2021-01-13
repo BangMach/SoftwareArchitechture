@@ -34,7 +34,7 @@ public class Producer {
     public <T> String parseJson(T t) {
         logger.info(String.format("#### -> Producing message -> %s", t));
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyy-MM-dd");
+        gsonBuilder.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         Gson gson = gsonBuilder.create();
         return gson.toJson(t);
     }

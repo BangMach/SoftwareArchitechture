@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="account@restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com" uuid="8ea114c8-fd57-4694-8d89-9c34c80e36c5">
+    <data-source source="LOCAL" name="jdbc:postgresql://restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com:5432/table" uuid="8ea114c8-fd57-4694-8d89-9c34c80e36c5">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com:5432/account</jdbc-url>
+      <jdbc-url>jdbc:postgresql://restaurant-db.cy55ttzngnbg.us-east-2.rds.amazonaws.com:5432/table</jdbc-url>
     </data-source>
   </component>
 </project>

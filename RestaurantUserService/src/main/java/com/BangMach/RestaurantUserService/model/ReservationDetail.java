@@ -53,7 +53,7 @@ public class ReservationDetail {
         setSeats(seats);
         setStartTime(new Timestamp(startTime.getTime()));
         setStatus(status);
-        setName(note);
+        setNote(note);
     }
 
     public ReservationDetail() {

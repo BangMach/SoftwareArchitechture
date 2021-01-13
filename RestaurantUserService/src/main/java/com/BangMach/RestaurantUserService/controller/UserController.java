@@ -48,7 +48,7 @@ public class UserController {
         } else {
             return new ResponseEntity<>(
                     newReservation,
-                    HttpStatus.BAD_REQUEST
+                    HttpStatus.OK
             );
         }
     }
@@ -64,7 +64,7 @@ public class UserController {
         } else {
             return new ResponseEntity<>(
                     updatedReservation,
-                    HttpStatus.BAD_REQUEST
+                    HttpStatus.OK
             );
         }
     }
