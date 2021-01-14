@@ -10,8 +10,6 @@ services:
       - redis-service:redis
     ports:
       - 8084:8084
-    volumes:
-      - ~/docker/redis:/redis-service/logs
     networks:
       - restaurant
   redis-service:
