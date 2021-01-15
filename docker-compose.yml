@@ -40,31 +40,31 @@ services:
 #      - 8081:8081
 #    networks:
 #      - restaurant
-#  menu-service:
-#    container_name: menu-service
-#    image: restaurant-menu-service
-#    build:
-#      context: ./RestaurantMenuService/
-#      dockerfile: Dockerfile
-#    links:
-#      - redis-service:redis
-#    ports:
-#      - 8084:8084
-#    volumes:
-#      - ~/docker/redis:/redis-service/logs
-#    networks:
-#      - restaurant
-#  redis-service:
-#    container_name: redis-service
-#    image: docker-redis-service
-#    build:
-#      context: ./RestaurantMenuService/redis/
-#      dockerfile: Dockerfile
-#    hostname: redis
-#    ports:
-#      - 6379:6379
-#    networks:
-#      - restaurant
+  menu-service:
+    container_name: menu-service
+    image: restaurant-menu-service
+    build:
+      context: ./RestaurantMenuService/
+      dockerfile: Dockerfile
+    links:
+      - redis-service:redis
+    ports:
+      - 8084:8084
+    volumes:
+      - ~/docker/redis:/redis-service/logs
+    networks:
+      - restaurant
+  redis-service:
+    container_name: redis-service
+    image: docker-redis-service
+    build:
+      context: ./RestaurantMenuService/redis/
+      dockerfile: Dockerfile
+    hostname: redis
+    ports:
+      - 6379:6379
+    networks:
+      - restaurant
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
