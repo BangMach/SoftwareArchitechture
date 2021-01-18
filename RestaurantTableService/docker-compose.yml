@@ -10,7 +10,7 @@ services:
       - 8082:8082
     networks:
       - restaurant
-    restart: always
+#    restart: always
 networks:
   restaurant:
     name: restaurant

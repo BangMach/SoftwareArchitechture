@@ -8,10 +8,4 @@ services:
     image: docker-discovery-service
     ports:
       - 8761:8761
-    networks:
-      - restaurant
-    restart: always
-networks:
-  restaurant:
-    name: restaurant
-    driver: bridge
+#    restart: always
