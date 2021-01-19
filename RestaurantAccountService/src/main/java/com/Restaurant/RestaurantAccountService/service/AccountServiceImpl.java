@@ -3,6 +3,7 @@ package com.Restaurant.RestaurantAccountService.service;
 import com.Restaurant.RestaurantAccountService.DAO.AccountDAOInterface;
 import com.Restaurant.RestaurantAccountService.helper.SecurityHelper;
 import com.Restaurant.RestaurantAccountService.model.Account;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -137,4 +138,19 @@ public class AccountServiceImpl implements AccountServiceInterface {
         return accountDAO.findAccountById(id);
     }
 
+    @Override
+    @Transactional
+    public void populateData() {
+        for (int i = 0; i < 5; i++) {
+            Faker faker = new Faker();
+            String username = faker.name().username();
+            String fullName = faker.name().fullName();
+            String password = faker.name().username();
+            String phone = faker.phoneNumber().cellPhone();
+            String email = faker.name().username() + "@gmail.com";
+            String address = faker.address().streetAddress();
+            Account account = new Account(0, username, password, email, fullName, phone, address);
+            accountDAO.saveAccount(account);
+        }
+    }
 }

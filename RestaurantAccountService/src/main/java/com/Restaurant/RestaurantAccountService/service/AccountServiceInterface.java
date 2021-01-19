@@ -22,4 +22,6 @@ public interface AccountServiceInterface {
     Account updateAccount(Account account) throws InvalidKeySpecException, NoSuchAlgorithmException;
 
     String deleteAccountById(int id);
+
+    void populateData();
 }

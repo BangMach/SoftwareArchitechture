@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.cloud:spring-cloud-netflix-eureka-server:3.0.1-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210114.020152-213.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210119.050152-263.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210114.020152-213-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210119.050152-263-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210114.020152-213-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/3.0.1-SNAPSHOT/spring-cloud-netflix-eureka-server-3.0.1-20210119.050152-263-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

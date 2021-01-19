@@ -80,4 +80,9 @@ public class AccountController {
         return accountService.findAccountByUsername(username);
     }
 
+    @PostMapping(value = "/populate")
+    public String populateData() {
+        accountService.populateData();
+        return "Done";
+    }
 }
