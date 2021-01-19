@@ -3,12 +3,14 @@ package com.BangMach.RestaurantMenuService.service;
 import com.BangMach.RestaurantMenuService.DAO.DishDAOImpl;
 import com.BangMach.RestaurantMenuService.model.Dish;
 import com.BangMach.RestaurantMenuService.repository.DishRedisRepository;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class DishService {
@@ -117,5 +119,18 @@ public class DishService {
     @Transactional
     public List<Dish> findDishes(Dish dish, int startAt, int maxResults) {
         return dishDAO.findDishes(dish, startAt, maxResults);
+    }
+
+    @Transactional
+    public void populateData() {
+        Random random = new Random();
+        for (int i = 0; i < 5; i++) {
+            Faker faker = new Faker();
+            String name = faker.food().dish();
+            String category = dishCategories.get(random.nextInt(4));
+            String description = faker.food().ingredient();
+            Dish dish = new Dish(0, name, category, description, null);
+            dishDAO.saveDish(dish);
+        }
     }
 }

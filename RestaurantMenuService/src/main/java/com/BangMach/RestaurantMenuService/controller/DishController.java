@@ -72,4 +72,9 @@ public class DishController {
         return dishService.findDishes(dish, startAt, maxResults);
     }
 
+    @PostMapping("/populate")
+    public String populateData() {
+        dishService.populateData();
+        return "Done";
+    }
 }
