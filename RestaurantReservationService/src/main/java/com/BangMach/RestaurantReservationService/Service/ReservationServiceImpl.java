@@ -2,6 +2,7 @@ package com.BangMach.RestaurantReservationService.Service;
 
 import com.BangMach.RestaurantReservationService.DAO.ReservationDAO;
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Collection;
 
 @Service
 public class ReservationServiceImpl implements  ReservationServiceInterface {
@@ -102,5 +102,25 @@ public class ReservationServiceImpl implements  ReservationServiceInterface {
             return reservationDAO.createReservation(currentReservation);
         }
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void populateData() {
+        for (int i = 0; i < 10; i++) {
+            Faker faker = new Faker();
+            String email = faker.name().username() + "@gmail.com";
+            String name = faker.name().fullName();
+            String phone = faker.phoneNumber().cellPhone();
+            int tableId = (int) (Math.random() * 15) + 1;
+
+            long offset = Timestamp.valueOf("2020-01-01 00:00:00").getTime();
+            long end = Timestamp.valueOf("2021-01-01 00:00:00").getTime();
+            long diff = end - offset + 1;
+            Timestamp startTime = new Timestamp(offset + (long)(Math.random() * diff));
+
+            Reservation reservation = new Reservation(0, email, name, phone, startTime, "booked", tableId);
+            reservationDAO.createReservation(reservation);
+        }
     }
 }

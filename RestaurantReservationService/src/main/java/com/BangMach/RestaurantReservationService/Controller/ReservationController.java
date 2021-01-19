@@ -36,4 +36,9 @@ public class ReservationController {
         return reservationService.updateReservation(reservation);
     }
 
+    @PostMapping(value = "/populate")
+    public String populateData() {
+        reservationService.populateData();
+        return "Done";
+    }
 }

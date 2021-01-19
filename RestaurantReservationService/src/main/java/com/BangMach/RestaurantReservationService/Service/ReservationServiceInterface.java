@@ -14,4 +14,5 @@ public interface ReservationServiceInterface {
 
     String deleteReservationByID(int id);
 
+    void populateData();
 }

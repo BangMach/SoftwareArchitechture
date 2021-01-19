@@ -1,3 +1,4 @@
+/*
 package com.BangMach.RestaurantReservationService.engine;
 
 import com.BangMach.RestaurantReservationService.Entity.Reservation;
@@ -45,3 +46,5 @@ public class Consumer {
         logger.info(String.format("#### -> Finished updating item"));
     }
 }
+
+ */
