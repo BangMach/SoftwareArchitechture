@@ -27,7 +27,7 @@ public class LoginController {
             redirectView.setUrl("http://54.188.26.171:3000/login");
         } else {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            redirectView.setUrl("http://54.188.26.171:3000/login-success/timeStamp" + timestamp);
+            redirectView.setUrl("http://54.188.26.171:3000/login-success/timeStamp=" + timestamp);
         }
         return redirectView;
     }
