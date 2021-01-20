@@ -37,9 +37,9 @@ public class LoginController {
         Account verifiedAccount = loginService.verifyAccountEmail();
         RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            redirectView.setUrl("http://localhost:3000/login");
+            redirectView.setUrl("http://54.188.26.171:3000/login");
         } else {
-            redirectView.setUrl("http://localhost:3000/accounts");
+            redirectView.setUrl("http://54.188.26.171:3000/accounts");
         }
         return redirectView;
     }
