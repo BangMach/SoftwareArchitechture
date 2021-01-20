@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 @RestController
 @RequestMapping(path = "/login/")
@@ -25,7 +26,8 @@ public class LoginController {
         if (verifiedAccount == null) {
             redirectView.setUrl("http://localhost:3000/login");
         } else {
-            redirectView.setUrl("http://localhost:3000/accounts");
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            redirectView.setUrl("http://localhost:3000/login-success/timeStamp" + timestamp);
         }
         return redirectView;
     }
