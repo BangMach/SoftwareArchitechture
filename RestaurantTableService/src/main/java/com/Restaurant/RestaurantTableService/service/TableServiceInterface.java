@@ -1,6 +1,6 @@
-package com.Restaurant.RestaurantAccountService.service;
+package com.Restaurant.RestaurantTableService.service;
 
-import com.Restaurant.RestaurantAccountService.model.RestaurantTable;
+import com.Restaurant.RestaurantTableService.model.RestaurantTable;
 import java.util.List;
 
 public interface TableServiceInterface {
