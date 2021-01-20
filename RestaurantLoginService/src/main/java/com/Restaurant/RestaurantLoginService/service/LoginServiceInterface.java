@@ -5,8 +5,6 @@ import java.io.IOException;
 
 public interface LoginServiceInterface {
 
-    Account verifyAccountPassword(Account account) throws IOException;
-
     Account verifyAccountEmail() throws IOException;
 
 }

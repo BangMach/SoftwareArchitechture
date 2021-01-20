@@ -10,4 +10,8 @@ public class SecurityHelper {
         return passwordEncoder.encode(plainText);
     }
 
+    public static Boolean verifyPassword(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
 }

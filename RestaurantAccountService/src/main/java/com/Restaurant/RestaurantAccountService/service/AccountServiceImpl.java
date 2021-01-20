@@ -137,4 +137,16 @@ public class AccountServiceImpl implements AccountServiceInterface {
         return accountDAO.findAccountById(id);
     }
 
+    @Override
+    @Transactional
+    public Account verifyAccountPassword(Account account) {
+        Account foundAccount = findAccountByUsername(account.getUsername());
+        if (foundAccount != null) {
+            if (SecurityHelper.verifyPassword(account.getPassword(), foundAccount.getPassword())) {
+                return foundAccount;
+            }
+        }
+        return null;
+    }
+
 }

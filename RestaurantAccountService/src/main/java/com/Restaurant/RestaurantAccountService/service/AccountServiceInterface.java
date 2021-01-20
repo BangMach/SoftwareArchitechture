@@ -1,6 +1,8 @@
 package com.Restaurant.RestaurantAccountService.service;
 
 import com.Restaurant.RestaurantAccountService.model.Account;
+
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
@@ -22,4 +24,6 @@ public interface AccountServiceInterface {
     Account updateAccount(Account account) throws InvalidKeySpecException, NoSuchAlgorithmException;
 
     String deleteAccountById(int id);
+
+    Account verifyAccountPassword(Account account) throws IOException;
 }

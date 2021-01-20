@@ -1,6 +1,5 @@
 package com.Restaurant.RestaurantLoginService.service;
 
-import com.Restaurant.RestaurantLoginService.helper.SecurityHelper;
 import com.Restaurant.RestaurantLoginService.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,19 +16,6 @@ public class LoginServiceImpl implements LoginServiceInterface {
     @Autowired
     public LoginServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-    }
-
-    @Override
-    @Transactional
-    public Account verifyAccountPassword(Account account) {
-        String url = "http://ACCOUNT-SERVICE/accounts/username/" + account.getUsername();
-        Account foundAccount = restTemplate.getForObject(url, Account.class);
-        if (foundAccount != null) {
-            if (SecurityHelper.verifyPassword(account.getPassword(), foundAccount.getPassword())) {
-                return foundAccount;
-            }
-        }
-        return null;
     }
 
     @Override

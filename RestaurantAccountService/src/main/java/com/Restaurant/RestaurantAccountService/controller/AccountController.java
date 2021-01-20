@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -74,9 +77,17 @@ public class AccountController {
         return accountService.findAccountByEmail(email);
     }
 
-    @GetMapping(value = "/username/{username}")
-    public Account findAccountByUsername(@PathVariable String username) {
-        return accountService.findAccountByUsername(username);
+    @PostMapping("/password")
+    public RedirectView verifyAccountPassword(@RequestBody Account account) throws IOException {
+        Account verifiedAccount = accountService.verifyAccountPassword(account);
+        RedirectView redirectView = new RedirectView();
+        if (verifiedAccount == null) {
+            redirectView.setUrl("http://54.188.26.171:3000/login");
+        } else {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            redirectView.setUrl("http://54.188.26.171:3000/login-success/timeStamp" + timestamp);
+        }
+        return redirectView;
     }
 
 }
