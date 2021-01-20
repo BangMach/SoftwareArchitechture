@@ -93,7 +93,9 @@ public class DishService {
             if (imagePath != null) {
                 currentDish.setImagePath(imagePath);
             }
-            dishRedisRepository.add(currentDish);
+            if (dish.getCategory().equals("main")) {
+                dishRedisRepository.add(currentDish);
+            }
             return dishDAO.saveDish(currentDish);
         } else {
             return null;
