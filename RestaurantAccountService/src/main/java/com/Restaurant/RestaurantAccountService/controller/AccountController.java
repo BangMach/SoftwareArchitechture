@@ -78,16 +78,13 @@ public class AccountController {
     }
 
     @PostMapping("/password")
-    public RedirectView verifyAccountPassword(@RequestBody Account account) throws IOException {
+    public Timestamp verifyAccountPassword(@RequestBody Account account) throws IOException {
         Account verifiedAccount = accountService.verifyAccountPassword(account);
-        RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            redirectView.setUrl("http://54.188.26.171:3000/");
+            return null;
         } else {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            redirectView.setUrl("http://54.188.26.171:3000/success/timeStamp=" + timestamp);
+            return new Timestamp(System.currentTimeMillis());
         }
-        return redirectView;
     }
 
 }
