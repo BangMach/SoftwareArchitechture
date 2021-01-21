@@ -24,10 +24,10 @@ public class LoginController {
         Account verifiedAccount = loginService.verifyAccountEmail();
         RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            redirectView.setUrl("http://54.188.26.171:3000/login");
+            redirectView.setUrl("http://192.168.107.145:3000/");
         } else {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            redirectView.setUrl("http://54.188.26.171:3000/login-success/timeStamp=" + timestamp);
+            redirectView.setUrl("http://192.168.107.145:3000/success/timeStamp=" + timestamp);
         }
         return redirectView;
     }
