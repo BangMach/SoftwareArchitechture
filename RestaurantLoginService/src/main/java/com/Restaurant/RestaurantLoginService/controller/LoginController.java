@@ -24,7 +24,7 @@ public class LoginController {
         Account verifiedAccount = loginService.verifyAccountEmail();
         RedirectView redirectView = new RedirectView();
         if (verifiedAccount == null) {
-            redirectView.setUrl("http://192.168.107.145:3000/");
+            redirectView.setUrl("http://192.168.107.145:3000/fail");
         } else {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             redirectView.setUrl("http://192.168.107.145:3000/success/" + timestamp);
