@@ -99,12 +99,14 @@ This repo is the backend for all microservices.
 - Save/load main courses of the menu
 
 ## Work flow 
-1. Launch Discovery service first.
+1. Launch Discovery service first. 
 2. Launch Kafka service before Reservation service.
 3. Launch Table and Reservation services before User service.
 4. Launch Redis server before Menu service
 5. Check services' name here `http://54.203.146.96:8761`
 6. All APIs should be called from API Gateway with corresponding service name
+* All services can be launched with a single docker-compose up --build command.
+* IP for each service and for discovery service specified in application.yml of each service has to be checked and modified manually to make sure it is up-to-date.
 
 ## Constraints
 ### Account
