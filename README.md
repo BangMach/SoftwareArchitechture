@@ -3,6 +3,9 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 This repo is the backend for all microservices. 
 
 ## Project micro-services  
+- [x] Discovery Service
+- [x] API Gateway Service
+- [x] Kafka Service
 - [x] Account Service
 - [x] Login service     
 - [x] Menu Service
