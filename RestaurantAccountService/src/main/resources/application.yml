@@ -1,8 +1,8 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://54.202.53.123:8761/eureka/
+      defaultZone: http://54.203.146.96:8761/eureka/
     register-with-eureka: true
   instance:
     prefer-ip-address: true
-    ip-address: 54.244.209.79
+    ip-address: 34.222.65.129

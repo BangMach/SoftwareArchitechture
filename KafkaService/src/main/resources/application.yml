@@ -19,7 +19,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://54.202.53.123:8761/eureka
+      defaultZone: http://54.203.146.96:8761/eureka
   instance:
     prefer-ip-address: true
-    ip-address: 54.190.190.243
+    ip-address: 34.218.66.165
