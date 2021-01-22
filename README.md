@@ -11,16 +11,16 @@ This project is to develop a Restaurant website applying modern, scalable, high 
  
 ## URLs
 ### Service Discovery 
-- `http://localhost:8761`
+- `http://54.203.146.96:8761`
 ### API Gateway  
-- `http://localhost:8989`
+- `http://54.214.208.194:8989`
 ### Account Service 
-- `http://localhost:8083`
+- `http://34.222.65.129:8083`
 #### `/accounts`
 - GET  
     - Params: startAt, maxResults
 - POST, PUT 
-#### `/accounts/email/{email}`, `/accounts/username/{username}`
+#### `/accounts/email/{email}`
 - GET
     - Called by Login Service
 #### `/accounts/attributes`
@@ -29,21 +29,20 @@ This project is to develop a Restaurant website applying modern, scalable, high 
     - Find accounts by different attributes
 #### `/accounts/{id}`
 - DELETE
-### Login Service 
-- `http://localhost:8081`
-#### `/login/username`
+#### `/accounts/password`
 - POST
-    - Login with username and password
+### Login Service 
+- `http://34.217.83.118:8081`
 #### `/login/email`
 - GET
     - OAuth2 Login with google
 ### Menu Service 
-- `http://localhost:8084`
+- `http://54.184.58.188:8084`
 #### `/menu`
 - GET  
     - Params: startAt, maxResults
 - POST, PUT 
-#### `/menu/category/{category}`
+#### `/menu/{category}`
 - GET
     - Params: startAt, maxResults
 #### `/menu/attributes`
@@ -53,7 +52,7 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 #### `/menu/{id}`
 - DELETE
 ### Table Service 
-- `http://localhost:8082`
+- `http://54.190.164.68:8082`
 #### `/tables`
 - GET  
     - Params: startAt, maxResults
@@ -65,8 +64,14 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 #### `/tables/{id}`
 - GET
     - Called by User Service
+### Kafka Service 
+- `http://34.218.66.165:9000`
+#### `/kafka/reservation/save`
+- POST
+#### `/kafka/reservation/put`
+- POST
 ### Reservation Service 
-- `http://localhost:8086`
+- `http://34.218.66.165:8086`
 #### `/reservations`
 - POST, PUT 
     - Called by User Service
@@ -74,8 +79,9 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 - GET
     - Called by User Service
 #### `/reservations/{id}`
+- DELETE
 ### User Service 
-- `http://localhost:8085`
+- `http://54.202.141.13:8085`
 #### `/users/tables/{startTime}`
 - GET
     - Find available tables from a given time
@@ -87,14 +93,17 @@ This project is to develop a Restaurant website applying modern, scalable, high 
 - POST
     - Find reservations by different attributes
 
+
 ## Redis usage
 - Save/load main courses of the menu
 
-## Work flow
-1. Start Discovery service first.
-2. Run Table and Reservation services before User service.
-3. Run Redis server before Menu service: Redis -> 64 BIT -> redis-server
-4. All APIs should be called from API Gateway with port `8989`
+## Work flow 
+1. Launch Discovery service first.
+2. Launch Kafka service before Reservation service.
+3. Launch Table and Reservation services before User service.
+4. Launch Redis server before Menu service
+5. Check services' name here `http://54.203.146.96:8761`
+6. All APIs should be called from API Gateway with corresponding service name
 
 ## Constraints
 ### Account
