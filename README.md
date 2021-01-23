@@ -97,9 +97,11 @@ This repo is the backend for all microservices.
 - POST
     - Find reservations by different attributes
 
-
 ## Redis usage
 - Save/load main courses of the menu
+
+## Kafka usage
+- Handle request for create and update reservations
 
 ## Work flow 
 1. Launch Discovery service first. 
@@ -108,8 +110,11 @@ This repo is the backend for all microservices.
 4. Launch Redis server before Menu service
 5. Check services' name here `http://54.203.146.96:8761`
 6. All APIs should be called from API Gateway with corresponding service name
-* All services can be launched with a single docker-compose up --build command.
 * IP for each service and for discovery service specified in application.yml of each service has to be checked and modified manually to make sure it is up-to-date.
+
+### How to launch a service
+1. Run mvn clean install to create target folder and .jar file
+2. Run docker-compose up --build command 
 
 ## Constraints
 ### Account
