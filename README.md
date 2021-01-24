@@ -1,6 +1,7 @@
 # Software Architecture
 This project is to develop a Restaurant website applying modern, scalable, high available architecture by implementing OAuth2, micro-service, Redis, Kafka message queue, Docker, Kubernetes and AWS cloud.
 This repo is the backend for all microservices. 
+ * The IPs for all the URLs might change in the future since we reboot the EC2 instances.
 
 ## Project micro-services  
 - [x] Discovery Service
