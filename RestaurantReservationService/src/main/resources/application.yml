@@ -5,7 +5,7 @@ eureka:
     register-with-eureka: true
   instance:
     prefer-ip-address: true
-    ip-address: 34.218.66.165.243
+    ip-address: ${SERVER_IP}
 spring:
   kafka:
     consumer:

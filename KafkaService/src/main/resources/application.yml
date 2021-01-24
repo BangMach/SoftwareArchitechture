@@ -22,4 +22,4 @@ eureka:
       defaultZone: http://54.203.146.96:8761/eureka
   instance:
     prefer-ip-address: true
-    ip-address: 34.218.66.165
+    ip-address: ${SERVER_IP}

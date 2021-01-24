@@ -10,7 +10,8 @@ services:
       - 8081:8081
     networks:
       - restaurant
-#    restart: always
+    environment:
+      SERVER_IP: ${SERVER_IP}
 networks:
   restaurant:
     name: restaurant

@@ -5,4 +5,4 @@ eureka:
     register-with-eureka: true
   instance:
     prefer-ip-address: true
-    ip-address: 34.222.65.129
+    ip-address: ${SERVER_IP}

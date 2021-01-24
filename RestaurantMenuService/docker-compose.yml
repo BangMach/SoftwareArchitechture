@@ -14,7 +14,8 @@ services:
       - ~/docker/redis:/redis-service/logs
     networks:
       - restaurant
-#    restart: always
+    environment:
+      SERVER_IP: ${SERVER_IP}
   redis-service:
     container_name: redis-service
     image: docker-redis-service
@@ -26,7 +27,6 @@ services:
       - 6379:6379
     networks:
       - restaurant
-#    restart: always
 networks:
   restaurant:
     name: restaurant

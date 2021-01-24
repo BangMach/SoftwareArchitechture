@@ -50,7 +50,7 @@ eureka:
       defaultZone: http://54.203.146.96:8761/eureka/
   instance:
     prefer-ip-address: true
-    ip-address: 54.214.208.194
+    ip-address: ${SERVER_IP}
 
 server:
   port: 8989
